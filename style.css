@@ -1,23 +1,4 @@
 #menu-5-ucWG9pGjZe {
   position: fixed;
-}
-#menu-5-ucWG9pGjZe {
   margin-top: 10px;
-}
-body {
-    font-family: Arial, sans-serif;
-    transition: background-color 0.3s ease;
-}
-body.light-theme {
-    background-color: #f2f2f2;
-    color: #000000;
-}
-body.dark-theme {
-    background-color: #2f2f2f;
-    color: #ffffff;
-}
-.boxed-text {
-    border: 2px solid currentColor;
-    padding: 15px;
-    margin-top: 20px;
 }
