@@ -7,3 +7,33 @@
     height:100px;
     background:blue;
 }
+body.dark-theme {
+  background-color: hsl(340, 28%, 12%);
+  color: white;
+  align-items: center;
+}
+.nav_btns {
+  display: flex;
+  align-items: center;
+  border: solid;
+  border-radius: 10%;
+  height: 360px;
+  width: 400px;
+}
+
+.change-theme {
+  font-size: 1.5rem;
+  color: darkred;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+.change-theme:hover {
+  color: green;
+}
+
+body {
+  background-color: hsl(340, 60%, 90%);
+  color: black;
+  align-items: center;
+}
