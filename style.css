@@ -34,6 +34,12 @@ body.dark-theme {
 
 body {
   background-color: hsl(340, 60%, 90%);
-  color: black;
+  color: #0285a2;
   align-items: center;
+}
+.cid-ucWG9pH9Fo .mbr-section-subtitle, .cid-ucWG9pH9Fo .mbr-text, .cid-ucWG9pH9Fo .mbr-section-title {
+  color: #0285a2;
+}
+.cid-ucWG9pH9Fo .item-wrapper{
+  background-color: #c1f0a8;
 }
