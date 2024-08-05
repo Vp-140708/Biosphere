@@ -40,3 +40,69 @@ body {
 .cid-ucWG9pH9Fo .mbr-section-subtitle, .cid-ucWG9pH9Fo .mbr-text, .cid-ucWG9pH9Fo .mbr-section-title {
   color: #0285a2;
 }
+.centered-texts-container {
+  display: flex;
+  justify-content: center;
+  gap: 10rem; /* Расстояние между надписями */
+  margin-top: 20px; /* Отступ сверху для контейнера (можно изменить по необходимости) */
+}
+
+.text {
+  font-size: 3rem; /* Размер шрифта */
+}
+.carousel-container {
+  position: relative;
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex; /* Если вот тут заменить flex  на center, то будет вообще другой, тоже интересный элемент */
+  transition: transform 0.5s ease;
+}
+
+.carousel-item {
+  min-width: 200px;
+  height: 200px;
+  margin: 10px;
+  background: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.carousel-item p {
+  margin: 10px 0;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.carousel-button.left {
+  left: 10px;
+}
+
+.carousel-button.right {
+  right: 10px;
+}
