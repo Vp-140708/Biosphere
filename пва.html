@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Биосфера Ветеринарная Клиника</title>
+    <style>
+        :root {
+            --primary-color: #0285a2;
+            --background-light: #ffffff;
+            --background-dark: #333333;
+            --text-light: #000000;
+            --text-dark: #ffffff;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: var(--background-light);
+            color: var(--text-light);
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: var(--primary-color);
+            color: var(--text-dark);
+        }
+        header .logo {
+            display: flex;
+            align-items: center;
+        }
+        header .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        header nav {
+            display: flex;
+            gap: 15px;
+        }
+        header nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+        .hero img {
+            width: 50%;
+            height: auto;
+        }
+        .hero .text {
+            margin-left: 20px;
+        }
+        .clinic-info {
+            padding: 20px;
+            text-align: center;
+        }
+        .equipment {
+            display: flex;
+            overflow-x: auto;
+            padding: 20px;
+            background-color: #e0e0e0;
+        }
+        .equipment .item {
+            min-width: 200px;
+            margin: 0 10px;
+            text-align: center;
+        }
+        .equipment .item img {
+            width: 100%;
+            height: auto;
+        }
+        .map {
+            padding: 20px;
+            text-align: center;
+        }
+        .reviews {
+            padding: 20px;
+        }
+        .review {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .view-more {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: var(--text-dark);
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        footer {
+            padding: 20px;
+            background-color: var(--primary-color);
+            color: var(--text-dark);
+            text-align: center;
+        }
+        footer img {
+            height: 50px;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Биосфера">
+            <h1>Биосфера</h1>
+        </div>
+        <nav>
+            <a href="#specialization">Специализация</a>
+            <a href="#employees">Сотрудники</a>
+            <a href="#branches">Филиалы</a>
+            <a href="#price-list">Прайс-лист</a>
+            <a href="#reviews">Отзывы</a>
+            <a href="https://vk.com" target="_blank">ВКонтакте</a>
+        </nav>
+    </header>
+    <div class="hero">
+        <img src="specialist.jpg" alt="Специалист">
+        <div class="text">
+            <h2>Наша клиника предоставляет услуги узкоспециализированных специалистов с опытом работы более 20 лет в данной области.</h2>
+        </div>
+    </div>
+    <div class="clinic-info">
+        <h2>О клинике</h2>
+        <p>Мы предоставляем услуги по лечению домашних животных, у нас большой выбор кормов и медикаментов, игрушек для ваших питомцев.</p>
+    </div>
+    <div class="equipment">
+        <div class="item">
+            <img src="mri.jpg" alt="МРТ">
+            <p>МРТ</p>
+        </div>
+        <div class="item">
+            <img src="xray.jpg" alt="Рентген">
+            <p>Рентген</p>
+        </div>
+        <div class="item">
+            <img src="ultrasound.jpg" alt="УЗИ">
+            <p>УЗИ</p>
+        </div>
+        <div class="item">
+            <img src="ecg.jpg" alt="ЭКГ">
+            <p>ЭКГ</p>
+        </div>
+        <div class="item">
+            <img src="lab.jpg" alt="Лаборатория">
+            <p>Лаборатория</p>
+        </div>
+        <div class="item">
+            <img src="surgery.jpg" alt="Хирургия">
+            <p>Хирургия</p>
+        </div>
+    </div>
+    <div class="map">
+        <h2>Наши филиалы</h2>
+        <iframe src="https://yandex.ru/map-widget/v1/-/CCUbMCyOaC" width="600" height="400" frameborder="1" allowfullscreen="true"></iframe>
+    </div>
+    <div class="reviews" id="reviews">
+        <h2>Отзывы</h2>
+        <div class="review">
+            <p><strong>Иван Иванов:</strong> Отличная клиника! Врачи профессионалы, всегда внимательны к нашим питомцам.</p>
+        </div>
+        <div class="review">
+            <p><strong>Мария Петрова:</strong> Очень довольны обслуживанием и условиями. Рекомендую!</p>
+        </div>
+        <div class="review">
+            <p><strong>Сергей Смирнов:</strong> Отличное место, наш котик доволен после посещения ветеринара.</p>
+        </div>
+        <a href="#reviews-page" class="view-more">Посмотреть еще отзывы</a>
+    </div>
+    <footer>
+        <p>&copy; 2024 Биосфера Ветеринарная Клиника</p>
+        <img src="cat.png" alt="Кошка">
+        <img src="dog.png" alt="Собака">
+    </footer>
+</body>
+</html>

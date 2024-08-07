@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ветеринарная Клиника - Лента Ссылок</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .ribbon {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .link-block {
+            flex: 1 1 calc(25% - 20px);
+            margin: 10px;
+            text-align: center;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .link-block:hover {
+            transform: scale(1.05);
+        }
+        .link-block img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .link-block p {
+            padding: 10px;
+            background-color: #0285a2;
+            color: #ffffff;
+            margin: 0;
+        }
+        @media (max-width: 768px) {
+            .link-block {
+                flex: 1 1 calc(50% - 20px);
+            }
+        }
+        @media (max-width: 480px) {
+            .link-block {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ribbon">
+        <div class="link-block">
+            <img src="service1.jpg" alt="Услуга 1">
+            <p>Диагностика</p>
+        </div>
+        <div class="link-block">
+            <img src="service2.jpg" alt="Услуга 2">
+            <p>Лечение</p>
+        </div>
+        <div class="link-block">
+            <img src="service3.jpg" alt="Услуга 3">
+            <p>Профилактика</p>
+        </div>
+        <div class="link-block">
+            <img src="service4.jpg" alt="Услуга 4">
+            <p>Хирургия</p>
+        </div>
+        <div class="link-block">
+            <img src="service5.jpg" alt="Услуга 5">
+            <p>Груминг</p>
+        </div>
+        <div class="link-block">
+            <img src="service6.jpg" alt="Услуга 6">
+            <p>Консультации</p>
+        </div>
+        <div class="link-block">
+            <img src="service7.jpg" alt="Услуга 7">
+            <p>Вакцинация</p>
+        </div>
+        <div class="link-block">
+            <img src="service8.jpg" alt="Услуга 8">
+            <p>Анализы</p>
+        </div>
+    </div>
+</body>
+</html>
