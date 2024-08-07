@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Правильный рацион и кормление животных - Ветклиника "Биосфера"</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header-image {
+            width: 100%;
+            height: 50vh;
+            background-image: url('path/to/your/checkup-image.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .content {
+            padding: 20px;
+        }
+        .article {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .specialists {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 40px;
+        }
+        .specialist {
+            text-align: center;
+            flex: 1 1 calc(33.333% - 40px);
+            max-width: calc(33.333% - 40px);
+            margin: 20px;
+        }
+        .specialist img {
+            width: 100%;
+            border-radius: 50%;
+        }
+        @media (max-width: 768px) {
+            .header-image {
+                height: 30vh;
+            }
+            .specialist {
+                flex: 1 1 calc(50% - 40px);
+                max-width: calc(50% - 40px);
+            }
+        }
+        @media (max-width: 480px) {
+            .specialist {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-image"></div>
+
+    <div class="content">
+        <div class="article">
+            <h1>Первичный прием животных в ветеринарной клинике "Биосфера"</h1>
+            <p>Первичный прием животных в нашей клинике является важным этапом для диагностики и составления плана лечения вашего питомца. На первичном приеме ветеринар проводит полный осмотр животного, оценивает его общее состояние и выявляет возможные проблемы.</p>
+            <h2>Основные аспекты первичного приема</h2>
+            <ul>
+                <li><strong>Осмотр и оценка состояния:</strong> ветеринар проверяет внешний вид, температуру, вес и другие показатели здоровья животного.</li>
+                <li><strong>Сбор анамнеза:</strong> врач задает вопросы о поведении, питании, условиях содержания и прошлом медицинском обслуживании питомца.</li>
+                <li><strong>Диагностические тесты:</strong> при необходимости проводятся анализы крови, мочи, рентген или ультразвуковое исследование.</li>
+                <li><strong>План лечения:</strong> на основе результатов осмотра и тестов составляется план лечения или профилактики.</li>
+                <li><strong>Консультация по уходу:</strong> врач дает рекомендации по уходу за животным, его питанию и профилактике заболеваний.</li>
+            </ul>
+            <h2>Зачем нужен первичный прием</h2>
+            <p>Первичный прием необходим для того, чтобы получить полную картину здоровья вашего питомца. Это позволяет выявить проблемы на ранних стадиях, предотвратить развитие серьезных заболеваний и обеспечить долгую и здоровую жизнь вашему питомцу. Регулярные визиты к ветеринару помогают поддерживать здоровье животного на высоком уровне и своевременно реагировать на любые изменения в его состоянии.</p>
+        </div>
+
+        <div class="specialists">
+            <div class="specialist">
+                <img src="path/to/specialist1-photo.jpg" alt="Specialist 1">
+                <h3>Специалист 1</h3>
+                <p>Описание специалиста 1</p>
+            </div>
+            <div class="specialist">
+                <img src="path/to/specialist2-photo.jpg" alt="Specialist 2">
+                <h3>Специалист 2</h3>
+                <p>Описание специалиста 2</p>
+            </div>
+            <div class="specialist">
+                <img src="path/to/specialist3-photo.jpg" alt="Specialist 3">
+                <h3>Специалист 3</h3>
+                <p>Описание специалиста 3</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
