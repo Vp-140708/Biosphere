@@ -106,3 +106,27 @@ body {
 .carousel-button.right {
   right: 10px;
 }
+.responsive-block {
+  width: 100%;
+  max-width: 850px;
+  aspect-ratio: 16 / 9;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  margin-bottom: 5rem;
+  box-sizing: border-box;
+}
+.responsive-block a {
+  color: #0073ff;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+.responsive-block a:hover {
+  text-decoration: underline;
+}
