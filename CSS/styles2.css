@@ -1,0 +1,129 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Login Box Styling */
+.login-box {
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 40px;
+    border: 2px solid #ccc;
+}
+
+h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+input:focus {
+    border-color: #007BFF;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Reviews Section Styling */
+.reviews-section {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    border: 2px solid #ccc;
+}
+
+.review-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.review-block {
+    background-color: #f9f9f9;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    margin: 0 auto;
+}
+
+.review-content {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+    margin-top: 10px;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 10px 0 ;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .review-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .review-block {
+        width: 100%;
+        max-width: none;
+    }
+}

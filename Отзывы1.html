@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinary Clinic Feedback System</title>
+    <link rel="stylesheet" href="CSS\styles2.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        <div class="reviews-section">
+            <h2>User Reviews</h2>
+            <div class="review-grid">
+                <div class="review-block">
+                    <div class="avatar" style="background-image: url('avatar1.jpg');"></div>
+                    <hr>
+                    <div class="review-content">
+                        <p>Great experience! The staff was very friendly and the service was excellent.</p>
+                    </div>
+                </div>
+                <div class="review-block">
+                    <div class="avatar" style="background-image: url('avatar2.jpg');"></div>
+                    <hr>
+                    <div class="review-content">
+                        <p>Dr. Smith took excellent care of my cat. Highly recommend this clinic!</p>
+                    </div>
+                </div>
+                <div class="review-block">
+                    <div class="avatar" style="background-image: url('avatar3.jpg');"></div>
+                    <hr>
+                    <div class="review-content">
+                        <p>Clean facility and knowledgeable staff. My dog is doing great after the visit.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script2.js"></script>
+</body>
+</html>

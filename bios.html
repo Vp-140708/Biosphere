@@ -28,7 +28,7 @@
   </noscript>
   <link rel="stylesheet" href="https://r.mobirisesite.com/447065/assets/css/mbr-additional.css?rnd=1716117189289"
     type="text/css">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="CSS/style.css">
 
 
   <section data-bs-version="5.1" class="header18 cid-ufHdOJLJC4"
@@ -47,6 +47,41 @@
   <script src="https://r.mobirisesite.com/507689/assets/vimeoplayer/player.js"></script>
   <script src="https://r.mobirisesite.com/507689/assets/theme/js/script.js"></script>
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  
+
+
+
+  <style>
+    .responsive-labels-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      min-height: 10vh; /* Расстояние до блока снизу */
+      box-sizing: border-box;
+      padding: 20px;
+    }
+  
+    .responsive-label {
+      padding: 1px 20px;
+      margin: 100px;
+      border-radius: 5px;
+      font-size: 3rem;
+      text-align: center;
+    }
+  
+    /* Media query to stack labels on smaller screens */
+    @media (max-width: 600px) {
+      .responsive-labels-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+
+
+
+
+
 </head>
 
 <body>
@@ -55,7 +90,7 @@
   
 
 
-</head>
+
 
 <body>
   
@@ -198,27 +233,27 @@
               <div class="carousel-container">
                 <button class="carousel-button left" onclick="moveCarousel(-1)">&#9664;</button>
                 <div class="carousel-track">
-                    <a href="#" class="carousel-item">
+                    <a href="Carousel/Вакцинация.html" class="carousel-item">
                         <img src="image1.jpg" alt="Image 1">
                         <p>Текст 1</p>
                     </a>
-                    <a href="#" class="carousel-item">
+                    <a href="Carousel/Диагностики.html" class="carousel-item">
                         <img src="image2.jpg" alt="Image 2">
                         <p>Текст 2</p>
                     </a>
-                    <a href="#" class="carousel-item">
+                    <a href="Carousel/кастрация.html" class="carousel-item">
                         <img src="image3.jpg" alt="Image 3">
                         <p>Текст 3</p>
                     </a>
-                    <a href="#" class="carousel-item">
+                    <a href="Carousel/Первичный прием.html" class="carousel-item">
                       <img src="image4.jpg" alt="Image 4">
                       <p>Текст 4</p>
                   </a>
-                  <a href="#" class="carousel-item">
+                  <a href="Carousel/Питание.html" class="carousel-item">
                     <img src="image5.jpg" alt="Image 5">
                     <p>Текст 5</p>
                 </a>
-                <a href="#" class="carousel-item">
+                <a href="Carousel/Травмы.html" class="carousel-item">
                   <img src="image6.jpg" alt="Image 6">
                   <p>Текст 6</p>
               </a>
@@ -257,11 +292,11 @@
 
   
 
-  <div class="centered-texts-container">
-    <div class="text">Надпись 1</div>
-    <div class="text">Надпись 2</div>
-    <div class="text">Надпись 3</div>
-</div>
+  <div class="responsive-labels-container">
+    <div class="responsive-label">Надпись 1</div>
+    <div class="responsive-label">Надпись 2</div>
+    <div class="responsive-label">Надпись 3</div>
+  </div>
 
 
 
