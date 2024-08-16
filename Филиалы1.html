@@ -1,146 +1,146 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Branch Locations</title>
+    <title>Branches Information</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            color: #0285a2;
+            background-color: #f5f5f5;
             margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
             padding: 20px;
         }
-        
+
         .branch {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 15px;
             margin-bottom: 30px;
-            align-items: flex-start;
         }
-        
+
         .branch-info {
-            flex: 1;
-            min-width: 250px;
-            margin-right: 20px;
-            margin-bottom: 20px;
+            color: #0285a2;
         }
-        
-        .map {
-            flex: 1;
-            min-width: 250px;
-            height: 250px;
+
+        .map-container {
+            width: 100%;
+            height: 300px;
             border-radius: 10px;
             overflow: hidden;
         }
 
-        /* Responsive design */
-        @media (max-width: 768px) {
+        @media(min-width: 768px) {
             .branch {
-                flex-direction: column;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
             }
 
-            .map {
-                margin-left: 0;
+            .branch-info {
+                max-width: 45%;
+            }
+
+            .map-container {
+                max-width: 50%;
             }
         }
     </style>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=<YOUR_API_KEY>&lang=ru_RU" type="text/javascript"></script>
 </head>
 <body>
-    <div class="container">
-        <!-- Branch 1 -->
-        <div class="branch">
-            <div class="branch-info">
-                <p><strong>Address:</strong> Россия, г. Киров, ул. Солнечная 19Б</p>
-                <p><strong>Phone number:</strong> 44-97-97</p>
-                <p><strong>Opening hours:</strong> Ежедневно с 8:00 до 21:00</p>
-            </div>
-            <div class="map">
-                <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A9e0bfbc92cfe8b3a7a5ec926abf21f51c69b69e9be4d607e0346b141a33f98e3&amp;source=constructor" width="100%" height="100%" frameborder="0"></iframe>
-            </div>
+    <h1 align="center" style="margin-bottom: 50px;">Филиалы</h1> 
+    <div class="branch">
+        <div class="branch-info">
+            <p><strong>Адресс:</strong> Россия, г. Киров, ул. Солнечная 19Б</p>
+            <p><strong>Номер телефона:</strong> 44-97-97</p>
+            <p><strong>Часы работы:</strong> Ежедневно с 8:00 до 21:00</p>
         </div>
-        
-        <!-- Branch 2 -->
-        <div class="branch">
-            <div class="branch-info">
-                <p><strong>Address:</strong> ул. Московская 4</p>
-                <p><strong>Phone number:</strong> 38-39-40</p>
-                <p><strong>Opening hours:</strong> 
-                    Будние дни: с 8:00 до 21:00 <br>
-                    Суббота: с 8:00 до 19:00 <br>
-                    Воскресенье: с 8:00 до 17:00
-                </p>
-            </div>
-            <div class="map">
-                <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Af0e734d2abf303536e30f1f14d327eac32f12d04f83b0d1709a70b02e1a902c1&amp;source=constructor" width="100%" height="100%" frameborder="0"></iframe>
-            </div>
-        </div>
-        
-        <!-- Branch 3 -->
-        <div class="branch">
-            <div class="branch-info">
-                <p><strong>Address:</strong> ул. Молодой Гвардии, 2Д, Нововятский район</p>
-                <p><strong>Phone number:</strong> 44-67-97</p>
-                <p><strong>Opening hours:</strong>
-                    Будние дни: с 8:00 до 21:00 <br>
-                    Суббота: с 8:00 до 17:00
-                </p>
-            </div>
-            <div class="map">
-                <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ad123c7d4c0ec5dbfa9c669946541d21b79eb1007034e78dc1f1d52e8e68b9ef5&amp;source=constructor" width="100%" height="100%" frameborder="0"></iframe>
-            </div>
-        </div>
-        
-        <!-- Branch 4 -->
-        <div class="branch">
-            <div class="branch-info">
-                <p><strong>Address:</strong> пр-т Строителей, 9, корпус 1</p>
-                <p><strong>Phone number:</strong> 44-37-97</p>
-                <p><strong>Opening hours:</strong> Ежедневно круглосуточно</p>
-            </div>
-            <div class="map">
-                <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ac349f9e5fc51a3b67c9b2459b5e6653b8c34598cf4ef0eec8352b4643ea7fd14&amp;source=constructor" width="100%" height="100%" frameborder="0"></iframe>
-            </div>
-        </div>
-        
-        <!-- Branch 5 -->
-        <div class="branch">
-            <div class="branch-info">
-                <p><strong>Address:</strong> ул. Чернышевского, 7</p>
-                <p><strong>Phone number:</strong> 44-27-97</p>
-                <p><strong>Opening hours:</strong>
-                    Будние дни: с 8:00 до 21:00 <br>
-                    Суббота: с 8:00 до 17:00
-                </p>
-            </div>
-            <div class="map">
-                <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A3965e1a3fef3c8488dcb99c9a7b5cf4a99d604183c3270b46b7e80e25e3e1799&amp;source=constructor" width="100%" height="100%" frameborder="0"></iframe>
-            </div>
-        </div>
-        
-        <!-- Branch 6 -->
-        <div class="branch">
-            <div class="branch-info">
-                <p><strong>Address:</strong> ул. Украинская, 18</p>
-                <p><strong>Phone number:</strong> 44-47-97</p>
-                <p><strong>Opening hours:</strong>
-                    Будние дни: с 8:00 до 21:00 <br>
-                    Суббота: с 8:00 до 19:00 <br>
-                    Воскресенье: с 8:00 до 17:00
-                </p>
-            </div>
-            <div class="map">
-                <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Aab3d12cd4ff7d514ee2d5b1d47142f393741fe7657a5f4e7975ac7224b3f5e93&amp;source=constructor" width="100%" height="100%" frameborder="0"></iframe>
-            </div>
-        </div>
+        <div id="map1" class="map-container"></div>
     </div>
+
+    <div class="branch">
+        <div class="branch-info">
+            <p><strong>Адресс:</strong> ул. Московская 4</p>
+            <p><strong>Номер телефона:</strong> 38-39-40</p>
+            <p><strong>Часы работы:</strong></p>
+            <p>Будние дни: с 8:00 до 21:00</p>
+            <p>Суббота: с 8:00 до 19:00</p>
+            <p>Воскресенье: с 8:00 до 17:00</p>
+        </div>
+        <div id="map2" class="map-container"></div>
+    </div>
+
+    <div class="branch">
+        <div class="branch-info">
+            <p><strong>Адресс:</strong> ул. Молодой Гвардии, 2Д, Нововятский район</p>
+            <p><strong>Номер телефона:</strong> 44-67-97</p>
+            <p><strong>Часы работы:</strong></p>
+            <p>Будние дни: с 8:00 до 21:00</p>
+            <p>Суббота: с 8:00 до 17:00</p>
+        </div>
+        <div id="map3" class="map-container"></div>
+    </div>
+
+    <div class="branch">
+        <div class="branch-info">
+            <p><strong>Адресс:</strong> пр-т Строителей, 9, корпус 1</p>
+            <p><strong>Номер телефона:</strong> 44-37-97</p>
+            <p><strong>Часы работы:</strong> Ежедневно круглосуточно</p>
+        </div>
+        <div id="map4" class="map-container"></div>
+    </div>
+
+    <div class="branch">
+        <div class="branch-info">
+            <p><strong>Адресс:</strong> ул. Чернышевского, 7</p>
+            <p><strong>Номер телефона:</strong> 44-27-97</p>
+            <p><strong>Часы работы:</strong></p>
+            <p>Будние дни: с 8:00 до 21:00</p>
+            <p>Суббота: с 8:00 до 17:00</p>
+        </div>
+        <div id="map5" class="map-container"></div>
+    </div>
+
+    <div class="branch">
+        <div class="branch-info">
+            <p><strong>Адресс:</strong> ул. Украинская, 18</p>
+            <p><strong>Номер телефона:</strong> 44-47-97</p>
+            <p><strong>Часы работы:</strong></p>
+            <p>Будние дни: с 8:00 до 21:00</p>
+            <p>Суббота: с 8:00 до 19:00</p>
+            <p>Воскресенье: с 8:00 до 17:00</p>
+        </div>
+        <div id="map6" class="map-container"></div>
+    </div>
+
+    <script type="text/javascript">
+        function init() {
+            const locations = [
+                { id: 'map1', coordinates: [58.592346, 49.610836], address: 'ул. Солнечная 19Б' },
+                { id: 'map2', coordinates: [58.603179, 49.683813], address: 'ул. Московская 4' },
+                { id: 'map3', coordinates: [58.506387, 49.704162], address: 'ул. Молодой Гвардии, 2Д, Нововятский район' },
+                { id: 'map4', coordinates: [58.598729, 49.588486], address: 'пр-т Строителей, 9, корпус 1' },
+                { id: 'map5', coordinates: [58.628573, 49.627931], address: 'ул. Чернышевского, 7' },
+                { id: 'map6', coordinates: [58.569998, 49.651787], address: 'ул. Украинская, 18' },
+            ];
+
+            locations.forEach(location => {
+                var myMap = new ymaps.Map(location.id, {
+                    center: location.coordinates,
+                    zoom: 17
+                });
+
+                var myPlacemark = new ymaps.Placemark(location.coordinates, {
+                    hintContent: location.address,
+                    balloonContent: location.address
+                });
+
+                myMap.geoObjects.add(myPlacemark);
+            });
+        }
+
+        ymaps.ready(init);
+    </script>
 </body>
 </html>
