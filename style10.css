@@ -94,12 +94,15 @@ body {
 }
 
 .faq-block {
-    background-color: lightgray;
+    background-color: white;
+    border: 2px solid gray;
     border-radius: 15px;
     margin-bottom: 10px;
     padding: 15px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    position: relative;
+    transition: background-color 0.3s, border-color 0.3s, max-height 0.3s, padding-bottom 0.3s;
+    overflow: hidden;
 }
 
 .faq-block p {
@@ -108,8 +111,38 @@ body {
 }
 
 .faq-answer {
-    display: none;
-    margin-top: 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, padding-top 0.3s ease-in-out;
+}
+
+.arrow1 {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.faq-block.active .faq-answer {
+    max-height: 200px; /* Adjust as necessary */
+    padding-top: 10px;
+}
+
+.faq-block.active .arrow {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.dark-theme .faq-block {
+    background-color: #555;
+    border-color: #777;
+    color: white;
+}
+
+.dark-theme .faq-block.active {
+    background-color: #444;
+    border-color: #666;
 }
 
 .map-link {
@@ -273,4 +306,34 @@ footer {
 
 .dark-theme .arrow {
     background-color: #333;
+}
+@media (max-width: 480px) {
+    .adaptive-blocks-container {
+        padding: 0 10px; /* Added padding for small indents from the edges */
+    }
+
+    .link-block {
+        flex: 1 1 100%;
+        max-width: calc(100% - 20px); /* Subtract 20px to account for the padding */
+        transition: transform 0.3s ease;
+        margin: 0 auto; /* Center the block with the padding */
+    }
+
+    .arrow {
+        display: block;
+    }
+
+    .blocks-wrapper {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: 0 10px; /* Added padding to match the container */
+    }
+
+    .link-block {
+        scroll-snap-align: center;
+        flex: 0 0 100%;
+        max-width: calc(100% - 20px); /* Maintain the margin on either side */
+    }
 }

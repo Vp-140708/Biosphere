@@ -20,6 +20,11 @@ header {
     padding: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+.nav-links {
+    display: flex;
+    align-items: center; /* Aligns the links vertically in the center */
+    gap: 20px;
+}
 
 .header-container {
     display: flex;
@@ -31,7 +36,12 @@ header {
     display: flex;
     align-items: center;
 }
-
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
 .logo {
     height: 40px;
     margin-right: 10px;
@@ -41,7 +51,11 @@ header {
     font-size: 20px;
     font-weight: bold;
     margin-right: 20px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    transition: background-color 0.3s ease-in-out;
 }
+
 
 #theme-switcher {
     background: none;
@@ -59,7 +73,14 @@ header {
     text-decoration: none;
     color: black;
     font-size: 16px;
+    padding: 1px 10px;
+    border-radius: 15px;
+    transition: background-color 0.3s ease-in-out;
 }
+.nav-links a:hover {
+    background-color: rgba(128, 128, 128, 0.3);
+}
+
 
 .hamburger-menu {
     display: none;

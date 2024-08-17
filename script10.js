@@ -3,11 +3,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     faqBlocks.forEach(block => {
         block.addEventListener("click", function () {
-            this.querySelector(".faq-answer").classList.toggle("show");
             this.classList.toggle("active");
+            const answer = this.querySelector(".faq-answer");
+            if (this.classList.contains("active")) {
+                answer.style.maxHeight = answer.scrollHeight + "px";
+            } else {
+                answer.style.maxHeight = null;
+            }
         });
     });
-
     const themeToggle = document.getElementById("theme-toggle");
     const currentTheme = localStorage.getItem("theme") || "light";
     if (currentTheme === "dark") {
@@ -39,3 +43,4 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
