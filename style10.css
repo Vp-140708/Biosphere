@@ -94,8 +94,8 @@ body {
 }
 
 .faq-block {
-    background-color: white;
-    border: 2px solid gray;
+    background-color: rgb(230, 229, 229);
+    border: 1px solid rgb(161, 161, 161);
     border-radius: 15px;
     margin-bottom: 10px;
     padding: 15px;
@@ -170,7 +170,7 @@ body {
 footer {
     text-align: center;
     padding: 20px;
-    background-color: #333;
+    background-color: #4b4b4bd8;
     color: white;
 }
 
