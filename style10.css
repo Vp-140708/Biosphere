@@ -153,6 +153,9 @@ body {
     padding: 10px 20px;
     border-radius: 15px;
     transition: background-color 0.3s;
+    display: block;
+    margin: 0 auto;
+    pointer-events: none;
 }
 
 .map-link:hover {

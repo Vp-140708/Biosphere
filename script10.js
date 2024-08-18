@@ -1,3 +1,19 @@
+document.addEventListener("DOMContentLoaded", function () {
+    const faqBlocks = document.querySelectorAll(".faq-block");
+
+    faqBlocks.forEach(block => {
+        block.addEventListener("click", function () {
+            this.classList.toggle("active");
+            const answer = this.querySelector(".faq-answer");
+            if (this.classList.contains("active")) {
+                answer.style.maxHeight = answer.scrollHeight + "px";
+            } else {
+                answer.style.maxHeight = null;
+            }
+        });
+    });
+    
+});
 const themeSwitcher = document.getElementById('theme-switcher');
 
 // Check and apply the stored theme on page load
@@ -33,5 +49,4 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
-
 
