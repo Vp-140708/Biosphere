@@ -20,7 +20,6 @@ const dropdown = document.querySelector('.dropdown');
 
 hamburgerMenu.addEventListener('click', () => {
     dropdown.classList.toggle('active');
-    
 });
 
 document.getElementById('searchInput').addEventListener('input', function() {

@@ -174,13 +174,6 @@ footer {
     color: white;
 }
 
-#theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 10px;
-    cursor: pointer;
-}
 
 .dark-theme {
     background-color: #333;

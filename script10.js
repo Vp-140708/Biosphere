@@ -1,28 +1,18 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const faqBlocks = document.querySelectorAll(".faq-block");
+const themeSwitcher = document.getElementById('theme-switcher');
 
-    faqBlocks.forEach(block => {
-        block.addEventListener("click", function () {
-            this.classList.toggle("active");
-            const answer = this.querySelector(".faq-answer");
-            if (this.classList.contains("active")) {
-                answer.style.maxHeight = answer.scrollHeight + "px";
-            } else {
-                answer.style.maxHeight = null;
-            }
-        });
-    });
-    const themeToggle = document.getElementById("theme-toggle");
-    const currentTheme = localStorage.getItem("theme") || "light";
-    if (currentTheme === "dark") {
-        document.body.classList.add("dark-theme");
+// Check and apply the stored theme on page load
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        document.body.classList.add(savedTheme);
+        themeSwitcher.textContent = savedTheme === 'dark-theme' ? '🌚' : '🌞';
     }
+});
 
-    themeToggle.addEventListener("click", function () {
-        document.body.classList.toggle("dark-theme");
-        const theme = document.body.classList.contains("dark-theme") ? "dark" : "light";
-        localStorage.setItem("theme", theme);
-    });
+themeSwitcher.addEventListener('click', () => {
+    const currentTheme = document.body.classList.toggle('dark-theme') ? 'dark-theme' : '';
+    themeSwitcher.textContent = currentTheme === 'dark-theme' ? '🌚' : '🌞';
+    localStorage.setItem('theme', currentTheme);
 });
 document.addEventListener("DOMContentLoaded", function () {
     const leftArrow = document.querySelector(".left-arrow");
@@ -43,4 +33,5 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
 
