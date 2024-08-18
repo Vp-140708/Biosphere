@@ -77,6 +77,14 @@ header {
     border-radius: 15px;
     transition: background-color 0.3s ease-in-out;
 }
+.dark-theme .dropdown a{
+    background-color: #2e2e2e;
+    border-color: #555;
+}
+.dark-theme .dropdown {
+    background-color: #2e2e2e;
+    border-color: #555;
+}
 .nav-links a:hover {
     background-color: rgba(128, 128, 128, 0.3);
 }
