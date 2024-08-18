@@ -54,10 +54,10 @@ header {
     padding: 5px 10px;
     border-radius: 15px;
     transition: background-color 0.3s ease-in-out;
+}
+.dark-theme .site-name {
     color: #d3d3d3;
 }
-
-
 
 #theme-switcher {
     background: none;
@@ -88,7 +88,7 @@ header {
     border-color: #555;
 }
 .nav-links a:hover {
-    background-color: rgba(128, 128, 128, 0.3);
+    background-color: rgba(64, 93, 224, 0.3);
 }
 
 

@@ -5,30 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ветклиника Биосфера</title>
     <link rel="stylesheet" href="style10.css">
+    <link rel="stylesheet" href="CSS\styles1.css">
 </head>
 <body>
+    <header class="header">
+        <div class="header-container">
+            <div class="left-section">
+                <a href="\biosphere1.html" class="logo-link">
+                    <img src="assets/images/bio-logo1.png" alt="Site Logo" class="logo">
+                    <span class="site-name">Биосфера</span>
+                </a>
+                <button id="theme-switcher">🌞</button>
+            </div>
+            <nav class="nav-links">
+                <a href="\Price list.html">Прейскурант</a>
+                <a href="\Staff1.html">Специалисты</a>
+                <a href="\Филиалы1.html">Филиалы</a>
+                <a href="\Отзывы1.html">Отзывы</a>
+                <a href="https://vk.com/biosre"><img src="media_social_vk_vkontakte_icon_124252 (1).png" alt="Вк"></a>
+            </nav>
+            <div class="hamburger-menu">
+                <div class="hamburger"></div>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="\Price list.html">Прейскурант</a>
+            <a href="\Staff1.html">Специалисты</a>
+            <a href="\Филиалы1.html">Филиалы</a>
+            <a href="\Отзывы1.html">Отзывы</a>
+            <a href="https://vk.com/biosre"><img src="media_social_vk_vkontakte_icon_124252 (lit).png" alt="ВК"></a>
+        </div>
+    </header>
     <div class="video-container">
         <video autoplay muted loop class="background-video">
             <source src="video.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="video-overlay">
-            <h1><big>Окружаем заботой</big></h1>
-            <p><big>Дарим заботу и любовь вашим питомцам, потому что они заслуживают только лучшего!</big></p>
+            <h1>Окружаем заботой</h1>
+            <p>Дарим заботу и любовь вашим питомцам, потому что они заслуживают только лучшего!</p>
         </div>
     </div>
 
-   
-    <div class="large-texts">
-        <div>Текст 1</div>
-        <div>Текст 2</div>
-        <div>Текст 3</div>
+    <div class="content">
+        <div class="text-block">
+            <p>Мы - команда ветеринаров, готовых помочь вашим питомцам с радостью и заботой.</p>
+        </div>
+        <div class="text-block">
+            <p style="color:gray;">В нашей клинике каждый питомец - настоящая звезда, и мы заботимся о них как о семье. <br><br>
+            Специализируемся на лечении всех видов животных, от котят до экзотических птиц и рептилий.<br><br>
+            Наша цель - сделать каждое посещение клиники приятным и беззаботным для вас и ваших питомцев.</p>
+        </div>
     </div>
+
 
     <div class="adaptive-blocks-container">
         <div class="arrow left-arrow">&#10094;</div>
         <div class="blocks-wrapper">
-            <a href="bios.html" class="link-block"><img src="Shot_kitten.jpg" alt="Cat"><p>Вакцинация</p></a>
+            <a href="page1.html" class="link-block"><img src="Shot_kitten.jpg" alt="Cat"><p>Вакцинация</p></a>
             <a href="page2.html" class="link-block"><img src="" alt="Диагностика"><p>Диагностика</p></a>
             <a href="page3.html" class="link-block"><img src="" alt="Кастрация"><p>Кастрация</p></a>
             <a href="page4.html" class="link-block"><img src="" alt="Первичный прием"><p>Первичный прием</p></a>
@@ -41,7 +75,11 @@
     </div>
 
 
-   
+    <div class="large-texts">
+        <div>Текст 1</div>
+        <div>Текст 2</div>
+        <div>Текст 3</div>
+    </div>
 
     <h2 align="center">Часто задаваемые вопросы</h2>
     <div class="faq-container">
@@ -88,8 +126,8 @@
         <p>Ветклиника Биосфера</p>
     </footer>
 
-    <button id="theme-toggle">Toggle Dark Theme</button>
 
     <script src="script10.js"></script>
+    <script src="script1.js"></script>
 </body>
 </html>
