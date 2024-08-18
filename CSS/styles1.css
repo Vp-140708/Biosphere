@@ -54,6 +54,7 @@ header {
     padding: 5px 10px;
     border-radius: 15px;
     transition: background-color 0.3s ease-in-out;
+    color: #d3d3d3;
 }
 
 
