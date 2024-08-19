@@ -155,7 +155,8 @@ body {
     transition: background-color 0.3s;
     display: block;
     margin: 0 auto;
-    pointer-events: none;
+    width: 200px;
+    
 }
 
 .map-link:hover {
