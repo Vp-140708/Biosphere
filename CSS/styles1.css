@@ -142,6 +142,7 @@ header {
     text-decoration: none;
     color: black;
     display: block;
+    border-color: #555;
 }
 
 @media (max-width: 768px) {
@@ -155,6 +156,10 @@ header {
 
     .dropdown.active {
         display: flex;
+    }
+    .dropdown a {
+        text-align: center;
+        border-bottom: 1px solid #ccc;
     }
 }
 * {
