@@ -86,18 +86,17 @@ body {
   animation-delay: 1s;
 }
 .branch:nth-child(5) {
-    animation-delay: 2s;
+    animation-delay: 1.5s;
 }
 .branch:nth-child(6) {
-    animation-delay: 3s;
+    animation-delay: 2s;
 }
 .branch:nth-child(7) {
-    animation-delay: 4s;
+    animation-delay: 2.5s;
   }
-  
-  .branch:nth-child(8) {
-    animation-delay: 5s;
-  }
+.branch:nth-child(8) {
+  animation-delay: 3s;
+}
 /* Style for branch-info text */
 .branch-info {
     font-size: 18px;

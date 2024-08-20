@@ -537,3 +537,13 @@ footer {
       transform: translateY(0);
     }
   }
+  .faq-block {
+    width: 45%;
+    margin: 0 auto 10px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+}
