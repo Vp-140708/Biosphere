@@ -270,3 +270,94 @@ body {
     border-color: #555;
     color: #d3d3d3;
 }
+@keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slide-in {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  header {
+    animation: fade-in 1s ease-in-out;
+  }
+  
+  nav {
+    animation: slide-in 1s ease-in-out;
+  }
+  
+  nav a {
+    animation: fade-in 1s ease-in-out;
+  }
+  .header {
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  .nav-links a {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .nav-links a:hover {
+    transform: scale(1.1);
+  }
+  .hamburger-menu {
+    animation: spin 1s ease-in-out;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .dropdown {
+    animation: slideDown 0.5s ease-in-out;
+  }
+  
+  @keyframes slideDown {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  #theme-switcher {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  #theme-switcher:hover {
+    transform: scale(1.1);
+  }
+  main {
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }

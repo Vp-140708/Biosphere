@@ -72,4 +72,20 @@ document.getElementById('searchInput').addEventListener('input', function() {
             specialist.style.display = 'none';
         }
     });
+}); 
+// Get the content element
+const contentElement = document.querySelector('.content');
+
+// Create an IntersectionObserver instance
+const observer = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting) {
+    contentElement.classList.add('in-view');
+  } else {
+    contentElement.classList.remove('in-view');
+  }
+}, {
+  threshold: 1.0,
 });
+
+// Observe the content element
+observer.observe(contentElement);
