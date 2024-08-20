@@ -1,0 +1,148 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+}
+
+.branch {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.branch-info {
+    color: #0285a2;
+}
+
+.map-container {
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+@media(min-width: 768px) {
+    .branch {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .branch-info {
+        max-width: 45%;
+    }
+
+    .map-container {
+        max-width: 50%;
+    }
+}
+/* Animation for branch elements */
+.branch {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s ease-in-out forwards;
+}
+
+.branch-info {
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.map-container {
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+/* Animation keyframes */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Delay animation for each branch element */
+.branch:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+.branch:nth-child(4) {
+  animation-delay: 1s;
+}
+.branch:nth-child(5) {
+    animation-delay: 2s;
+}
+.branch:nth-child(6) {
+    animation-delay: 3s;
+}
+.branch:nth-child(7) {
+    animation-delay: 4s;
+  }
+  
+  .branch:nth-child(8) {
+    animation-delay: 5s;
+  }
+/* Style for branch-info text */
+.branch-info {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--text-dark);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Style for map-container text */
+  .map-container {
+    font-size: 16px;
+    color: var(--text-light);
+    text-align: center;
+  }
+  
+  /* Style for branch address text */
+  .branch-address {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 10px;
+  }
+  
+  /* Style for branch phone text */
+  .branch-phone {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 10px;
+  }
+  
+  /* Style for branch email text */
+  .branch-email {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 10px;
+  }
+  
+  /* Dark theme styles */
+  .dark-theme {
+    --text-dark: #d3d3d3;
+    --text-light: #377ccb;
+  }
+  
+  /* Light theme styles */
+  .light-theme {
+    --text-dark: black;
+    --text-light: #666;
+  }
+  
