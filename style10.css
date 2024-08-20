@@ -134,7 +134,7 @@ body {
     padding-top: 10px;
 }
 
-.faq-block.active .arrow {
+.faq-block.active .arrow1 {
     transform: translateY(-50%) rotate(180deg);
 }
 
