@@ -376,3 +376,18 @@ body {
       transform: scale(1);
     }
   }
+  #theme-switcher {
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    border-radius: 10px; /* add rounded corners to the button */
+  }
+  
+  #theme-switcher:hover {
+    transform: scale(1.1);
+    background-color: rgba(255, 105, 180, 0.8); /* vibrant highlight color with opacity */
+    animation: none; /* stop animation on hover */
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.5); /* add a subtle shadow effect */
+  }
+  
+  #theme-switcher:active {
+    transform: scale(0.9);
+  }
