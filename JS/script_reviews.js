@@ -6,3 +6,4 @@ document.querySelector('.register-button').addEventListener('click', () => {
     document.querySelector('.register-section').classList.add('transition-out');
     document.querySelector('.login-section').classList.add('transition-in');
   });
+
