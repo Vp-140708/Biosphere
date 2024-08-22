@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ветеринарная Клиника - Травмы Питомцев</title>
+    <link rel="stylesheet" href="../CSS/styles1.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -61,12 +62,43 @@
                 flex: 1 1 100%;
             }
         }
+        body {
+            margin-top: 5em;
+        }   
     </style>
 </head>
 <body>
-    <header>
+    <header class="header">
+        <div class="header-container">
+            <div class="left-section">
+                <a href="\biosphere1.html" class="logo-link">
+                    <img src="../assets/images/bio-logo1.png" alt="Site Logo" class="logo">
+                    <span class="site-name">Биосфера</span>
+                </a>
+                <button id="theme-switcher">🌞</button>
+            </div>
+            <nav class="nav-links">
+                <a href="\Price list.html">Прейскурант</a>
+                <a href="\Staff1.html">Специалисты</a>
+                <a href="\Филиалы1.html">Филиалы</a>
+                <a href="\Отзывы1.html">Отзывы</a>
+                <a href="https://vk.com/biosre"><img src="../media_social_vk_vkontakte_icon_124252 (1).png" alt="Вк"></a>
+            </nav>
+            <div class="hamburger-menu">
+                <div class="hamburger"></div>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="\Price list.html">Прейскурант</a>
+            <a href="\Staff1.html">Специалисты</a>
+            <a href="\Филиалы1.html">Филиалы</a>
+            <a href="\Отзывы1.html">Отзывы</a>
+            <a href="https://vk.com/biosre"><img src="../media_social_vk_vkontakte_icon_124252 (lit).png" alt="ВК"></a>
+        </div>
+    </header>   
+    <!-- <header>
         <img src="dog-examination.jpg" alt="Осмотр собаки" class="hero-image">
-    </header>
+    </header> -->
     <div class="container">
         <article>
             <h1>Травмы Питомцев</h1>
@@ -105,5 +137,6 @@
             </div>
         </div>
     </div>
+    <script src="../JS/script1.js"></script>
 </body>
 </html>
