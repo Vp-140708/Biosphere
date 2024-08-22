@@ -1,0 +1,567 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 95vh;
+    overflow: hidden;
+}
+
+.background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+}
+
+.video-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #c1f0a8;
+}
+
+.video-overlay h1 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.video-overlay p {
+    font-size: 1.2rem;
+    margin: 10px 0 0;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.text-block {
+    flex: 1;
+    padding: 20px;
+}
+.text-block2 {
+    flex: 1;
+    padding: 20px;
+}
+
+.links-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: space-around;
+}
+
+.link-block {
+    flex-basis: calc(25% - 20px);
+    background-color: lightgray;
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.link-block img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid gray;
+}
+
+.link-block p {
+    margin: 10px 0;
+}
+
+.large-texts {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.large-texts div {
+    flex: 1;
+    text-align: center;
+    margin: 10px;
+}
+
+.faq-container {
+    padding: 20px;
+}
+
+.faq-block {
+    background-color: rgb(230, 229, 229);
+    border: 1px solid rgb(161, 161, 161);
+    border-radius: 15px;
+    margin-bottom: 10px;
+    padding: 15px;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s, border-color 0.3s, max-height 0.3s, padding-bottom 0.3s;
+    overflow: hidden;
+}
+
+.faq-block p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, padding-top 0.3s ease-in-out;
+}
+
+.arrow1 {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.faq-block.active .faq-answer {
+    max-height: 200px; /* Adjust as necessary */
+    padding-top: 10px;
+}
+
+.faq-block.active .arrow1 {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.dark-theme .faq-block {
+    background-color: #555;
+    border-color: #777;
+    color: white;
+}
+
+.dark-theme .faq-block.active {
+    background-color: #444;
+    border-color: #666;
+}
+
+.map-link {
+    text-align: center;
+    margin: 20px 0;
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 15px;
+    transition: background-color 0.3s;
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    
+}
+
+.map-link:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.map-container {
+    width: 100%;
+    height: 300px;
+    margin: 20px 0;
+    background-color: lightgray;
+    border-radius: 15px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #4b4b4bd8;
+    color: white;
+}
+
+
+.dark-theme {
+    background-color: #333;
+    color: white;
+}
+
+.dark-theme .faq-block {
+    background-color: #555;
+}
+
+.dark-theme footer {
+    background-color: #111;
+}
+.adaptive-blocks-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.blocks-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.link-block {
+    flex: 1 1 calc(25% - 20px);
+    max-width: calc(25% - 20px);
+    background-color: lightgray;
+    border: 2px solid gray;
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.link-block img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid gray;
+}
+
+.link-block p {
+    margin: 10px 0;
+}
+
+.arrow {
+    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: darkgray;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+    color: white;
+    font-size: 20px;
+}
+
+.left-arrow {
+    left: 10px;
+}
+
+.right-arrow {
+    right: 10px;
+}
+
+@media (max-width: 1024px) {
+    .link-block {
+        flex: 1 1 calc(33.33% - 20px);
+        max-width: calc(33.33% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .link-block {
+        flex: 1 1 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .adaptive-blocks-container {
+        padding: 0;
+    }
+
+    .link-block {
+        flex: 1 1 100%;
+        max-width: 100%;
+        transition: transform 0.3s ease;
+    }
+
+    .arrow {
+        display: block;
+    }
+
+    .blocks-wrapper {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+    }
+
+    .link-block {
+        scroll-snap-align: center;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+.dark-theme .link-block {
+    background-color: #555;
+    border-color: #777;
+}
+
+.dark-theme .arrow {
+    background-color: #333;
+}
+@media (max-width: 480px) {
+    .adaptive-blocks-container {
+        padding: 0 10px; /* Added padding for small indents from the edges */
+    }
+
+    .link-block {
+        flex: 1 1 100%;
+        max-width: calc(100% - 20px); /* Subtract 20px to account for the padding */
+        transition: transform 0.3s ease;
+        margin: 0 auto; /* Center the block with the padding */
+    }
+
+    .arrow {
+        display: block;
+    }
+
+    .blocks-wrapper {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: 0 10px; /* Added padding to match the container */
+    }
+
+    .link-block {
+        scroll-snap-align: center;
+        flex: 0 0 100%;
+        max-width: calc(100% - 20px); /* Maintain the margin on either side */
+    }
+}
+.dropdown {
+    display: none;
+}
+
+.dropdown.active {
+    display: flex;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .dropdown {
+        flex-direction: column;
+        background-color: #fff; /* Adjust background color for dropdown */
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 100%;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .dropdown.active {
+        display: flex;
+    }
+
+    .dropdown a {
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid #ccc;
+    }
+}
+@keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slide-in {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  header {
+    animation: fade-in 1s ease-in-out;
+  }
+  
+  nav {
+    animation: slide-in 1s ease-in-out;
+  }
+  
+  nav a {
+    animation: fade-in 1s ease-in-out;
+  }
+/* Add a class to trigger the animation when the element comes into view
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  
+  .animate-on-scroll.in-view {
+    opacity: 1;
+    transform: translateY(0);
+    animation: fadeIn 0.2s ease-in-out;
+  }
+  
+  Your existing animation
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  Add animation to all elements except header
+  * {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  header {
+    animation: none;
+  } */
+  .video-container {
+    animation: fadeInAndScale 2s ease-out;
+  }
+  
+  @keyframes fadeInAndScale {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  .text-block {
+    animation: slideInLeft 3s ease-in-out;
+  }
+  
+  .text-block2 {
+    animation: slideInRight 3s ease-in-out;
+  }
+  
+  @keyframes slideInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  .adaptive-blocks-container {
+    animation: fadeInAndScale 2s ease-in-out;
+  }
+  
+  @keyframes fadeInAndScale {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  /* Add a class to trigger the animation when the element comes into view */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  
+  .animate-on-scroll.in-view {
+    opacity: 1;
+    transform: translateY(0);
+    animation: fadeIn 0.2s ease-in-out;
+  }
+  
+  /* Your existing animation */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  .faq-container {
+    animation: fadeIn 2s, slideIn 2s;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateY(20px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  .faq-block {
+    width: 45%;
+    margin: 0 auto 10px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+}
+
+  .link-block {
+    transition: transform 0.5s;
+  }
+
+  .link-block:hover {
+    transform: scale(1.1);
+  }
+
+  
+  @media (max-width: 768px) {
+    .faq-block {
+      width: 90%;
+    }
+    .link-block {
+      width: 90%;
+    }
+  }

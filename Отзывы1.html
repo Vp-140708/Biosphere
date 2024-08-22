@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Биосфера | Отзывы</title>
-    <link rel="stylesheet" href="CSS\styles2.css">
-    <link rel="stylesheet" href="CSS\styles1.css">
-    
+    <link rel="stylesheet" href="CSS/styles1.css">
+    <link rel="stylesheet" href="CSS/style_reviews.css">
 </head>
 <body>
     <header class="header">
@@ -37,55 +36,44 @@
             <a href="https://vk.com/biosre"><img src="media_social_vk_vkontakte_icon_124252 (lit).png" alt="ВК"></a>
         </div>
     </header>
+<!-- Add the following code to the body section -->
+<main class="main-container">
+    <section class="register-section">
+      <h2>Регистрация</h2>
+      <form id="register-form">
+        <label for="username">Имя пользователя:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <button type="submit">Регистрация</button>
+      </form>
+    </section>
+  
+    <section class="login-section">
+      <h2>Вход</h2>
+      <form id="login-form">
+        <label for="username">Имя пользователя:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Вход</button>
+      </form>
+    </section>
+  
+    <section class="reviews-section">
+      <h2>Отзывы</h2>
+      <div class="reviews-container">
+        <!-- reviews will be displayed here -->
+      </div>
+    </section>
+  </main>
+  
+  <!-- Add the theme switcher button -->
+  <button id="theme-switcher">🌞</button>
 
-    <div class="container">
-        <div class="login-box">
-            <h2>Login</h2>
-            <form id="loginForm">
-                <div class="input-group">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required>
-                </div>
-                <div class="input-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="input-group">
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <button type="submit">Login</button>
-            </form>
-        </div>
-        <div class="reviews-section">
-            <h2>User Reviews</h2>
-            <div class="review-grid">
-                <div class="review-block">
-                    <div class="avatar" style="background-image: url('avatar1.jpg');"></div>
-                    <hr>
-                    <div class="review-content">
-                        <p>zfgn dghm</p>
-                    </div>
-                </div>
-                <div class="review-block">
-                    <div class="avatar" style="background-image: url('avatar2.jpg');"></div>
-                    <hr>
-                    <div class="review-content">
-                        <p>zsfm dgyh</p>
-                    </div>
-                </div>
-                <div class="review-block">
-                    <div class="avatar" style="background-image: url('avatar3.jpg');"></div>
-                    <hr>
-                    <div class="review-content">
-                        <p>gyhjkmhjkm,</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="script2.js"></script>
+    <script src="JS/script_reviews.js"></script>
     <script src="JS/script1.js"></script>
 </body>
 </html>

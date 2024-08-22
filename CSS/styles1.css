@@ -226,9 +226,6 @@ body {
     font-size: 1em;
 }
 
-.specialist-block:hover {
-    transform: scale(1.05);
-}
 
 @media (max-width: 768px) {
     .specialist-block {
