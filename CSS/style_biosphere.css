@@ -570,3 +570,17 @@ footer {
   .faq-block {
     padding-top: 1em;
   }
+
+  .faq-block {
+    margin-bottom: 20px;
+}
+
+.faq-question {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.faq-answer {
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+}
