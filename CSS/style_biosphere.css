@@ -602,7 +602,7 @@ footer {
 .adaptive-blocks-container .arrow {
   display: block !important;
 }
-.dark-theme .blocks-wrapper a {
+.dark-theme .blocks-wrapper {
   color: #d3d3d3;
   font-weight: bold;
 }
