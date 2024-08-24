@@ -87,5 +87,20 @@ const observer = new IntersectionObserver((entries) => {
   threshold: 1.0,
 });
 
-// Observe the content element
-observer.observe(contentElement);
+const leftArrow = document.querySelector(".left-arrow");
+const rightArrow = document.querySelector(".right-arrow");
+const blocksWrapper = document.querySelector(".blocks-wrapper");
+
+leftArrow.addEventListener("click", function () {
+  blocksWrapper.scrollBy({
+    left: blocksWrapper.clientWidth,
+    behavior: "smooth"
+  });
+});
+
+rightArrow.addEventListener("click", function () {
+  blocksWrapper.scrollBy({
+    left: -blocksWrapper.clientWidth,
+    behavior: "smooth"
+  });
+});

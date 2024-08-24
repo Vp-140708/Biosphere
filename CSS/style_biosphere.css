@@ -27,7 +27,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    color: #c1f0a8;
+    color: #5fe617;
 }
 
 .video-overlay h1 {
@@ -583,4 +583,32 @@ footer {
 .faq-answer {
     padding-top: 10px;
     border-top: 1px solid #ccc;
+}
+.text-block p {
+  font-weight: bold;
+}
+.text-block2 p {
+  font-weight: bold;
+}
+.container p {
+  font-weight: bold;
+}
+.link-block {
+  text-decoration: none;
+}
+.video-container{
+  margin-top: 6em;
+}
+.adaptive-blocks-container .arrow {
+  display: block !important;
+}
+.blocks-wrapper {
+  flex-wrap: nowrap;
+}
+.blocks-wrapper a:nth-child(n+5) {
+  display: none;
+}
+.dark-theme .blocks-wrapper a {
+  color: #d3d3d3;
+  font-weight: bold;
 }
