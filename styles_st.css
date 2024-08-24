@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+:root {
+    --background-color: #ffffff;
+    --text-color: #000000;
+    --card-background-color: #f9f9f9;
+}
+
+.dark-theme {
+    --background-color: #121212;
+    --text-color: #ffffff;
+    --card-background-color: #1f1f1f;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.theme-toggle {
+    text-align: right;
+    padding: 10px;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cat-photo {
+    border-radius: 20px;
+    margin-top: 70px;
+    width: 100%;
+    height: auto;
+    max-height: 50vh; /* Изменение максимальной высоты фотографии */
+    object-fit: cover;
+}
+
+.content {
+    text-align: center;
+}
+
+h1, h2 {
+    margin: 20px 0 10px;
+}
+.article {
+    font-size: large;
+    h2{
+        text-align: center;
+    }
+    text-align: left;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.specialists {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+
+@media (max-width: 768px) {
+    .article {
+        text-align: justify;
+    }
+    .cat-photo {
+        max-height: 50vh;
+    }
+}
+.specialist-block {
+    animation: specialistCardAnimation 0.5s ease-in-out;
+    animation-fill-mode: backwards;
+  }
+  .specialist-block:hover {
+    transform: scale(1.05);
+}
