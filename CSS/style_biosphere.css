@@ -605,7 +605,7 @@ footer {
 .blocks-wrapper {
   flex-wrap: nowrap;
 }
-.blocks-wrapper a:nth-child(n+5) {
+.blocks-wrapper a:nth-child(n+7) {
   display: none;
 }
 .dark-theme .blocks-wrapper a {
