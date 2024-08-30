@@ -1,5 +1,5 @@
-angular.module('notebooks', []).controller('NotebookListCtrl', function($scope) {
-    $scope.notebooks = [
+angular.module('Search_input', []).controller('Search_inputListCtrl', function($scope) {
+    $scope.Search_input = [
         { name: 'Орлова Роза Сергеевна', Job_title: 'Главный врач', Specialization: "терапия, визуальная диагностика (УЗИ), кардиология, онкология, неврология", Place_of_work: "ул. Солнечная, у д. 19 Б, ул. Московская, д. 4"},
         { name: 'Черемисинова Анастасия Сергеевна', Job_title: 'Главный врач', Specialization: "терапия, онкология", Place_of_work: "пр-т. Строителей, д. 9, к. 1"},
         { name: 'Малышева Ольга Юрьевна', Job_title: 'Ветеринарный врач-хирург', Specialization: "торакальная хирургия, абдоминальная хирургия, косметическая и реконструктивная хирургия", Place_of_work: "ул. Чернышевского, д. 7, ул. Солнечная, у д. 19 Б"},
@@ -11,18 +11,26 @@ angular.module('notebooks', []).controller('NotebookListCtrl', function($scope) 
         { name: 'Гурьева Ольга Вадимовна', Job_title: 'Ветеринарный врач-хирург', Specialization: "терапия, абдоминальная хирургия, косметическая и реконструктивная хирургия", Place_of_work: " пр-т. Строителей, д. 9, к. 1"},
     ];
 
+    // слежу за изменением значения input
     $scope.$watch('query', function (newValue, oldValue) {
+        // если в input что-то написали
         if (newValue) {
-            $scope.filteredNotebooks = $scope.notebooks.filter(function (notebook) {
+            // фильтрую Search_input по значению input
+            $scope.filteredSearch_input = $scope.Search_input.filter(function (Search_input) {
+                // создаем регулярное выражение, которое ищет newValue в Search_input[$scope.orderList]
                 var reg = new RegExp(newValue, 'i');
-                return reg.test(notebook[$scope.orderList]);
+                // если нашлось, то оставляю Search_input
+                return reg.test(Search_input[$scope.orderList]);
             });
-            if ($scope.filteredNotebooks.length === 0) {
-                $scope.filteredNotebooks = [{ name: 'Таких запросов нет' }];
+            // если ничего не нашлось, то выводим сообщение
+            if ($scope.filteredSearch_input.length === 0) {
+                $scope.filteredSearch_input = [{ name: 'Таких запросов нет' }];
             }
         } else {
-            $scope.filteredNotebooks = $scope.notebooks;
+            // если input пустой, то выводим весь список
+            $scope.filteredSearch_input = $scope.Search_input;
         }
     });
-    $scope.filteredNotebooks = $scope.notebooks;
+    // изначально выводим весь список
+    $scope.filteredSearch_input = $scope.Search_input;
 });

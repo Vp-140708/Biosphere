@@ -4,31 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <div id="notebooks" ng-app="notebooks" ng-controller="NotebookListCtrl">
-        <input type="text" id="query" ng-model="query" placeholder="Search notebooks...">
+    <div id="Search_input" ng-app="Search_input" ng-controller="Search_inputListCtrl">
+        <input type="text" id="query" ng-model="query" placeholder="Search Search_input...">
         <select ng-model="orderList">
-          <option value="name">By name</option>
-          <option value="-age">Newest</option>
-          <option value="age">Oldest</option>
-          <option value="Job_title">Job_title</option>
-          <option value="Specialization">Specialization</option>
-          <option value="Place_of_work">Place_of_work</option>
+          <option value="name">По имени</option>
+          <option value="Job_title">Должность</option>
+          <option value="Specialization">Специализация</option>
+          <option value="Place_of_work">Место работы</option>
         </select>
-        <ul id="notebook_ul">
-          <li ng-repeat="notebook in filteredNotebooks | orderBy: orderList">
-            <br>name: {{notebook.name}}</br>
-            <br>Job_title: {{notebook.Job_title}}</br>
-            <br>Specialization: <br><br>{{notebook.Specialization}}</br></br>
-            <br>Place_of_work: <br>{{notebook.Place_of_work}}</br></br>
-            <div class="right top">{{notebook.age}}</div>
+        <ul id="Search_input_ul">
+          <li ng-repeat="Search_input in filteredSearch_input | orderBy: orderList">
+            <br>{{Search_input.name}}</br>
+            <br>Должность: {{Search_input.Job_title}}</br>
+            <br>Специализация: <br><br>{{Search_input.Specialization}}</br></br>
+            <br>Место работы: <br>{{Search_input.Place_of_work}}</br></br>
+            <div class="right top">{{Search_input.age}}</div>
           </li>
         </ul>
-        <span>Number of notebooks: {{filteredNotebooks.length}}</span>
+        <span>Количество спецалистов: {{filteredSearch_input.length}}</span>
     </div>
-
+    <script>
+        var select = document.querySelector('select');
+        select.addEventListener('change', function() {
+            document.querySelector('#query').value = '';
+            document.querySelector('span').textContent = 'Количество спецалистов: ';
+        });
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
     <script src="index.js"></script>
 </body>
