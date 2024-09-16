@@ -1,38 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <title>Slider</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="Search_input" ng-app="Search_input" ng-controller="Search_inputListCtrl">
-        <input type="text" id="query" ng-model="query" placeholder="Search Search_input...">
-        <select ng-model="orderList">
-          <option value="name">По имени</option>
-          <option value="Job_title">Должность</option>
-          <option value="Specialization">Специализация</option>
-          <option value="Place_of_work">Место работы</option>
-        </select>
-        <ul id="Search_input_ul">
-          <li ng-repeat="Search_input in filteredSearch_input | orderBy: orderList">
-            <br>{{Search_input.name}}</br>
-            <br>Должность: {{Search_input.Job_title}}</br>
-            <br>Специализация: <br><br>{{Search_input.Specialization}}</br></br>
-            <br>Место работы: <br>{{Search_input.Place_of_work}}</br></br>
-            <div class="right top">{{Search_input.age}}</div>
-          </li>
-        </ul>
-        <span>Количество спецалистов: {{filteredSearch_input.length}}</span>
-    </div>
-    <script>
-        var select = document.querySelector('select');
-        select.addEventListener('change', function() {
-            document.querySelector('#query').value = '';
-            document.querySelector('span').textContent = 'Количество спецалистов: ';
-        });
-    </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
-    <script src="index.js"></script>
+    <h1>Incredibly Basic Slider</h1>
+<div id="slider">
+  <a href="#" class="control_next">>></a>
+  <a href="#" class="control_prev"><</a>
+  <ul>
+    <li>SLIDE 1</li>
+    <li style="background: #aaa;">SLIDE 2</li>
+    <li>SLIDE 3</li>
+    <li style="background: #aaa;">SLIDE 4</li>
+  </ul>  
+</div>
+
+<div class="slider_option">
+  <input type="checkbox" id="checkbox">
+  <label for="checkbox">Autoplay Slider</label>
+</div> 
+
 </body>
 </html>
