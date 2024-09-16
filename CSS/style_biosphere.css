@@ -599,9 +599,7 @@ footer {
 .video-container{
   margin-top: 6em;
 }
-.adaptive-blocks-container .arrow {
-  display: block !important;
-}
+
 .dark-theme .blocks-wrapper {
   color: #d3d3d3;
   font-weight: bold;
