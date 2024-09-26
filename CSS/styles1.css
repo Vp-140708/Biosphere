@@ -184,7 +184,6 @@ body {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
     border-radius: 20px;
     outline: none;
     font-size: 1.5em;
@@ -264,8 +263,6 @@ body {
 
 .dark-theme .search-bar {
     background-color: #3a3a3a;
-    border-color: #555;
-    color: #d3d3d3;
 }
 @keyframes fade-in {
     from {
@@ -388,3 +385,4 @@ body {
   #theme-switcher:active {
     transform: scale(0.9);
   }
+
