@@ -88,3 +88,86 @@
     background-color: #555;
     color: #d3d3d3;
   }
+  .reviews-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.review-card {
+  background-color: #ececec; /* был --text-light, теперь чуть темнее */
+  color: #333; /* текст темнее для лучшей читаемости */
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  width: calc(33.333% - 20px); /* 3 блока в ряд на больших экранах */
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.review-card:hover {
+  transform: scale(1.05);
+}
+
+.dark-theme .review-card {
+  background-color: #555; /* Было #444, теперь чуть светлее */
+  color: #ddd; /* Осветляем текст */
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.review-username {
+    font-weight: bold;
+}
+
+.review-rating .star {
+    font-size: 20px;
+    color: #ffcc00;
+}
+
+.review-rating .empty-star {
+    color: #ddd;
+}
+
+.load-more-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.load-more-btn:hover {
+  background-color: #3e8e41; /* чуть темнее при наведении */
+  transform: scale(1.05);
+}
+
+@media (max-width: 1200px) {
+  .review-card {
+      width: calc(50% - 20px); /* 2 блока в ряд на планшетах */
+  }
+}
+
+@media (max-width: 768px) {
+  .review-card {
+      width: 100%; /* 1 блок в ряд на мобильных устройствах */
+  }
+}
+
+.dark-theme .review-card {
+    background-color: #444;
+    color: var(--text-dark);
+}
+
+.dark-theme .load-more-btn {
+    background-color: #333;
+    color: var(--text-dark);
+}
