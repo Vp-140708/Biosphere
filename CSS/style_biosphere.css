@@ -2,6 +2,7 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     transition: background-color 0.3s, color 0.3s;
+    overflow-x: hidden;
 }
 .container {
   display: flex;
@@ -26,10 +27,11 @@ body {
 }
 
 .turquoise-block {
-  background-color: darkturquoise;
+  background-color: #9cfaa1;
   width: 50vw;
-  height: calc(100vh + 100px); /* немного длиннее высоты экрана */
-  position: fixed;
+  margin-top: 16vh;
+  height: 120vh; 
+  position: relative;
   right: 0;
   top: 0;
   border-radius: 25px;
@@ -66,18 +68,18 @@ body {
 
 .title {
   font-size: 3rem;
-  color: white;
+  color: #0398b9;
 }
 
 .subtitle {
   font-size: 1.5rem;
-  color: white;
+  color: #0398b9;
   margin-top: 10px;
 }
 
 /* Ссылочные блоки снизу */
 .link-blocks {
-  margin-top: 100vh; /* Размещение блоков за пределами видимой области */
+  margin-top: 0vh; /* Размещение блоков за пределами видимой области */
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -146,6 +148,7 @@ body {
     width: 100%;
     height: auto;
     border-bottom: 1px solid gray;
+    border-radius: 12px;
 }
 
 .link-block p {
@@ -294,6 +297,7 @@ footer {
     overflow: hidden;
     text-align: center;
     transition: transform 0.3s ease;
+    overflow: visible; 
 }
 
 .link-block img {
@@ -471,40 +475,6 @@ footer {
   nav a {
     animation: fade-in 1s ease-in-out;
   }
-/* Add a class to trigger the animation when the element comes into view
-.animate-on-scroll {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.5s, transform 0.5s;
-  }
-  
-  .animate-on-scroll.in-view {
-    opacity: 1;
-    transform: translateY(0);
-    animation: fadeIn 0.2s ease-in-out;
-  }
-  
-  Your existing animation
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 0.5;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-  
-  Add animation to all elements except header
-  * {
-    animation: fadeIn 0.5s ease-in-out;
-  }
-  
-  header {
-    animation: none;
-  } */
   .video-container {
     animation: fadeInAndScale 2s ease-out;
   }
@@ -680,4 +650,7 @@ footer {
 }
 .faq-answer {
   text-align: center;
+}
+.blocks-wrapper {
+  overflow: visible; /* Чтобы блоки могли выходить за пределы контейнера */
 }
