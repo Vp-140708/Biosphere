@@ -3,6 +3,7 @@ const toggleButton = document.getElementById('theme-toggle');
 toggleButton.addEventListener('click', () => {
     document.body.classList.toggle('dark');
     toggleButton.textContent = document.body.classList.contains('dark') ? 'Светлая тема' : 'Темная тема';
+    
 });
 
 // Слайдер
@@ -12,7 +13,7 @@ setInterval(() => {
     slides[currentSlide].style.display = 'none';
     currentSlide = (currentSlide + 1) % slides.length;
     slides[currentSlide].style.display = 'block';
-}, 7000);
+}, 5000);
 
 // FAQ
 function toggleFaq(item) {

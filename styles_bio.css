@@ -151,3 +151,65 @@ footer {
     text-align: center;
     padding: 20px;
 }
+
+#clinic-name span {
+    position: relative;
+    overflow-x: hidden;
+}
+
+#clinic-name span .flare {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 35px;
+    transform: skewX(-45deg); 
+    animation: flareAnimation 3.5s infinite linear; 
+    left: -150%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.4));
+}
+
+@keyframes flareAnimation {
+    0% {
+        left: -150%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+.slider-content {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.slider-content::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+.slider-content .slide {
+    flex: 0 0 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    color: #000000;
+    font-weight: bold;
+    font-size: 2em;
+    margin: 10px;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.slider-content .slide:hover {
+    background-color: #0285a2;
+    color: #5fe617;
+    cursor: pointer;
+}
+.slider-content .slide {
+    flex: 0 0 85%;
+}
