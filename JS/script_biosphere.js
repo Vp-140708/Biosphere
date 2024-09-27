@@ -87,6 +87,8 @@ const observer = new IntersectionObserver((entries) => {
   threshold: 1.0,
 });
 
+
+
 const leftArrow = document.querySelector(".left-arrow");
 const rightArrow = document.querySelector(".right-arrow");
 const blocksWrapper = document.querySelector(".blocks-wrapper");
@@ -104,3 +106,4 @@ rightArrow.addEventListener("click", function () {
     behavior: "smooth"
   });
 });
+
