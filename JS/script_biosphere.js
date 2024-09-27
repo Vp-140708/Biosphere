@@ -27,11 +27,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener("DOMContentLoaded", function () {
     const blocksWrapper = document.querySelector(".blocks-wrapper");
-
+    const blocks = document.querySelectorAll(".block-item");
+    const dots = document.querySelectorAll('.dot');
+    let currentIndex = 0;
     let touchStartX = 0;
     let touchEndX = 0;
-    const threshold = 50; // Минимальная дистанция для распознавания свайпа
+    const threshold = 75;
 
+    // Обновляем индикаторы точек
+    function updateDots(index) {
+        dots.forEach((dot, i) => {
+            if (i === index) {
+                dot.style.backgroundColor = '#000'; // Активная точка
+                dot.style.transform = 'scale(1.3)';
+            } else {
+                dot.style.backgroundColor = '#ccc'; // Неактивные точки
+                dot.style.transform = 'scale(1)';
+            }
+        });
+    }
+
+    // Функция для перехода на следующий/предыдущий блок
+    function goToSlide(index) {
+        // Обрабатываем зацикливание
+        if (index < 0) {
+            currentIndex = blocks.length - 1; // Переход к последнему блоку
+        } else if (index >= blocks.length) {
+            currentIndex = 0; // Переход к первому блоку
+        } else {
+            currentIndex = index;
+        }
+
+        blocksWrapper.scrollTo({
+            left: blocks[currentIndex].offsetLeft - 10, // Прокручиваем к текущему блоку
+            behavior: "smooth"
+        });
+
+        updateDots(currentIndex); // Обновляем индикаторы
+    }
+
+    // Логика для свайпа
     blocksWrapper.addEventListener("touchstart", function (event) {
         touchStartX = event.changedTouches[0].screenX;
     });
@@ -45,21 +80,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (Math.abs(swipeDistance) > threshold) {
             if (swipeDistance > 0) {
-                // Свайп вправо (движение блока влево)
-                blocksWrapper.scrollBy({
-                    left: -blocksWrapper.clientWidth,
-                    behavior: "smooth"
-                });
+                // Свайп вправо (движение влево)
+                goToSlide(currentIndex - 1);
             } else {
-                // Свайп влево (движение блока вправо)
-                blocksWrapper.scrollBy({
-                    left: blocksWrapper.clientWidth,
-                    behavior: "smooth"
-                });
+                // Свайп влево (движение вправо)
+                goToSlide(currentIndex + 1);
             }
         }
     });
+
+    // Первоначальная установка точек
+    updateDots(currentIndex);
 });
+
 
 
 

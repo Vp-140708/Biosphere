@@ -672,3 +672,77 @@ footer {
   flex: 0 0 100%; /* Каждый блок занимает всю ширину контейнера */
   scroll-snap-align: start; /* Прикрепляем каждый блок к началу экрана */
 }
+/* Для мобильных устройств */
+@media (max-width: 767px) {
+  .blocks-wrapper {
+      display: flex;
+      overflow-x: scroll;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      width: 100vw;
+      padding: 0 10px; /* Добавляем отступы слева и справа */
+  }
+
+  .block-item {
+      flex: 0 0 80vw; /* Каждый блок занимает 80% ширины экрана */
+      scroll-snap-align: center; /* Центрируем блок */
+      margin: 0 10px; /* Добавляем промежутки между блоками */
+  }
+}
+
+
+/* Для десктопных устройств */
+@media (min-width: 768px) {
+  .blocks-wrapper {
+      overflow: visible; /* Убираем прокрутку */
+  }
+
+  .block-item {
+      flex: 1; /* Блоки занимают равное место */
+      scroll-snap-align: none; /* Отключаем привязку */
+  }
+}
+.block-item {
+  position: relative;
+  overflow: hidden; /* Предотвращаем обрезку */
+  transition: transform 0.3s ease;
+}
+
+.block-item:hover {
+  transform: scale(1.05); /* Легкое увеличение при ховере */
+  z-index: 1; /* Размещаем поверх остальных элементов */
+}
+.dots-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin: 0 5px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.dot.active {
+  background-color: #000; /* Активная точка */
+  transform: scale(1.3);
+}
+/* Скрыть точки на планшетах и компьютерах */
+@media (min-width: 768px) {
+  .dots-container {
+      display: none;
+  }
+}
+
+/* Показать точки на мобильных устройствах */
+@media (max-width: 767px) {
+  .dots-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+  }
+}
