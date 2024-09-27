@@ -43,8 +43,8 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80%;
-  height: 300px;
+  width: 110%;
+  height: 350px;
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
@@ -240,13 +240,22 @@ body {
 .map-link:hover {
     background-color: rgba(0, 0, 0, 0.1);
 }
+.map-container, .footer {
+  width: 100%; /* Растягиваем контейнер на всю ширину */
+  padding: 0 15px; /* Добавляем отступы для мобильных устройств */
+  box-sizing: border-box; /* Учитываем отступы в расчете ширины */
+}
 
-.map-container {
-    width: 100%;
-    height: 300px;
-    margin: 20px 0;
-    background-color: lightgray;
-    border-radius: 15px;
+/* Сглаженные углы для карты */
+#map-container {
+  border-radius: 10px; /* Закругленные углы */
+  overflow: hidden; /* Чтобы карта не выходила за пределы углов */
+}
+
+/* Корректировка футера */
+.footer {
+  text-align: center; /* Центрирование контента футера */
+  padding: 20px 0; /* Отступы внутри футера */
 }
 
 footer {
