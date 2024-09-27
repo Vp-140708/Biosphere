@@ -25,29 +25,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-themeSwitcher.addEventListener('click', () => {
-    const currentTheme = document.body.classList.toggle('dark-theme') ? 'dark-theme' : '';
-    themeSwitcher.textContent = currentTheme === 'dark-theme' ? '🌚' : '🌞';
-    localStorage.setItem('theme', currentTheme);
-});
 document.addEventListener("DOMContentLoaded", function () {
     const leftArrow = document.querySelector(".left-arrow");
     const rightArrow = document.querySelector(".right-arrow");
     const blocksWrapper = document.querySelector(".blocks-wrapper");
 
-    leftArrow.addEventListener("click", function () {
+    function scrollContainer(direction) {
+        const scrollAmount = blocksWrapper.clientWidth;
         blocksWrapper.scrollBy({
-            left: -blocksWrapper.clientWidth,
+            left: direction === "left" ? -scrollAmount : scrollAmount,
             behavior: "smooth"
         });
+    }
+
+    leftArrow.addEventListener("click", function () {
+        scrollContainer("left");
     });
 
     rightArrow.addEventListener("click", function () {
-        blocksWrapper.scrollBy({
-            left: blocksWrapper.clientWidth,
-            behavior: "smooth"
-        });
+        scrollContainer("right");
     });
+
+    // Mobile-specific behavior adjustment
+    if (window.innerWidth <= 767) {
+        // Adjust scroll behavior for mobile
+        blocksWrapper.style.overflowX = "auto";
+    }
 });
 
 
