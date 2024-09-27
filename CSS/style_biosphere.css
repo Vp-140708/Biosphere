@@ -319,28 +319,6 @@ footer {
     margin: 10px 0;
 }
 
-.arrow {
-    display: none;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: darkgray;
-    border-radius: 50%;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 1;
-    color: white;
-    font-size: 20px;
-}
-
-.left-arrow {
-    left: 10px;
-}
-
-.right-arrow {
-    right: 10px;
-}
-
 @media (max-width: 1024px) {
     .link-block {
         flex: 1 1 calc(33.33% - 20px);
@@ -366,10 +344,6 @@ footer {
         transition: transform 0.3s ease;
     }
 
-    .arrow {
-        display: block;
-    }
-
     .blocks-wrapper {
         display: flex;
         flex-wrap: nowrap;
@@ -389,9 +363,7 @@ footer {
     border-color: #777;
 }
 
-.dark-theme .arrow {
-    background-color: #333;
-}
+
 @media (max-width: 480px) {
     .adaptive-blocks-container {
         padding: 0 10px; /* Added padding for small indents from the edges */
@@ -403,11 +375,6 @@ footer {
         transition: transform 0.3s ease;
         margin: 0 auto; /* Center the block with the padding */
     }
-
-    .arrow {
-        display: block;
-    }
-
     .blocks-wrapper {
         display: flex;
         flex-wrap: nowrap;
@@ -484,9 +451,6 @@ footer {
   nav a {
     animation: fade-in 1s ease-in-out;
   }
-  .video-container {
-    animation: fadeInAndScale 2s ease-out;
-  }
   
   @keyframes fadeInAndScale {
     0% {
@@ -528,7 +492,7 @@ footer {
     }
   }
   .adaptive-blocks-container {
-    animation: fadeInAndScale 2s ease-in-out;
+    animation: fadeInAndScale 1s ease-in-out;
   }
   
   @keyframes fadeInAndScale {
@@ -599,11 +563,11 @@ footer {
 }
 
   .link-block {
-    transition: transform 0.5s;
+    transition: transform 0.4s;
   }
 
   .link-block:hover {
-    transform: scale(1.1);
+    transform: scale(1.04);
   }
 
   
@@ -696,5 +660,15 @@ footer {
 }
 
 .blocks-wrapper {
-  overflow-x: hidden; /* Убираем возможность горизонтальной прокрутки */
+  display: flex;
+  overflow-x: scroll; /* Включаем горизонтальную прокрутку */
+  scroll-behavior: smooth; /* Плавная прокрутка */
+  -webkit-overflow-scrolling: touch; /* Для iOS устройств */
+  width: 100%;
+  scroll-snap-type: x mandatory; /* Снап-позиции для упрощения остановки свайпов */
+}
+
+.block-item {
+  flex: 0 0 100%; /* Каждый блок занимает всю ширину контейнера */
+  scroll-snap-align: start; /* Прикрепляем каждый блок к началу экрана */
 }

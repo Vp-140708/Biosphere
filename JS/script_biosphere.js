@@ -26,32 +26,42 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    const leftArrow = document.querySelector(".left-arrow");
-    const rightArrow = document.querySelector(".right-arrow");
     const blocksWrapper = document.querySelector(".blocks-wrapper");
 
-    function scrollContainer(direction) {
-        const scrollAmount = blocksWrapper.clientWidth;
-        blocksWrapper.scrollBy({
-            left: direction === "left" ? -scrollAmount : scrollAmount,
-            behavior: "smooth"
-        });
-    }
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const threshold = 50; // Минимальная дистанция для распознавания свайпа
 
-    leftArrow.addEventListener("click", function () {
-        scrollContainer("left");
+    blocksWrapper.addEventListener("touchstart", function (event) {
+        touchStartX = event.changedTouches[0].screenX;
     });
 
-    rightArrow.addEventListener("click", function () {
-        scrollContainer("right");
+    blocksWrapper.addEventListener("touchmove", function (event) {
+        touchEndX = event.changedTouches[0].screenX;
     });
 
-    // Mobile-specific behavior adjustment
-    if (window.innerWidth <= 767) {
-        // Adjust scroll behavior for mobile
-        blocksWrapper.style.overflowX = "auto";
-    }
+    blocksWrapper.addEventListener("touchend", function () {
+        const swipeDistance = touchEndX - touchStartX;
+
+        if (Math.abs(swipeDistance) > threshold) {
+            if (swipeDistance > 0) {
+                // Свайп вправо (движение блока влево)
+                blocksWrapper.scrollBy({
+                    left: -blocksWrapper.clientWidth,
+                    behavior: "smooth"
+                });
+            } else {
+                // Свайп влево (движение блока вправо)
+                blocksWrapper.scrollBy({
+                    left: blocksWrapper.clientWidth,
+                    behavior: "smooth"
+                });
+            }
+        }
+    });
 });
+
+
 
 
 const hamburgerMenu = document.querySelector('.hamburger-menu');
@@ -88,25 +98,5 @@ const observer = new IntersectionObserver((entries) => {
   }
 }, {
   threshold: 1.0,
-});
-
-
-
-const leftArrow = document.querySelector(".left-arrow");
-const rightArrow = document.querySelector(".right-arrow");
-const blocksWrapper = document.querySelector(".blocks-wrapper");
-
-leftArrow.addEventListener("click", function () {
-  blocksWrapper.scrollBy({
-    left: blocksWrapper.clientWidth,
-    behavior: "smooth"
-  });
-});
-
-rightArrow.addEventListener("click", function () {
-  blocksWrapper.scrollBy({
-    left: -blocksWrapper.clientWidth,
-    behavior: "smooth"
-  });
 });
 
