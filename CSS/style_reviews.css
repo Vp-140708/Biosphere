@@ -220,7 +220,9 @@ button {
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
 }
-
+#theme-switcher {
+  padding: 0;
+}
 button:active {
 	transform: scale(0.95);
 }
@@ -254,8 +256,7 @@ input {
 .container {
 	background-color: #04AA6D;
 	border-radius: 20px;
-  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
-			0 10px 10px rgba(0,0,0,0.22);
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	overflow: hidden;
 	width: 768px;
