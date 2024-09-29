@@ -8,7 +8,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100vh;
+  height: 58vh;
   padding: 20px;
   position: relative;
 }
@@ -19,6 +19,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-right: 30vh;
+  margin-top: 8vh;
 }
 
 .right-section {
@@ -40,7 +42,7 @@ body {
 
 .slider-placeholder {
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 110%;
@@ -79,7 +81,6 @@ body {
 
 /* Ссылочные блоки снизу */
 .link-blocks {
-  margin-top: 0vh; /* Размещение блоков за пределами видимой области */
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -139,7 +140,7 @@ body {
 .link-block {
     flex-basis: calc(25% - 20px);
     background-color: lightgray;
-    border-radius: 15px;
+
     overflow: hidden;
     text-align: center;
 }
@@ -148,7 +149,7 @@ body {
     width: 100%;
     height: auto;
     border-bottom: 1px solid gray;
-    border-radius: 12px;
+
 }
 
 .link-block p {
@@ -225,15 +226,15 @@ body {
 
 .map-link {
     text-align: center;
-    margin: 20px 0;
     cursor: pointer;
     display: inline-block;
-    padding: 10px 20px;
+    padding: 15px 20px;
     border-radius: 15px;
     transition: background-color 0.3s;
     display: block;
     margin: 0 auto;
-    width: 200px;
+    width: 250px;
+    font-size: large;
     
 }
 
@@ -261,8 +262,9 @@ body {
 footer {
     text-align: center;
     padding: 20px;
-    background-color: #4b4b4bd8;
-    color: white;
+    background-color: #0285a2;
+    color: rgb(0, 0, 0);
+    font-size: large;
 }
 
 
@@ -302,7 +304,7 @@ footer {
     max-width: calc(25% - 20px);
     background-color: lightgray;
     border: 2px solid gray;
-    border-radius: 15px;
+
     overflow: hidden;
     text-align: center;
     transition: transform 0.3s ease;
@@ -610,9 +612,7 @@ footer {
 .link-block {
   text-decoration: none;
 }
-.video-container{
-  margin-top: 6em;
-}
+
 
 .dark-theme .blocks-wrapper {
   color: #d3d3d3;
