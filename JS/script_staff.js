@@ -36,4 +36,10 @@ document.querySelector('select').addEventListener('change', function() {
   });
 });
 
-
+document.getElementById('theme-switcher').addEventListener('click', function() {
+  if (document.body.classList.contains('dark-theme')) {
+    document.getElementById('filter1').style.backgroundColor = '#0398b9';
+  } else {
+    document.getElementById('filter1').style.backgroundColor = '#9cfaa1';
+  }
+});
