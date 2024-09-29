@@ -32,7 +32,7 @@ body {
   background-color: #9cfaa1;
   width: 50vw;
   margin-top: 16vh;
-  height: 120vh; 
+  height: 100vh; 
   position: relative;
   right: 0;
   top: 0;
@@ -222,6 +222,11 @@ body {
 .dark-theme .faq-block.active {
     background-color: #444;
     border-color: #666;
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
 }
 
 .map-link {

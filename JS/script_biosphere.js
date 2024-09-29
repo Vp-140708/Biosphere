@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Переключение темы
 const themeSwitcher = document.getElementById('theme-switcher');
-
 // Применяем сохранённую тему при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme');
