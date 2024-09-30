@@ -96,39 +96,34 @@ body {
 }
 
 .dots_sl {
-  text-align: center;
-  position: absolute;
-  bottom: 10px;
-  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
 }
 
 .dot_sl {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  margin: 0 5px;
-  background-color: transparent;
-  border: 2px solid white;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background-color 0.6s ease;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  height: 8px;
+  margin: 0 4px;
+  transform: scale(0.75);
+  transition: transform 0.4s cubic-bezier(.25, .8, .25, 1), background 0.4s cubic-bezier(.25, .8, .25, 1);
+  width: 8px;
 }
 
-.dot.active_sl {
-  background-color: white;
+.dot_sl.active {
+  background: white;
+  transform: scale(1);
+  transition-delay: 0.4s;
 }
-.dot-fill_sl {
-  background-color: white;
-  transition: width 0.8s ease;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-}
+
 
 
 .title, .subtitle, .turquoise-block {
   animation: expand 1s ease-in-out forwards;
 }
+
 
 @keyframes expand {
   0% {

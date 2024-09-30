@@ -99,29 +99,61 @@ hamburgerMenu.addEventListener('click', () => {
 });
 
 const slides = document.querySelector('.slides');
-const dots_sl = document.querySelectorAll('.dot_sl');
 let currentSlide = 0;
 const totalSlides = document.querySelectorAll('.slide').length;
 const slideInterval = 8000;
 
-function showSlide(index) {
-  slides.style.transform = `translateX(${-index * 100}%)`;
-  dots_sl.forEach((dot_sl, i) => {
-    dot_sl.classList.toggle('active', i === index);
-  });
-}
+document.addEventListener("DOMContentLoaded", function () {
+    // Получаем все слайды, точки и обертку слайдов
+    const slides = document.querySelectorAll(".slide");
+    const dots = document.querySelectorAll(".dot_sl");
+    const slidesWrapper = document.querySelector(".slides");
+    let currentIndex = 0;
+    const totalSlides = slides.length;
 
+    // Функция для показа слайда по индексу
+    function showSlide(index) {
+        if (index >= totalSlides) {
+            currentIndex = 0; // Переход к первому слайду
+        } else if (index < 0) {
+            currentIndex = totalSlides - 1; // Переход к последнему слайду
+        } else {
+            currentIndex = index; // Установка текущего слайда
+        }
 
-function nextSlide() {
-  currentSlide = (currentSlide + 1) % (totalSlides + 1);
-  showSlide(currentSlide);
-}
+        // Смещение слайдов
+        slidesWrapper.style.transform = `translateX(${-currentIndex * 100}%)`;
 
-dots_sl.forEach((dot_sl, index) => {
-  dot_sl.addEventListener('click', () => {
-    currentSlide = index;
-    showSlide(index);
-  });
+        // Обновление активных точек
+        updateDots(currentIndex);
+    }
+
+    // Функция для обновления состояния точек
+    function updateDots(index) {
+        dots.forEach((dot, i) => {
+            if (i === index) {
+                dot.classList.add("active");
+            } else {
+                dot.classList.remove("active");
+            }
+        });
+    }
+
+    // Автоматическое переключение слайдов каждые 8 секунд
+    function startSlider() {
+        setInterval(function () {
+            showSlide(currentIndex + 1);
+        }, 8000); // Время между слайдами
+    }
+
+    // Логика для ручного переключения слайдов через точки
+    dots.forEach((dot, i) => {
+        dot.addEventListener("click", function () {
+            showSlide(i);
+        });
+    });
+
+    // Инициализация слайдера с показом первого слайда
+    showSlide(0);
+    startSlider(); // Запуск автоматического переключения
 });
-
-setInterval(nextSlide, slideInterval);
