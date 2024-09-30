@@ -98,3 +98,30 @@ hamburgerMenu.addEventListener('click', () => {
     dropdown.classList.toggle('active');
 });
 
+const slides = document.querySelector('.slides');
+const dots_sl = document.querySelectorAll('.dot_sl');
+let currentSlide = 0;
+const totalSlides = document.querySelectorAll('.slide').length;
+const slideInterval = 8000;
+
+function showSlide(index) {
+  slides.style.transform = `translateX(${-index * 100}%)`;
+  dots_sl.forEach((dot_sl, i) => {
+    dot_sl.classList.toggle('active', i === index);
+  });
+}
+
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % (totalSlides + 1);
+  showSlide(currentSlide);
+}
+
+dots_sl.forEach((dot_sl, index) => {
+  dot_sl.addEventListener('click', () => {
+    currentSlide = index;
+    showSlide(index);
+  });
+});
+
+setInterval(nextSlide, slideInterval);
