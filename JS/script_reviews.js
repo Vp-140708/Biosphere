@@ -11,7 +11,6 @@
     const reviews = document.querySelectorAll('.review-card');
     let reviewsToShow = 6;
     
-    // Скрываем отзывы, если их больше 6
     function hideExtraReviews() {
         if (reviews.length > reviewsToShow) {
             loadMoreBtn.style.display = 'block';
@@ -21,19 +20,17 @@
                 }
             });
         } else {
-            loadMoreBtn.style.display = 'none'; // скрыть кнопку, если отзывов 6 или меньше
+            loadMoreBtn.style.display = 'none'; 
         }
     }
     
-    // Показать больше отзывов при нажатии на кнопку
     loadMoreBtn.addEventListener('click', () => {
         reviews.forEach(review => {
             review.style.display = 'block';
         });
         loadMoreBtn.style.display = 'none';
     });
-    
-    // Вызов функции для первоначального скрытия лишних отзывов
+
     hideExtraReviews();
     const signUpButton = document.getElementById('signUp');
     const signInButton = document.getElementById('signIn');

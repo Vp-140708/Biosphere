@@ -43,12 +43,12 @@ body {
 .centered-texts-container {
   display: flex;
   justify-content: center;
-  gap: 10rem; /* Расстояние между надписями */
-  margin-top: 20px; /* Отступ сверху для контейнера (можно изменить по необходимости) */
+  gap: 10rem; 
+  margin-top: 20px; 
 }
 
 .text {
-  font-size: 3rem; /* Размер шрифта */
+  font-size: 3rem;
 }
 .carousel-container {
   position: relative;
@@ -58,7 +58,7 @@ body {
 }
 
 .carousel-track {
-  display: flex; /* Если вот тут заменить flex  на center, то будет вообще другой, тоже интересный элемент */
+  display: flex;
   transition: transform 0.5s ease;
 }
 

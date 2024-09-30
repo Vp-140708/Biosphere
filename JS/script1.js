@@ -1,6 +1,5 @@
 const themeSwitcher = document.getElementById('theme-switcher');
 
-// Check and apply the stored theme on page load
 document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {

@@ -14,9 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// Переключение темы
 const themeSwitcher = document.getElementById('theme-switcher');
-// Применяем сохранённую тему при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
@@ -40,22 +38,20 @@ let touchStartX = 0;
 let touchEndX = 0;
 const threshold = 75;
 
-// Обновляем индикаторы точек
 function updateDots(index) {
     dots.forEach((dot, i) => {
         if (i === index) {
-            dot.style.backgroundColor = '#000'; // Активная точка
+            dot.style.backgroundColor = '#000'; 
             dot.style.transform = 'scale(1.3)';
         } else {
-            dot.style.backgroundColor = '#ccc'; // Неактивные точки
+            dot.style.backgroundColor = '#ccc'; 
             dot.style.transform = 'scale(1)';
         }
     });
 }
 
-// Функция для перехода на следующий/предыдущий блок
 function goToSlide(index) {
-    // Зацикливание
+ 
     if (index < 0) {
         currentIndex = blocks.length - 1;
     } else if (index >= blocks.length) {
@@ -69,7 +65,7 @@ function goToSlide(index) {
         behavior: "smooth"
     });
 
-    updateDots(currentIndex); // Обновляем индикаторы
+    updateDots(currentIndex);
 }
 
 // Логика для свайпа
@@ -93,10 +89,8 @@ blocksWrapper.addEventListener("touchend", function () {
     }
 });
 
-// Первоначальная установка точек
 updateDots(currentIndex);
 
-// Хамбургер-меню
 const hamburgerMenu = document.querySelector('.hamburger-menu');
 const dropdown = document.querySelector('.dropdown');
 
@@ -104,3 +98,62 @@ hamburgerMenu.addEventListener('click', () => {
     dropdown.classList.toggle('active');
 });
 
+const slides = document.querySelector('.slides');
+let currentSlide = 0;
+const totalSlides = document.querySelectorAll('.slide').length;
+const slideInterval = 8000;
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Получаем все слайды, точки и обертку слайдов
+    const slides = document.querySelectorAll(".slide");
+    const dots = document.querySelectorAll(".dot_sl");
+    const slidesWrapper = document.querySelector(".slides");
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+
+    // Функция для показа слайда по индексу
+    function showSlide(index) {
+        if (index >= totalSlides) {
+            currentIndex = 0; // Переход к первому слайду
+        } else if (index < 0) {
+            currentIndex = totalSlides - 1; // Переход к последнему слайду
+        } else {
+            currentIndex = index; // Установка текущего слайда
+        }
+
+        // Смещение слайдов
+        slidesWrapper.style.transform = `translateX(${-currentIndex * 100}%)`;
+
+        // Обновление активных точек
+        updateDots(currentIndex);
+    }
+
+    // Функция для обновления состояния точек
+    function updateDots(index) {
+        dots.forEach((dot, i) => {
+            if (i === index) {
+                dot.classList.add("active");
+            } else {
+                dot.classList.remove("active");
+            }
+        });
+    }
+
+    // Автоматическое переключение слайдов каждые 8 секунд
+    function startSlider() {
+        setInterval(function () {
+            showSlide(currentIndex + 1);
+        }, 8000); // Время между слайдами
+    }
+
+    // Логика для ручного переключения слайдов через точки
+    dots.forEach((dot, i) => {
+        dot.addEventListener("click", function () {
+            showSlide(i);
+        });
+    });
+
+    // Инициализация слайдера с показом первого слайда
+    showSlide(0);
+    startSlider(); // Запуск автоматического переключения
+});
