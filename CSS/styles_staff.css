@@ -27,6 +27,9 @@
   #filter1:hover {
     border: 1px solid white;
   }
+  .dark-theme #filter1 {
+    background-color: #0398b9;
+  }
   #filter1 {
     background-color: #9cfaa1;
     border: none;
