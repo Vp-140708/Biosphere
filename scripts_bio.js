@@ -1,4 +1,3 @@
-// Переключение темной темы
 const toggleButton = document.getElementById('theme-toggle');
 toggleButton.addEventListener('click', () => {
     document.body.classList.toggle('dark');
@@ -6,7 +5,6 @@ toggleButton.addEventListener('click', () => {
     
 });
 
-// Слайдер
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 setInterval(() => {
@@ -15,7 +13,6 @@ setInterval(() => {
     slides[currentSlide].style.display = 'block';
 }, 5000);
 
-// FAQ
 function toggleFaq(item) {
     const answer = item.nextElementSibling;
     const arrow = item.querySelector('.arrow');

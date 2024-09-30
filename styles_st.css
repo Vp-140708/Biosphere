@@ -40,7 +40,7 @@ body {
     margin-top: 70px;
     width: 100%;
     height: auto;
-    max-height: 50vh; /* Изменение максимальной высоты фотографии */
+    max-height: 50vh; 
     object-fit: cover;
 }
 

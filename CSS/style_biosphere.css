@@ -52,7 +52,7 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Анимация для текста */
+
 .title, .subtitle {
   animation: expand 1s ease-in-out forwards;
 }
@@ -79,14 +79,14 @@ body {
   margin-top: 10px;
 }
 
-/* Ссылочные блоки снизу */
+
 .link-blocks {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 
-/* Полная адаптивность */
+
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
@@ -99,7 +99,7 @@ body {
 
   .turquoise-block {
     width: 100vw;
-    height: 30vh; /* Блок будет занимать треть экрана */
+    height: 30vh; 
   }
 
   .slider-placeholder {
@@ -247,21 +247,21 @@ body {
     background-color: rgba(0, 0, 0, 0.1);
 }
 .map-container, .footer {
-  width: 100%; /* Растягиваем контейнер на всю ширину */
-  padding: 0 15px; /* Добавляем отступы для мобильных устройств */
-  box-sizing: border-box; /* Учитываем отступы в расчете ширины */
+  width: 100%; 
+  padding: 0 15px; 
+  box-sizing: border-box; 
 }
 
-/* Сглаженные углы для карты */
+
 #map-container {
-  border-radius: 10px; /* Закругленные углы */
-  overflow: hidden; /* Чтобы карта не выходила за пределы углов */
+  border-radius: 10px; 
+  overflow: hidden; 
 }
 
-/* Корректировка футера */
+
 .footer {
-  text-align: center; /* Центрирование контента футера */
-  padding: 20px 0; /* Отступы внутри футера */
+  text-align: center; 
+  padding: 20px 0; 
 }
 
 footer {
@@ -373,27 +373,27 @@ footer {
 
 @media (max-width: 480px) {
     .adaptive-blocks-container {
-        padding: 0 10px; /* Added padding for small indents from the edges */
+        padding: 0 10px;
     }
 
     .link-block {
         flex: 1 1 100%;
-        max-width: calc(100% - 20px); /* Subtract 20px to account for the padding */
+        max-width: calc(100% - 20px); 
         transition: transform 0.3s ease;
-        margin: 0 auto; /* Center the block with the padding */
+        margin: 0 auto; 
     }
     .blocks-wrapper {
         display: flex;
         flex-wrap: nowrap;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
-        padding: 0 10px; /* Added padding to match the container */
+        padding: 0 10px;
     }
 
     .link-block {
         scroll-snap-align: center;
         flex: 0 0 100%;
-        max-width: calc(100% - 20px); /* Maintain the margin on either side */
+        max-width: calc(100% - 20px); 
     }
 }
 .dropdown {
@@ -411,7 +411,7 @@ footer {
 
     .dropdown {
         flex-direction: column;
-        background-color: #fff; /* Adjust background color for dropdown */
+        background-color: #fff; 
         position: absolute;
         top: 70px;
         right: 0;
@@ -512,7 +512,7 @@ footer {
       transform: scale(1);
     }
   }
-  /* Add a class to trigger the animation when the element comes into view */
+  
 .animate-on-scroll {
     opacity: 0;
     transform: translateY(50px);
@@ -525,7 +525,7 @@ footer {
     animation: fadeIn 0.2s ease-in-out;
   }
   
-  /* Your existing animation */
+  
   @keyframes fadeIn {
     0% {
       opacity: 0;
@@ -630,30 +630,30 @@ footer {
   text-align: center;
 }
 .blocks-wrapper {
-  overflow: visible; /* Чтобы блоки могли выходить за пределы контейнера */
+  overflow: visible; 
 }
 .container {
-  width: 100%; /* Убедитесь, что контейнер занимает всю ширину экрана */
-  margin: 0 auto; /* Центрируем контейнер */
-  padding: 0 15px; /* Добавляем отступы внутри контейнера */
+  width: 100%; 
+  margin: 0 auto; 
+  padding: 0 15px; 
 }
 
 @media (max-width: 768px) {
   .link-block {
-    margin: 0 auto; /* Центрируем блоки на мобильных устройствах */
+    margin: 0 auto;
   }
 }
 @media (max-width: 767px) {
-  /* Убедимся, что turquoise-block занимает правую половину экрана */
+ 
   .turquoise-block {
-      width: 50vw; /* Занимает 50% ширины экрана (половину) */
-      height: auto; /* Высота может изменяться динамически */
-      position: relative; /* Для корректного позиционирования */
-      right: 0; /* Примыкает к правой стороне экрана */
-      margin-left: auto; /* Убираем центральное выравнивание */
+      width: 50vw; 
+      height: auto; 
+      position: relative;
+      right: 0; 
+      margin-left: auto;
   }
 
-  /* Убедитесь, что нет горизонтальной прокрутки */
+
   body, html {
       overflow-x: hidden;
   }
@@ -661,23 +661,23 @@ footer {
 
 
 .turquoise-block {
-  margin: 0 auto; /* Центрируем блок */
+  margin: 0 auto;
 }
 
 .blocks-wrapper {
   display: flex;
-  overflow-x: scroll; /* Включаем горизонтальную прокрутку */
-  scroll-behavior: smooth; /* Плавная прокрутка */
-  -webkit-overflow-scrolling: touch; /* Для iOS устройств */
+  overflow-x: scroll; 
+  scroll-behavior: smooth; 
+  -webkit-overflow-scrolling: touch; 
   width: 100%;
-  scroll-snap-type: x mandatory; /* Снап-позиции для упрощения остановки свайпов */
+  scroll-snap-type: x mandatory; 
 }
 
 .block-item {
-  flex: 0 0 100%; /* Каждый блок занимает всю ширину контейнера */
-  scroll-snap-align: start; /* Прикрепляем каждый блок к началу экрана */
+  flex: 0 0 100%; 
+  scroll-snap-align: start;
 }
-/* Для мобильных устройств */
+
 @media (max-width: 767px) {
   .blocks-wrapper {
       display: flex;
@@ -685,43 +685,42 @@ footer {
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
       width: 100vw;
-      padding: 0 10px; /* Добавляем отступы слева и справа */
+      padding: 0 10px; 
   }
 
   .block-item {
-      flex: 0 0 80vw; /* Каждый блок занимает 80% ширины экрана */
-      scroll-snap-align: center; /* Центрируем блок */
-      margin: 0 10px; /* Добавляем промежутки между блоками */
+      flex: 0 0 80vw; 
+      scroll-snap-align: center; 
+      margin: 0 10px; 
   }
 }
 
 
-/* Для десктопных устройств */
+
 @media (min-width: 768px) {
   .blocks-wrapper {
-      overflow: visible; /* Убираем прокрутку */
+      overflow: visible; 
   }
 
   .block-item {
-      flex: 1; /* Блоки занимают равное место */
-      scroll-snap-align: none; /* Отключаем привязку */
+      flex: 1; 
+      scroll-snap-align: none; 
   }
 }
 .block-item {
   position: relative;
-  overflow: hidden; /* Предотвращаем обрезку */
+  overflow: hidden; 
   transition: transform 0.3s ease;
 }
 
 .block-item:hover {
-  transform: scale(1.05); /* Легкое увеличение при ховере */
-  z-index: 1; /* Размещаем поверх остальных элементов */
+  transform: scale(1.05);
+  z-index: 1; 
 }
 .dots-container {
-  display: flex;
+  display: none;
   justify-content: center;
   margin-top: 10px;
-}
 
 .dot {
   width: 10px;
@@ -733,21 +732,22 @@ footer {
 }
 
 .dot.active {
-  background-color: #000; /* Активная точка */
+  background-color: #000; 
   transform: scale(1.3);
 }
-/* Скрыть точки на планшетах и компьютерах */
+
 @media (min-width: 768px) {
   .dots-container {
       display: none;
   }
 }
 
-/* Показать точки на мобильных устройствах */
 @media (max-width: 767px) {
   .dots-container {
       display: flex;
       justify-content: center;
       margin-top: 10px;
+      display: flex;
   }
+}
 }

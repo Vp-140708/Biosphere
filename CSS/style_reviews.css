@@ -1,4 +1,4 @@
-/* Add styles for the feedback page */
+
 
 .main-container {
     display: flex;
@@ -50,7 +50,6 @@
     padding: 20px;
   }
   
-  /* Dark theme styles */
   .dark-theme {
     --text-dark: #d3d3d3;
     --text-light: #377ccb;
@@ -65,7 +64,6 @@
     background-color: #444;
   }
   
-  /* Light theme styles */
   .light-theme {
     --text-dark: black;
     --text-light: #666;
@@ -91,13 +89,13 @@
 }
 
 .review-card {
-  background-color: #ececec; /* был --text-light, теперь чуть темнее */
-  color: #333; /* текст темнее для лучшей читаемости */
+  background-color: #ececec; 
+  color: #333;
   border-radius: 10px;
   padding: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin: 10px;
-  width: calc(33.333% - 20px); /* 3 блока в ряд на больших экранах */
+  width: calc(33.333% - 20px);
   transition: transform 0.2s, background-color 0.2s;
 }
 
@@ -106,8 +104,8 @@
 }
 
 .dark-theme .review-card {
-  background-color: #555; /* Было #444, теперь чуть светлее */
-  color: #ddd; /* Осветляем текст */
+  background-color: #555; 
+  color: #ddd; 
 }
 
 .review-header {
@@ -142,19 +140,19 @@
 }
 
 .load-more-btn:hover {
-  background-color: #3e8e41; /* чуть темнее при наведении */
+  background-color: #3e8e41; 
   transform: scale(1.05);
 }
 
 @media (max-width: 1200px) {
   .review-card {
-      width: calc(50% - 20px); /* 2 блока в ряд на планшетах */
+      width: calc(50% - 20px); 
   }
 }
 
 @media (max-width: 768px) {
   .review-card {
-      width: 100%; /* 1 блок в ряд на мобильных устройствах */
+      width: 100%; 
   }
 }
 

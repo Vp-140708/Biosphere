@@ -38,7 +38,6 @@ body {
         max-width: 50%;
     }
 }
-/* Animation for branch elements */
 .branch {
   opacity: 0;
   transform: translateY(20px);
@@ -53,7 +52,6 @@ body {
   animation: fadeIn 0.3s ease-in-out forwards;
 }
 
-/* Animation keyframes */
 @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -77,7 +75,6 @@ body {
   }
 }
 
-/* Delay animation for each branch element */
 .branch:nth-child(3) {
   animation-delay: 0.5s;
 }
@@ -97,7 +94,6 @@ body {
 .branch:nth-child(8) {
   animation-delay: 3s;
 }
-/* Style for branch-info text */
 .branch-info {
     font-size: 18px;
     font-weight: bold;
@@ -105,41 +101,35 @@ body {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
   }
   
-  /* Style for map-container text */
   .map-container {
     font-size: 16px;
     color: var(--text-light);
     text-align: center;
   }
   
-  /* Style for branch address text */
   .branch-address {
     font-size: 14px;
     color: var(--text-light);
     margin-bottom: 10px;
   }
   
-  /* Style for branch phone text */
   .branch-phone {
     font-size: 14px;
     color: var(--text-light);
     margin-bottom: 10px;
   }
   
-  /* Style for branch email text */
   .branch-email {
     font-size: 14px;
     color: var(--text-light);
     margin-bottom: 10px;
   }
   
-  /* Dark theme styles */
   .dark-theme {
     --text-dark: #d3d3d3;
     --text-light: #377ccb;
   }
   
-  /* Light theme styles */
   .light-theme {
     --text-dark: black;
     --text-light: #666;
