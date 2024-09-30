@@ -37,7 +37,7 @@
         </div>
     </header>
 <div class="container" id="container">
-	<div class="form-container sign-up-container">
+	<div class="form-container sign-up-container" id="register">
 		<form action="#" class="form-sign-up">
 			<h1>Регистрация</h1>
 			<input type="text" placeholder="Name" />
@@ -47,7 +47,7 @@
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
-		<form action="#" class="form-sign-in">
+		<form action="#" class="form-sign-in" id="login">
 			<h1>Вход</h1>
 			<input type="email" placeholder="Email" />
 			<input type="password" placeholder="Password" />
@@ -55,9 +55,9 @@
 			<button>Войти</button>
 		</form>
 	</div>
-	<div class="overlay-container">
+	<div class="overlay-container" id="overlay-container">
 		<div class="overlay">
-			<div class="overlay-panel overlay-left">
+			<div class="overlay-panel overlay-left" >
 				<h1>Добро пожаловать!</h1>
 				<p>Чтобы поддерживать с нами связь, пожалуйста, войдите в систему, указав свои личные данные</p>
 				<button class="ghost" id="signIn">Вход</button>
@@ -84,7 +84,11 @@
 		container.classList.remove("right-panel-active");
 		document.querySelector('.sign-in-container').style.display = 'block';
 	});
-</script>
+    
+    
+    
+    
+    </script>
 
 
 <main class="main-container">
