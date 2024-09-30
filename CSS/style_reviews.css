@@ -252,8 +252,31 @@ input {
 	width: 100%;
 }
 
-.container {
+#login {
+	background-color: #9cfaa1;
+}
+
+.dark-theme #login {
 	background-color: #04AA6D;
+}
+
+#register {
+	background-color: #9cfaa1;
+}
+
+.dark-theme #register {
+	background-color: #04AA6D;
+}
+
+#overlay-container {
+	background-color: #828282;
+}
+
+.dark-theme #overlay-container {
+	background-color: #0398b9;
+}
+
+.container {
 	border-radius: 20px;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
@@ -323,7 +346,6 @@ input {
 }
 
 .overlay {
-	background: #444;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
