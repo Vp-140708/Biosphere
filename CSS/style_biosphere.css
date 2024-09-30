@@ -227,7 +227,8 @@ body {
 .large-texts {
     display: flex;
     justify-content: space-around;
-    padding: 20px;
+    padding: 40px;
+    font-size: x-large;
 }
 
 .large-texts div {
@@ -307,7 +308,7 @@ body {
     display: block;
     margin: 0 auto;
     width: 250px;
-    font-size: large;
+    font-size: larger;
     
 }
 
