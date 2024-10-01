@@ -21,7 +21,7 @@
 }
   
   #SearchInput:hover {
-    border-color: white;
+    border-color: rgb(170, 170, 170);
   }
 
   #filter1:hover {
