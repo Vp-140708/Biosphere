@@ -255,7 +255,7 @@ input {
 }
 
 .dark-theme #login {
-	background-color: #04AA6D;
+	background-color: #039c64;
 }
 
 #register {
@@ -263,15 +263,15 @@ input {
 }
 
 .dark-theme #register {
-	background-color: #04AA6D;
+	background-color: #039c64;
 }
 
 #overlay-container {
-	background-color: #828282;
+	background-color: #eeeeee;
 }
 
 .dark-theme #overlay-container {
-	background-color: #0398b9;
+	background-color: #555555;
 }
 
 .container {

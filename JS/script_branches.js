@@ -17,6 +17,11 @@ function init() {
         var myPlacemark = new ymaps.Placemark(location.coordinates, {
             hintContent: location.address,
             balloonContent: location.address
+        }, {
+            iconLayout: 'default#image',
+            iconImageHref: 'assets/images/bio-logo1.png', 
+            iconImageSize: [30, 30], 
+            iconImageOffset: [-15, -30] 
         });
 
         myMap.geoObjects.add(myPlacemark);
