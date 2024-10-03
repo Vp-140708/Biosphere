@@ -124,22 +124,3 @@
 .dark-theme .search-bar {
   background-color: #3a3a3a;
 }
-@media (max-width: 768px) {
-  .container {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      justify-content: center;
-  }
-
-  #SearchInput {
-      width: 90%; /* Увеличение ширины на мобильных */
-      margin: 0 auto 10px; /* Центрирование и отступ снизу */
-  }
-
-  #filter1 {
-      width: 90%;
-      margin: 0 auto; /* Центрирование фильтра */
-      margin-bottom: 20px; /* Отступ снизу */
-  }
-}
