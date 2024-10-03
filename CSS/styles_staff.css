@@ -15,6 +15,7 @@
   .specialist-block {
     animation: specialistCardAnimation 0.5s ease-in-out;
     animation-fill-mode: backwards;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1);
   }
   .specialist-block:hover {
     transform: scale(1.05);
@@ -50,4 +51,76 @@
 }
 .search-bar {
     margin-top: 1.5em;
+    width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  outline: none;
+  font-size: 1.5em;
+}
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+
+.specialists-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.specialist-block {
+  flex: 1 1 calc(33.333% - 40px); 
+  max-width: 400px;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 15px;
+  background-color: #ffffff;
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.specialist-block img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+.specialist-name {
+  color: #0285a2;
+  margin: 10px 0;
+  font-size: 1.2em;
+}
+
+.specialist-description {
+  color: black;
+  font-size: 1em;
+}
+
+
+@media (max-width: 768px) {
+  .specialist-block {
+      flex: 1 1 100%; 
+  }
+}
+.dark-theme .specialist-block {
+  background-color: #3a3a3a;
+  border-color: #555;
+}
+
+.dark-theme .specialist-name {
+  color: #67d9ff;
+}
+
+.dark-theme .specialist-description {
+  color: #d3d3d3;
+}
+
+.dark-theme .search-bar {
+  background-color: #3a3a3a;
 }
