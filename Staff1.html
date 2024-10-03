@@ -39,16 +39,15 @@
     
     <div class="container">
         
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-        <input type="text" id="SearchInput" class="search-bar" placeholder="Введите имя или специальность..." style="width: 70%; margin-top: 6rem; margin-bottom: 2rem;">
-        <select ng-model="filter" id="filter1" style="width: 25%;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;">
+        <input type="text" id="SearchInput" class="search-bar" placeholder="Введите имя или специальность..." style="width: 70%; min-width: 100px; margin-top: 6rem; margin-bottom: 2rem;">
+        <select ng-model="filter" id="filter1" style="width: 25%; min-width: 100px; margin-top: 6rem; margin-bottom: 2rem; ">
                 <option value="name">По имени</option>
                 <option value="Job_title">Должность</option>
                 <option value="Specialization">Специализация</option>
                 <option value="Place_of_work">Место работы</option>
         </select>
         </div>
-
         
         <div class="specialists-container" id="specialistsContainer" style="margin-top: 1em;left: 1em;right: 1em;">
         <div class="specialists-container" id="specialistsContainer" style="margin-top: 1em;left: 1em;right: 1em;">

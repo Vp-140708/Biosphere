@@ -227,7 +227,9 @@ button:active {
 button:focus {
 	outline: none;
 }
-
+button:hover {
+	box-shadow: 0 15px 30px rgba(0, 0, 0, 0.11), 0 5px 15px rgba(0, 0, 0, 0.08);
+}
 button.ghost {
 	background-color: transparent;
 }
@@ -389,5 +391,64 @@ input {
 
 .container.right-panel-active .overlay-right {
 	transform: translateX(20%);
+}
+#login2 {
+	display: none;
+}
+#login1 {
+	display: none;
+}
+@media (max-width: 600px) {
+	.form-container {
+		width: 100%;
+	}
+	.overlay-container {
+		display: none;
+	}
+	.container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	#signIn {
+		margin-top: 2em;
+	}
+	#signIn-mobile {
+		display: block;
+		margin-top: 2em;
+	}
+	#login2 {
+		display: inline;
+	}
+	#login1 {
+		display: inline;
+	}
+	#login2 {
+		cursor: pointer;
+	}
+	#login2:active ~ .sign-in-container {
+		display: none;
+	}
+}
+.login1 {
+	font-size: 12px;
+	padding: 5px 10px;
+	background-color: #0398b9;
+	color: #fff;
+}
+
+
+.login2 {
+	font-size: 12px;
+	padding: 5px 10px;
+	background-color: #0398b9;
+	color: #fff;
+}
+
+#container1 {
+	background-color: #f1f1f1;
+	border: 1px solid #ccc;
+	padding: 20px;
+	margin-top: 20px;
 }
 

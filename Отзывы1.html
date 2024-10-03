@@ -46,13 +46,13 @@
 			<button>Регистрация</button>
 		</form>
 	</div>
-	<div class="form-container sign-in-container">
+	<div class="form-container sign-in-container" id="log">
 		<form action="#" class="form-sign-in" id="login">
 			<h1>Вход</h1>
 			<input type="email" placeholder="Email" />
 			<input type="password" placeholder="Password" />
-			<a href="#" style="margin-bottom: 1em;">Не помнишь пароль?</a>
-			<button>Войти</button>
+			<div id="login3"><button class="login1" href="#" >Забыли пароль?</button> <a id="login1"></a> <button class="login1" href="#" id="login2">Нет аккаунта?</button></div>
+			<button style="margin-top: 1em;">Войти</button>
 		</form>
 	</div>
 	<div class="overlay-container" id="overlay-container">
@@ -84,11 +84,7 @@
 		container.classList.remove("right-panel-active");
 		document.querySelector('.sign-in-container').style.display = 'block';
 	});
-    
-    
-    
-    
-    </script>
+</script>
 
 
 <main class="main-container">
