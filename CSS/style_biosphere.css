@@ -732,11 +732,6 @@ footer {
   padding: 0 15px; 
 }
 
-@media (max-width: 768px) {
-  .link-block {
-    margin: 0 auto;
-  }
-}
 @media (max-width: 767px) {
  
   .turquoise-block {
@@ -746,10 +741,14 @@ footer {
       right: 0; 
       margin-left: auto;
   }
-
-
+  .link-block {
+    margin: 0 auto;
+  }
   body, html {
       overflow-x: hidden;
+  }
+  .large-texts {
+  display: flex; flex-direction: column; align-items: center;
   }
 }
 
