@@ -371,9 +371,6 @@ footer {
     background-color: #555;
 }
 
-.dark-theme footer {
-    background-color: #111;
-}
 .adaptive-blocks-container {
     display: flex;
     align-items: center;
