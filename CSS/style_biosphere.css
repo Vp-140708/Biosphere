@@ -249,6 +249,10 @@ body {
     justify-content: space-around;
     padding: 40px;
     font-size: x-large;
+    color: #2ae034;
+}
+.dark-theme .large-texts {
+  color: #0398b9;
 }
 
 .large-texts div {
