@@ -784,7 +784,7 @@ footer {
   }
   .left-section {
     position: absolute;
-    top: 70%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
@@ -801,6 +801,7 @@ footer {
   .turquoise-block {
     position: relative;
     height: 50vh;
+    width: 100%;
 }
 }
 @media (min-width: 1920px) {
