@@ -8,7 +8,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 66vh;
+  height: 80vh;
   padding: 20px;
   position: relative;
   width: 100%; 
@@ -31,14 +31,14 @@ body {
   top: 0;
   right: 0;
   width: 50%;
-  height: 100vh;
+  height: 106vh;
 }
 
 .turquoise-block {
   background-color: #9cfaa1;
-  width: 100vw;
+  width: 50vw;
   margin-top: 16vh;
-  height: 106vh; 
+  height: 70vh; 
   position: relative;
   right: 0;
   top: 0;
@@ -767,12 +767,20 @@ footer {
   margin: 0 5px;
   transition: background-color 0.3s, transform 0.3s;
 }
-
+.turquoise-block {
+  height: 100vh; 
+}
+.left-section {
+  margin-top: 10vh;
+}
 .dot.active {
   background-color: #000; 
   transform: scale(1.3);
 }
 @media (max-width: 768px) {
+  .container {
+    height: 100vh;
+  }
   .slider {
     height: 33vh;
     margin: 0 auto;
@@ -796,15 +804,37 @@ footer {
   }
   .link-blocks {
     position: static;
-    margin-top: 100%;
   }
   .turquoise-block {
     position: relative;
-    height: 50vh;
-}
+    height: 60vh;
+    width: 100vw;
+  }
+  .right-section {
+    height: 86vh;
+  }
 }
 @media (min-width: 1920px) {
   .slider {
     height: 64vh;
+  }
+  .turquoise-block {
+    height: 100vh; 
+    width: 50vw;
+  }
+  .left-section {
+    margin-top: 20vh;
+  }
+  .right-section {
+    height: 106vh;
+  }
+  .title {
+    font-size: 5rem;
+  }
+  .subtitle {
+    font-size: 3rem;
+  }
+  .adaptive-blocks-container {
+    margin-top: 15em;
   }
 }
