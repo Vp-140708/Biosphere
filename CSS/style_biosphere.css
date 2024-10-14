@@ -803,3 +803,8 @@ footer {
     height: 50vh;
 }
 }
+@media (min-width: 1920px) {
+  .slider {
+    height: 64vh;
+  }
+}

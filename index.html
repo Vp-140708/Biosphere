@@ -6,8 +6,7 @@
     <title>Ветклиника Биосфера</title>
     <link rel="stylesheet" href="CSS\style_biosphere.css">
     <link rel="stylesheet" href="CSS\styles1.css">
-    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script> 
     
     
 </head>
@@ -133,27 +132,27 @@
         <div class="faq-block">
             <p>Как записаться на прием?</p>
             <span class="arrow1">&#9662;</span>
-            <div class="faq-answer" style="padding-top: 0px;">Вы можете записаться по телефону или через наш сайт, заполнив форму записи.</div>
+            <div class="faq-answer" style="padding-top: 0px; text-align: center;">Вы можете записаться по телефону или через наш сайт, заполнив форму записи.</div>
         </div>
         <div class="faq-block">
             <p>Какие услуги мы предоставляем?</p>
             <span class="arrow1">&#9662;</span>
-            <div class="faq-answer" style="padding-top: 0px;">Мы предоставляем широкий спектр ветеринарных услуг, включая диагностику, лечение и профилактику заболеваний.</div>
+            <div class="faq-answer" style="padding-top: 0px; text-align: center;">Мы предоставляем широкий спектр ветеринарных услуг, включая диагностику, лечение и профилактику заболеваний.</div>
         </div>
         <div class="faq-block">
             <p>Могу ли я выбрать лечение у конкретного врача?</p>
             <span class="arrow1">&#9662;</span>
-            <div class="faq-answer" style="padding-top: 0px;">Да, вы можете выбрать врача, если у вас есть предпочтения, и мы постараемся учесть ваши пожелания.</div>
+            <div class="faq-answer" style="padding-top: 0px; text-align: center;">Да, вы можете выбрать врача, если у вас есть предпочтения, и мы постараемся учесть ваши пожелания.</div>
         </div>
         <div class="faq-block">
             <p>Когда стоит проводить вакцинацию питомца?</p>
             <span class="arrow1">&#9662;</span>
-            <div class="faq-answer" style="padding-top: 0px;">Вакцинация рекомендуется с определённого возраста питомца, о чем вам расскажет наш ветеринар.</div>
+            <div class="faq-answer" style="padding-top: 0px; text-align: center;">Вакцинация рекомендуется с определённого возраста питомца, о чем вам расскажет наш ветеринар.</div>
         </div>
         <div class="faq-block">
             <p>Что делать, если кажется, что питомец заболел?</p>
             <span class="arrow1">&#9662;</span>
-            <div class="faq-answer" style="padding-top: 0px;">Если у вас есть подозрения на заболевание, срочно запишитесь на прием для осмотра и диагностики.</div>
+            <div class="faq-answer" style="padding-top: 0px; text-align: center;">Если у вас есть подозрения на заболевание, срочно запишитесь на прием для осмотра и диагностики.</div>
         </div>
     </div>
         
@@ -171,40 +170,40 @@
     <script src="JS/script_biosphere.js"></script>
     <script src="JS/script1.js"></script>
     <script>
-ymaps.ready(init);
-
-function init() {
-    var myMap = new ymaps.Map("map-container", {
-        center: [58.6035, 49.6672], 
-        zoom: 11 
-    });
-
-    var locations = [
-        { coords: [58.564142, 49.623161], name: 'ул. Солнечная 19Б' },
-        { coords: [58.590192, 49.666766], name: 'ул. Московская 4' },
-        { coords: [58.526725, 49.718850], name: 'ул. Молодой Гвардии, 2Д, Нововятский район' },
-        { coords: [58.596374, 49.603926], name: 'пр-т Строителей, 9, корпус 1' },
-        { coords: [58.579328, 49.607631], name: 'ул. Чернышевского, 7' },
-        { coords: [58.600563, 49.617814], name: 'ул. Украинская, 18' }
-    ];
-
-    locations.forEach(function(location) {
-        var placemark = new ymaps.Placemark(location.coords, {
-            balloonContent: location.name
-        }, {
-            preset: 'islands#icon', 
-            iconLayout: 'default#image', 
-            iconImageHref: 'assets/images/bio-logo1.png', 
-            iconImageSize: [30, 30], 
-            iconImageOffset: [-15, -15] 
-        });
-        myMap.geoObjects.add(placemark);
-    });
-
-    myMap.setBounds(myMap.geoObjects.getBounds(), { checkZoomRange: true, zoomMargin: 20 });
-}
-
-        </script>
+      ymaps.ready(init);
+      
+      function init() {
+          var myMap = new ymaps.Map("map-container", {
+              center: [58.6035, 49.6672], 
+              zoom: 11 
+          });
+      
+          var locations = [
+              { coords: [58.564142, 49.623161], name: 'ул. Солнечная 19Б' },
+              { coords: [58.590192, 49.666766], name: 'ул. Московская 4' },
+              { coords: [58.526725, 49.718850], name: 'ул. Молодой Гвардии, 2Д, Нововятский район' },
+              { coords: [58.596374, 49.603926], name: 'пр-т Строителей, 9, корпус 1' },
+              { coords: [58.579328, 49.607631], name: 'ул. Чернышевского, 7' },
+              { coords: [58.600563, 49.617814], name: 'ул. Украинская, 18' }
+          ];
+      
+          locations.forEach(function(location) {
+              var placemark = new ymaps.Placemark(location.coords, {
+                  balloonContent: location.name
+              }, {
+                  preset: 'islands#icon', 
+                  iconLayout: 'default#image', 
+                  iconImageHref: 'assets/images/bio-logo1.png', 
+                  iconImageSize: [30, 30], 
+                  iconImageOffset: [-15, -15] 
+              });
+              myMap.geoObjects.add(placemark);
+          });
+      
+          myMap.setBounds(myMap.geoObjects.getBounds(), { checkZoomRange: true, zoomMargin: 20 });
+      }
+      
+              </script>
         
 
 </html>
