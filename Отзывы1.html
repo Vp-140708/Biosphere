@@ -43,6 +43,15 @@
 			<input type="text" placeholder="Name" />
 			<input type="email" placeholder="Email" />
 			<input type="password" placeholder="Password" />
+            <div id="login3"><button class="login1" id="login3" href="/Отзывы1.html" style="margin-bottom: 1em;">Уже есть аккаунт?</button></div>
+            <script>
+                document.getElementById('login3').addEventListener('click', () => {
+                    document.getElementById('log').style.display = 'block';
+                    document.getElementById('log').style.opacity = '3';
+                    document.getElementById('register').style.opacity = '0';
+                    document.getElementById('register').style.opacity = 'none';
+                });
+            </script>
 			<button>Регистрация</button>
 		</form>
 	</div>
@@ -51,7 +60,14 @@
 			<h1>Вход</h1>
 			<input type="email" placeholder="Email" />
 			<input type="password" placeholder="Password" />
-			<div id="login3"><button class="login1" href="#" >Забыли пароль?</button> <a id="login1"></a> <a class="login1" id="login2" href="/Отзывы2.html">Нет аккаунта?</button></a></div>
+			<div id="login3"><button class="login1" href="#" >Забыли пароль?</button> <a></a> <button class="login1" id="login2">Нет аккаунта?</button></a></div>
+            <script>
+                document.getElementById('login2').addEventListener('click', () => {
+                    document.getElementById('log').style.display = 'none';
+                    document.getElementById('log').style.opacity = '0';
+                    document.getElementById('register').style.opacity = '3';
+                });
+            </script>
 			<button style="margin-top: 1em;">Войти</button>
 		</form>
 	</div>

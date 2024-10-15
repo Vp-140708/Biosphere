@@ -464,7 +464,7 @@ input {
 	.container {
 	  max-width: 768px;
 	  margin: 0 auto;
-	  margin-top: 15em;
+	  margin-top: 150em;
 	}
 	
   }
@@ -474,7 +474,7 @@ input {
 	.container {
 	  max-width: 100%;
 	  margin: 0 auto;
-	  margin-top: 55em;
+	  margin-top: 35em;
 	}
   }
 /* Форма отзыва */
@@ -557,3 +557,4 @@ input {
 .full-stars .rating-group input:hover ~ label svg {
     fill: #ccc;
 }
+
