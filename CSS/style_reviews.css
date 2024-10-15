@@ -524,8 +524,8 @@ input {
 	  width: 100%;
 	}
   }
- /* Звезды рейтинга */
-/* Звезды рейтинга */
+
+  
 .rating {
 	display: flex;
 	justify-content: start;
@@ -539,19 +539,17 @@ input {
 	transition: color 0.2s;
   }
   
-  /* Подсвечиваем звезды при наведении */
+
   .star:hover,
   .star.hovered,
   .star.selected {
 	color: #ffcc00;
   }
-  
-  /* Убираем подсветку остальных звезд справа */
+
   .star:hover ~ .star {
-	color: #ccc;
+	color: #f7f336bb;
   }
-  
-  /* Темная тема */
+
   .dark-theme .star {
 	color: #555;
   }
