@@ -52,22 +52,26 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     document.getElementById('log').style.display = 'none';
     document.getElementById('write-review').style.display = 'block';
 });
-// Отправка отзыва
-document.getElementById('review-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const reviewText = document.getElementById('review-text').value;
+const sendReviewButton = document.getElementById('send-review');
+const ratingGroup = document.querySelector('.rating-group');
+const ratingInputs = ratingGroup.querySelectorAll('input[type="radio"]');
 
-    // Проверка рейтинга
-    if (selectedRating === 0) {
-      alert('Пожалуйста, выберите рейтинг.');
-      return;
-    }
+sendReviewButton.addEventListener('click', () => {
+  const rating = Array.from(ratingInputs).find(input => input.checked).value;
+  const reviewText = document.getElementById('review-text').value;
 
-    // Обработка отправки отзыва
-    alert(`Ваша оценка: ${selectedRating} звёзд. Спасибо за отзыв!`);
-
-    // Очистка формы
-    document.getElementById('review-text').value = '';
-    selectedRating = 0;
-    resetStars(); // Сброс рейтинга
+  // Отправить запрос на сервер
+  fetch('/send-review', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      rating: rating,
+      reviewText: reviewText
+    })
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
 });
