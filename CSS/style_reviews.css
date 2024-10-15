@@ -474,7 +474,7 @@ input {
 	.container {
 	  max-width: 100%;
 	  margin: 0 auto;
-	  margin-top: 30em;
+	  margin-top: 55em;
 	}
   }
 /* Форма отзыва */
@@ -561,4 +561,6 @@ input {
   .dark-theme .star.hovered {
 	color: #ffcc00;
   }
-  
+  .dark-theme .review-rating .star {
+	color: #ffcc00;
+  }
