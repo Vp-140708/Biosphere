@@ -814,6 +814,21 @@ footer {
     height: 86vh;
   }
 }
+@media (min-width: 768px) and (max-width: 1024px) {
+  .slider {
+    height: 25vh;
+    top: 40%;
+  }
+  .left-section {
+    height: 80vh;
+  }
+  .right-section {
+    height: 80vh;
+  }
+  .container {
+    height: 60vh;
+  }
+}
 @media (min-width: 1920px) {
   .slider {
     height: 64vh;
