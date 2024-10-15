@@ -52,52 +52,6 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     document.getElementById('log').style.display = 'none';
     document.getElementById('write-review').style.display = 'block';
 });
-
-// Логика выбора звезд
-const stars = document.querySelectorAll('.star');
-let selectedRating = 0;
-
-stars.forEach(star => {
-  // Наведение на звезду (подсвечиваем до текущей звезды)
-  star.addEventListener('mouseover', () => {
-    resetStars();
-    highlightStars(star.getAttribute('data-value'));
-  });
-
-  // Убираем наведение (возвращаем предыдущий выбор)
-  star.addEventListener('mouseout', () => {
-    if (selectedRating === 0) {
-      resetStars();
-    } else {
-      highlightStars(selectedRating);
-    }
-  });
-
-  // Клик на звезду (фиксируем выбор)
-  star.addEventListener('click', () => {
-    selectedRating = star.getAttribute('data-value');
-    highlightStars(selectedRating);
-  });
-});
-
-// Функция для подсветки звезд до текущей (слева от текущей)
-function highlightStars(rating) {
-  stars.forEach(star => {
-    if (star.getAttribute('data-value') <= rating) {
-      star.classList.add('selected');
-    } else {
-      star.classList.remove('selected');
-    }
-  });
-}
-
-// Сброс звёзд
-function resetStars() {
-  stars.forEach(star => {
-    star.classList.remove('selected');
-  });
-}
-
 // Отправка отзыва
 document.getElementById('review-form').addEventListener('submit', function(event) {
     event.preventDefault();
