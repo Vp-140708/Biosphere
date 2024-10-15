@@ -782,7 +782,7 @@ footer {
     height: 100vh;
   }
   .slider {
-    height: 33vh;
+    height: 68vw;
     margin: 0 auto;
     position: absolute;
     top: 46%;
@@ -816,14 +816,14 @@ footer {
 }
 @media (min-width: 1024px) and (max-width: 1920px) {
   .slider {
-    height: 38vh;
+    height: 34vw;
     top: 45%;
   }
 }
 @media (min-width: 768px) and (max-width: 1024px) {
   .slider {
-    height: 25vh;
-    top: 40%;
+    height: 35vw;
+    top: 45%;
   }
   .left-section {
     height: 80vh;
@@ -837,7 +837,7 @@ footer {
 }
 @media (min-width: 1920px) {
   .slider {
-    height: 64vh;
+    height: 33vw;
   }
   .turquoise-block {
     height: 100vh; 
