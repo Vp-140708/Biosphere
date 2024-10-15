@@ -527,37 +527,33 @@ input {
   }
 
   
-.rating {
-	display: flex;
-	justify-content: start;
-	margin-bottom: 20px;
-  }
-  
-  .star {
-	font-size: 40px;
-	color: #ccc;
-	cursor: pointer;
-	transition: color 0.2s;
-  }
-  
-
-  .star:hover,
-  .star.hovered,
-  .star.selected {
-	color: #ffcc00;
-  }
-
-  .star:hover ~ .star {
-	color: #f7f336bb;
-  }
-
-  .dark-theme .star {
-	color: #555;
-  }
-  
-  .dark-theme .star:hover,
-  .dark-theme .star.selected,
-  .dark-theme .star.hovered {
-	color: #ffcc00;
-  }
-  
+  .full-stars {
+    text-align: center;
+}
+.full-stars .rating-group {
+    display: inline-flex;
+}
+.full-stars input {
+    position: absolute;
+    left: -9999px;
+}
+.full-stars label {
+    margin: 0;
+    cursor: pointer;
+}
+.full-stars label svg {
+    margin: 2px;
+    height: 40px;
+    width: 40px;
+    fill: gold;
+    transition: fill 0.3s;
+}
+.full-stars input:checked ~ label svg {
+    fill: #ccc;
+}
+.full-stars .rating-group:hover label svg {
+    fill: yellow;
+}
+.full-stars .rating-group input:hover ~ label svg {
+    fill: #ccc;
+}
