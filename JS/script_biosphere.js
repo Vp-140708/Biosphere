@@ -36,7 +36,7 @@ const dots = document.querySelectorAll('.dot');
 let currentIndex = 0;
 let touchStartX = 0;
 let touchEndX = 0;
-const threshold = 75;
+const threshold = 150;
 
 function updateDots(index) {
     dots.forEach((dot, i) => {
@@ -49,7 +49,6 @@ function updateDots(index) {
         }
     });
 }
-
 function goToSlide(index) {
  
     if (index < 0) {

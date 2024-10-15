@@ -42,7 +42,8 @@ body {
   position: relative;
   right: 0;
   top: 0;
-  border-radius: 25px;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
   z-index: -1;
 }
 
@@ -820,7 +821,7 @@ footer {
     top: 45%;
   }
 }
-@media (min-width: 770px) and (max-width: 1020px) {
+@media (min-width: 769px) and (max-width: 1020px) {
   .slider {
     height: 35vw;
     top: 45%;
