@@ -6,7 +6,6 @@
     <title>Ветклиника Биосфера</title>
     <link rel="stylesheet" href="CSS\style_biosphere.css">
     <link rel="stylesheet" href="CSS\styles1.css">
-    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script> 
     
     
 </head>
@@ -51,10 +50,11 @@
                 <div class="slides">
                   <div class="slide">
                     <img src="Shot_kitten.jpg" alt="Slide 1">
-                    <div class="text_sl">
-                      <h2>Передовое оборудование</h2>
-                      <p>Описание 1</p>
-                    </div>
+                    
+                  <div class="text_sl">
+                    <h2>Передовое оборудование</h2>
+                    <p>Описание 1</p>
+                  </div>
                   </div>
                   <div class="slide">
                     <img src="Shot_kitten.jpg" alt="Slide 2">
@@ -160,7 +160,7 @@
     </div>
 
     <p class="map-link" style="pointer-events: none;">Биосфера на карте</p>
-    <div id="map-container" style="width: 100%; height: 400px; pointer-events: none;"></div>
+    <div id="map-container" style="width: 100%; height: 400px;"></div>
     </div>
 
     <footer>
@@ -170,11 +170,12 @@
     
     <script src="JS/script_biosphere.js"></script>
     <script src="JS/script1.js"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script> 
     <script>
       ymaps.ready(init);
       
       function init() {
-          var myMap = new ymaps.Map("map-container", {
+        var myMap = new ymaps.Map("map-container", {
               center: [58.6035, 49.6672], 
               zoom: 11 
           });
@@ -203,8 +204,7 @@
       
           myMap.setBounds(myMap.geoObjects.getBounds(), { checkZoomRange: true, zoomMargin: 20 });
       }
-      
-              </script>
+      </script>
         
 
 </html>

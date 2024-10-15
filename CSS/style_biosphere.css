@@ -859,3 +859,9 @@ footer {
     margin-top: 15em;
   }
 }
+.text_sl {
+  color: black;
+}
+.dark-theme .text_sl {
+  color: white;
+}
