@@ -36,7 +36,7 @@ const dots = document.querySelectorAll('.dot');
 let currentIndex = 0;
 let touchStartX = 0;
 let touchEndX = 0;
-const threshold = 150;
+const threshold = 500;
 
 function updateDots(index) {
     dots.forEach((dot, i) => {
