@@ -283,8 +283,7 @@ input {
 	position: relative;
 	overflow: hidden;
 	width: 768px;
-	max-width: 100%;
-	min-height: 480px;
+	height: 480px;
   margin-top: 30em;
 }
 
@@ -403,38 +402,7 @@ input {
 #login1 {
 	display: none;
 }
-@media (max-width: 600px) {
-	.form-container {
-		width: 100%;
-	}
-	.overlay-container {
-		display: none;
-	}
-	.container {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-	#signIn {
-		margin-top: 2em;
-	}
-	#signIn-mobile {
-		display: block;
-		margin-top: 2em;
-	}
-	#login2 {
-		display: inline;
-	}
-	#login1 {
-		display: inline;
-	}
-	#login2 {
-		cursor: pointer;
-	}
-	#login2:active ~ .sign-in-container {
-		display: none;
-	}
-}
+
 .login1 {
 	font-size: 12px;
 	padding: 6px 10px;
@@ -450,33 +418,7 @@ input {
 	color: #fff;
 }
 /* Для больших экранов */
-@media (min-width: 1200px) {
-	.container {
-	  max-width: 1200px;
-	  margin: 0 auto;
-	  margin-top: 35em;
-	  padding: 1em;
-	}
-  }
-  
-  /* Для планшетов */
-  @media (min-width: 768px) and (max-width: 1199px) {
-	.container {
-	  max-width: 768px;
-	  margin: 0 auto;
-	  margin-top: 150em;
-	}
-	
-  }
-  
-  /* Для мобильных устройств */
-  @media (max-width: 767px) {
-	.container {
-	  max-width: 100%;
-	  margin: 0 auto;
-	  margin-top: 35em;
-	}
-  }
+
 /* Форма отзыва */
 .write-review-section {
 	background-color: #f7f7f7;
@@ -518,13 +460,74 @@ input {
 	background-color: #555;
 	color: #d3d3d3;
   }
-  
-  /* Адаптивность */
-  @media (max-width: 768px) {
-	.write-review-section {
-	  width: 100%;
+@media (max-width: 600px) {
+	.form-container {
+		width: 100%;
+	}
+	.overlay-container {
+		display: none;
+	}
+	.container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		min-height: 60vh;
+		margin: 0 auto;
+	}
+	#signIn {
+		margin-top: 2em;
+	}
+	#signIn-mobile {
+		display: block;
+		margin-top: 2em;
+	}
+	#login2 {
+		display: inline;
+	}
+	#login1 {
+		display: inline;
+	}
+	#login2 {
+		cursor: pointer;
+	}
+	#login2:active ~ .sign-in-container {
+		display: none;
+	}
+}
+@media (max-width: 767px) {
+  .write-review-section {
+  	width: 100%;
+  }
+  .container {
+	margin: 0 auto;
+	width: 100vw;
+	min-height: 50vh;
+	margin-top: 35em;
+  }
+}
+/* Для планшетов */
+@media (min-width: 768px) and (max-width: 1199px) {
+	.container {
+	  margin: 0 auto;
+	  width: 70vw;
+	  min-height: 40vh;
+	  margin-top: 20em;
+	}
+
+	
+  }
+  @media (min-width: 1200px) {
+	.container {
+	  width: 50vw;
+	  min-height: 60vh;
+	  margin: 0 auto;
+	  margin-top: 25em;
+	  padding: 1em;
 	}
   }
+  
+  
 
   
   .full-stars {

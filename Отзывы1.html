@@ -85,22 +85,22 @@
 			</div>
 		</div>
 	</div>
+    <script>
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+    
+        signUpButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+            document.querySelector('.sign-in-container').style.display = 'none';
+        });
+    
+        signInButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+            document.querySelector('.sign-in-container').style.display = 'block';
+        });
+    </script>
 </div>
-<script>
-	const signUpButton = document.getElementById('signUp');
-	const signInButton = document.getElementById('signIn');
-	const container = document.getElementById('container');
-
-	signUpButton.addEventListener('click', () => {
-		container.classList.add("right-panel-active");
-		document.querySelector('.sign-in-container').style.display = 'none';
-	});
-
-	signInButton.addEventListener('click', () => {
-		container.classList.remove("right-panel-active");
-		document.querySelector('.sign-in-container').style.display = 'block';
-	});
-</script>
 
 <section class="write-review-section" id="write-review" style="display: none">
     <h2>Оставить отзыв</h2>
