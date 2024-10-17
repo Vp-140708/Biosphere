@@ -866,3 +866,7 @@ footer {
 .dark-theme .text_sl {
   color: white;
 }
+
+.text-block {
+  font-size: 1.5em;
+}
