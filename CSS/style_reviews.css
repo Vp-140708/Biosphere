@@ -515,7 +515,7 @@ input {
 	  margin-top: 20em;
 	}
 	#login3 {
-		display: none;!important;
+		display: none !important;
 	}
 	
   }
@@ -528,7 +528,7 @@ input {
 	  padding: 1em;
 	}
 	#login3 {
-		display: none;!important;
+		display: none !important; 
 	}
   }
   
