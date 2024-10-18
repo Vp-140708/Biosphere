@@ -514,7 +514,9 @@ input {
 	  min-height: 40vh;
 	  margin-top: 20em;
 	}
-
+	#login3 {
+		display: none;!important;
+	}
 	
   }
   @media (min-width: 1200px) {
@@ -524,6 +526,9 @@ input {
 	  margin: 0 auto;
 	  margin-top: 25em;
 	  padding: 1em;
+	}
+	#login3 {
+		display: none;!important;
 	}
   }
   

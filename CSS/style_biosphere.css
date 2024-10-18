@@ -835,6 +835,7 @@ footer {
   .container {
     height: 60vh;
   }
+  
 }
 @media (min-width: 1920px) {
   .slider {
