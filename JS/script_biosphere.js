@@ -38,17 +38,7 @@ let touchStartX = 0;
 let touchEndX = 0;
 const threshold = 500;
 
-function updateDots(index) {
-    dots.forEach((dot, i) => {
-        if (i === index) {
-            dot.style.backgroundColor = '#000'; 
-            dot.style.transform = 'scale(1.3)';
-        } else {
-            dot.style.backgroundColor = '#ccc'; 
-            dot.style.transform = 'scale(1)';
-        }
-    });
-}
+
 function goToSlide(index) {
  
     if (index < 0) {
@@ -155,4 +145,50 @@ document.addEventListener("DOMContentLoaded", function () {
     // Инициализация слайдера с показом первого слайда
     showSlide(0);
     startSlider(); // Запуск автоматического переключения
+});
+document.addEventListener('DOMContentLoaded', function () {
+    const callbackButton = document.getElementById('callbackButton');
+    const callbackForm = document.getElementById('callbackForm');
+    const cancelButton = document.getElementById('cancelButton');
+
+    let formVisible = false;
+
+    // Функция плавного открытия
+    function openForm() {
+        callbackForm.classList.add('show');
+        callbackForm.classList.remove('hide');
+        formVisible = true;
+    }
+
+    // Функция плавного закрытия
+    function closeForm() {
+        callbackForm.classList.add('hide');
+        callbackForm.classList.remove('show');
+        setTimeout(() => {
+            callbackForm.style.display = 'none';
+            formVisible = false;
+        }, 300); // Длительность анимации закрытия
+    }
+
+    // Показать/скрыть форму при клике на кнопку
+    callbackButton.addEventListener('click', function () {
+        if (!formVisible) {
+            callbackForm.style.display = 'flex';
+            openForm();
+        } else {
+            closeForm();
+        }
+    });
+
+    // Закрытие формы при клике на "Отмена"
+    cancelButton.addEventListener('click', function () {
+        closeForm();
+    });
+
+    // Закрытие формы при клике вне формы
+    document.addEventListener('click', function (e) {
+        if (!callbackForm.contains(e.target) && !callbackButton.contains(e.target) && formVisible) {
+            closeForm();
+        }
+    });
 });
