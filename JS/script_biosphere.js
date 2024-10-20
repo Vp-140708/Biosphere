@@ -100,24 +100,20 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentIndex = 0;
     const totalSlides = slides.length;
 
-    // Функция для показа слайда по индексу
     function showSlide(index) {
         if (index >= totalSlides) {
-            currentIndex = 0; // Переход к первому слайду
+            currentIndex = 0;
         } else if (index < 0) {
-            currentIndex = totalSlides - 1; // Переход к последнему слайду
+            currentIndex = totalSlides - 1;
         } else {
-            currentIndex = index; // Установка текущего слайда
+            currentIndex = index;
         }
 
-        // Смещение слайдов
         slidesWrapper.style.transform = `translateX(${-currentIndex * 100}%)`;
 
-        // Обновление активных точек
         updateDots(currentIndex);
     }
 
-    // Функция для обновления состояния точек
     function updateDots(index) {
         dots.forEach((dot, i) => {
             if (i === index) {
@@ -128,23 +124,19 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Автоматическое переключение слайдов каждые 8 секунд
     function startSlider() {
         setInterval(function () {
             showSlide(currentIndex + 1);
-        }, 8000); // Время между слайдами
+        }, 8000); 
     }
-
-    // Логика для ручного переключения слайдов через точки
     dots.forEach((dot, i) => {
         dot.addEventListener("click", function () {
             showSlide(i);
         });
     });
 
-    // Инициализация слайдера с показом первого слайда
     showSlide(0);
-    startSlider(); // Запуск автоматического переключения
+    startSlider();
 });
 document.addEventListener('DOMContentLoaded', function () {
     const callbackButton = document.getElementById('callbackButton');
@@ -153,24 +145,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let formVisible = false;
 
-    // Функция плавного открытия
     function openForm() {
         callbackForm.classList.add('show');
         callbackForm.classList.remove('hide');
         formVisible = true;
     }
-
-    // Функция плавного закрытия
     function closeForm() {
         callbackForm.classList.add('hide');
         callbackForm.classList.remove('show');
         setTimeout(() => {
             callbackForm.style.display = 'none';
             formVisible = false;
-        }, 300); // Длительность анимации закрытия
+        }, 300);
     }
 
-    // Показать/скрыть форму при клике на кнопку
     callbackButton.addEventListener('click', function () {
         if (!formVisible) {
             callbackForm.style.display = 'flex';
@@ -180,12 +168,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Закрытие формы при клике на "Отмена"
     cancelButton.addEventListener('click', function () {
         closeForm();
     });
 
-    // Закрытие формы при клике вне формы
     document.addEventListener('click', function (e) {
         if (!callbackForm.contains(e.target) && !callbackButton.contains(e.target) && formVisible) {
             closeForm();

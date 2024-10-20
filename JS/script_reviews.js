@@ -20,10 +20,9 @@
         container.classList.remove("right-panel-active");
     });
 
-// После успешной регистрации или входа скрыть формы и показать блок отзыва
 document.getElementById('loginForm').addEventListener('submit', function(event) {
     event.preventDefault();
-    // Эмуляция успешного входа
+    // Появление при успешном входе окна для написания отзыва
     document.getElementById('register').style.display = 'none';
     document.getElementById('log').style.display = 'none';
     document.getElementById('write-review').style.display = 'block';
@@ -35,8 +34,6 @@ const ratingInputs = ratingGroup.querySelectorAll('input[type="radio"]');
 sendReviewButton.addEventListener('click', () => {
   const rating = Array.from(ratingInputs).find(input => input.checked).value;
   const reviewText = document.getElementById('review-text').value;
-
-  // Отправить запрос на сервер
   fetch('/send-review', {
     method: 'POST',
     headers: {

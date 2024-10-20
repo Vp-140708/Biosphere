@@ -871,7 +871,6 @@ footer {
 .text-block {
   font-size: 1.5em;
 }
-/* Общие стили */
 .callback-container {
   position: fixed;
   bottom: 20px;
@@ -967,7 +966,6 @@ footer {
   color: white;
 }
 
-/* Адаптивные стили для мобильных устройств */
 @media (max-width: 768px) {
   .callback-button {
       padding: 0;
@@ -991,7 +989,6 @@ footer {
   }
 }
 
-/* Плавное закрытие и открытие формы */
 @keyframes fadeIn {
   from {
       opacity: 0;

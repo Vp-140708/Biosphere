@@ -63,7 +63,7 @@ function prevSlide() {
 
 function nextSlide() {
     const totalItems = document.querySelectorAll('.carousel-item').length;
-    if (currentIndex < totalItems - 3) { // учитываем видимые 3 блока
+    if (currentIndex < totalItems - 3) {
         currentIndex++;
         updateCarousel();
     }
