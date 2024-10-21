@@ -214,15 +214,18 @@ option, optgroup {
 #workplace-filter-container {
   width: 30%;
   margin-right: auto;
+  display: none;
 }
 #specialization-filter-container {
   width: 30%;
   margin-left: auto;
   margin-right: auto;
+  display: none;
 }
 #position-filter-container {
   width: 30%;
   margin-left: auto;
+  display: none;
 }
 
 /* Стили для кнопок */
