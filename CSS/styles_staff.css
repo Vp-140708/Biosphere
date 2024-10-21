@@ -124,3 +124,66 @@
 .dark-theme .search-bar {
   background-color: #3a3a3a;
 }
+
+
+/* Styling for the large filter dropdown */
+#combinedFilter, .Accept{
+  width: 40%;
+  min-width: 200px;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  font-size: 1.2em;
+  background-color: #9cfaa1; /* Light green background to match the style */
+  color: #0285a2; /* Same color as the specialist names */
+  transition: background-color 0.3s, border-color 0.3s;
+  outline: none;
+}
+
+
+#combinedFilter:hover {
+  background-color: #0285a2;
+  color: #fff;
+}
+
+
+/* Search bar styling to ensure consistency */
+#SearchInput {
+  margin-top: 5em;
+}
+
+#SearchInput:hover {
+  border-color: #0285a2;
+}
+
+/* General dropdown appearance (optgroup styling) */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%230285a2" d="M2 0L0 2h4L2 0z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px;
+}
+
+option, optgroup {
+  padding: 10px;
+  font-size: 1em;
+}
+
+/* Dark theme support */
+.dark-theme #combinedFilter {
+  background-color: #0398b9;
+  color: white;
+}
+
+.dark-theme button {
+  background-color: #67d9ff;
+}
+
+.dark-theme #SearchInput {
+  background-color: #3a3a3a;
+  color: white;
+  border-color: #555;
+}

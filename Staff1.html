@@ -38,18 +38,62 @@
         </header>
     
     <div class="container">
-        
         <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;">
-        <input type="text" id="SearchInput" class="search-bar" placeholder="Введите имя или специальность..." style="width: 70%; min-width: 100px; margin-top: 10rem; margin-bottom: 2rem;">
-        <select ng-model="filter" id="filter1" style="width: 25%; min-width: 100px; margin-top: 10rem; margin-bottom: 2rem; ">
-                <option value="name">По имени</option>
-                <option value="Job_title">Должность</option>
-                <option value="Specialization">Специализация</option>
-                <option value="Place_of_work">Место работы</option>
-        </select>
+            <input type="text" id="SearchInput" class="search-bar" placeholder="Введите имя или специальность...">
+            <div>
+                <!-- Кнопка для открытия выпадающего меню -->
+                <div>
+                    <!-- Кнопка для открытия выпадающего меню -->
+                    <button class="dropdown-button Accept" onclick="toggleDropdown()" style="background-color: #9cfaa1;">Выберите фильтр</button><!-- Кнопка для сброса всех фильтров -->
+                    <button class="Accept"  id="Reset" onclick="resetFilters()">Сбросить фильтры</button>
+                    <button class="Accept" style="background-color: #4CAF50;" onclick="applyCombinedFilter()">Применить фильтр</button>
+                    
+                    <!-- Выпадающее меню с фильтрами (изначально скрыто) -->
+                    <div id="combinedFilter" class="dropdown-content" style="display: none;">
+                        
+                        <!-- Место работы -->
+                        <div>
+                            <h4>Место работы</h4>
+                            <label><input type="checkbox" class="workplace-filter" value="ул. Солнечная, у д. 19 Б"> ул. Солнечная, у д. 19 Б</label><br>
+                            <label><input type="checkbox" class="workplace-filter" value="ул. Московская, д. 4"> ул. Московская, д. 4</label><br>
+                            <label><input type="checkbox" class="workplace-filter" value="пр-т. Строителей, д. 9, к. 1"> пр-т. Строителей, д. 9, к. 1</label><br>
+                            <label><input type="checkbox" class="workplace-filter" value="ул. Чернышевского, д. 7"> ул. Чернышевского, д. 7</label><br>
+                            <label><input type="checkbox" class="workplace-filter" value="Нововятский район, ул. Молодой Гвардии, д. 2 Д"> Нововятский район, ул. Молодой Гвардии, д. 2 Д</label>
+                        </div>
+                
+                        <!-- Специализация -->
+                        <div>
+                            <h4>Специализация</h4>
+                            <label><input type="checkbox" class="specialization-filter" value="терапия"> Терапия</label><br>
+                            <label><input type="checkbox" class="specialization-filter" value="хирургия"> Хирургия</label><br>
+                            <label><input type="checkbox" class="specialization-filter" value="кардиология"> Кардиология</label><br>
+                            <label><input type="checkbox" class="specialization-filter" value="дерматология"> Дерматология</label><br>
+                            <label><input type="checkbox" class="specialization-filter" value="визуальная диагностика"> Визуальная диагностика</label>
+                        </div>
+                
+                        <!-- Должность -->
+                        <div>
+                            <h4>Должность</h4>
+                            <label><input type="checkbox" class="position-filter" value="Главный врач"> Главный врач</label><br>
+                            <label><input type="checkbox" class="position-filter" value="Ветеринарный врач"> Ветеринарный врач</label><br>
+                            <label><input type="checkbox" class="position-filter" value="Ведущий терапевт"> Ведущий терапевт</label><br>
+                            <label><input type="checkbox" class="position-filter" value="Хирург"> Хирург</label>
+                        </div>
+                
+                        <!-- Кнопка для применения фильтров -->
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>    
+    </div>
+        
+        
+        
+        
         </div>
         
-        <div class="specialists-container" id="specialistsContainer" style="margin-top: 1em;left: 1em;right: 1em;">
         <div class="specialists-container" id="specialistsContainer" style="margin-top: 1em;left: 1em;right: 1em;">
             <div class="specialist-block">
                 <img src="doctors\rgogoleva.jpg" alt="Specialist Photo">
