@@ -36,11 +36,8 @@ const dots = document.querySelectorAll('.dot');
 let currentIndex = 0;
 let touchStartX = 0;
 let touchEndX = 0;
-const threshold = 500;
-
 
 function goToSlide(index) {
- 
     if (index < 0) {
         currentIndex = blocks.length - 1;
     } else if (index >= blocks.length) {
@@ -48,6 +45,7 @@ function goToSlide(index) {
     } else {
         currentIndex = index;
     }
+
 
     blocksWrapper.scrollTo({
         left: blocks[currentIndex].offsetLeft - 10,
@@ -57,28 +55,25 @@ function goToSlide(index) {
     updateDots(currentIndex);
 }
 
-// Логика для свайпа
+
 blocksWrapper.addEventListener("touchstart", function (event) {
     touchStartX = event.changedTouches[0].screenX;
 });
 
-blocksWrapper.addEventListener("touchmove", function (event) {
-    touchEndX = event.changedTouches[0].screenX;
-});
 
-blocksWrapper.addEventListener("touchend", function () {
+blocksWrapper.addEventListener("touchend", function (event) {
+    touchEndX = event.changedTouches[0].screenX;
     const swipeDistance = touchEndX - touchStartX;
 
-    if (Math.abs(swipeDistance) > threshold) {
+
+    if (Math.abs(swipeDistance) > 75) { 
         if (swipeDistance > 0) {
-            goToSlide(currentIndex - 1);
-        } else {
-            goToSlide(currentIndex + 1);
+            goToSlide(currentIndex - 1); 
+            goToSlide(currentIndex + 1); 
         }
     }
 });
 
-updateDots(currentIndex);
 
 const hamburgerMenu = document.querySelector('.hamburger-menu');
 const dropdown = document.querySelector('.dropdown');
@@ -93,7 +88,6 @@ const totalSlides = document.querySelectorAll('.slide').length;
 const slideInterval = 8000;
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Получаем все слайды, точки и обертку слайдов
     const slides = document.querySelectorAll(".slide");
     const dots = document.querySelectorAll(".dot_sl");
     const slidesWrapper = document.querySelector(".slides");

@@ -890,7 +890,9 @@ footer {
   align-items: center;
   transition: all 0.3s ease;
 }
-
+.dark-theme .callback-button {
+  background-color: #0285a2;
+}
 .callback-phone-icon {
   display: none;
   width: 20px;
@@ -911,6 +913,9 @@ footer {
   opacity: 0;
   transition: opacity 0.3s ease, transform 0.3s ease;
   transform: translateY(10px);
+}
+.dark-theme .callback-form {
+  background-color: #5c5c5c;
 }
 
 .callback-form.show {
@@ -943,7 +948,9 @@ footer {
   border: 1px solid #ccc;
   border-radius: 10px;
 }
-
+.dark-theme .callback-form input {
+  background-color: #999999;
+}
 .callback-buttons {
   display: flex;
   justify-content: space-between;
@@ -960,6 +967,7 @@ footer {
   background-color: #4CAF50;
   color: white;
 }
+
 
 .cancel-button {
   background-color: #f44336;
