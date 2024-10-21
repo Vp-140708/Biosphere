@@ -207,9 +207,6 @@ option, optgroup {
   justify-content: center; /* Add this line to center the elements horizontally */
 }
 
-.hidden {
-  display: none;
-}
 
 #workplace-filter-container {
   width: 30%;
