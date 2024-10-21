@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вопрос-Ответ - Ветеринарная Клиника</title>
+    <link rel="stylesheet" href="CSS/style_q.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Оставьте свой вопрос</h2>
+        <div id="questionForm" class="form-control">
+            <input type="text" id="username" placeholder="Введите ваше имя" required>
+            <input type="text" id="phone" placeholder="Введите ваш номер телефона (по желанию)">
+            <textarea id="question" placeholder="Введите ваш вопрос"></textarea>
+            <button type="submit">Отправить</button>
+        </div>
+
+        <h2>Заданные вопросы</h2>
+        <div id="questionsContainer" class="form-control"></div>
+    </div>
+
+    <script src="JS/script_q.js"></script>
+</body>
+</html>
