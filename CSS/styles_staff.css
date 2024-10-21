@@ -107,6 +107,12 @@
   .specialist-block {
       flex: 1 1 100%; 
   }
+  .combinedFilter {
+    width: 100%;
+  }
+  .Accept {
+    min-width: 6.5em !important; 
+  }
 }
 .dark-theme .specialist-block {
   background-color: #3a3a3a;
@@ -127,10 +133,11 @@
 
 
 /* Styling for the large filter dropdown */
-#combinedFilter, .Accept{
-  width: 40%;
+.combinedFilter, .Accept{
+  width: 20%;
+  max-height: 10% !important;
   min-width: 200px;
-  padding: 10px;
+  padding: 1em 1em;
   border: none;
   border-radius: 20px;
   font-size: 1.2em;
@@ -138,10 +145,14 @@
   color: #0285a2; /* Same color as the specialist names */
   transition: background-color 0.3s, border-color 0.3s;
   outline: none;
+
 }
 
+.combinedFilter {
+  width: 40%;
+}
 
-#combinedFilter:hover {
+.combinedFilter:hover {
   background-color: #0285a2;
   color: #fff;
 }
@@ -173,7 +184,7 @@ option, optgroup {
 }
 
 /* Dark theme support */
-.dark-theme #combinedFilter {
+.dark-theme .combinedFilter {
   background-color: #0398b9;
   color: white;
 }
@@ -186,4 +197,47 @@ option, optgroup {
   background-color: #3a3a3a;
   color: white;
   border-color: #555;
+}
+
+.but {
+  width: 100%;
+  display: flex;
+  gap: 10px; /* Зазор между кнопками */
+  align-items: center;
+  justify-content: center; /* Add this line to center the elements horizontally */
+}
+
+.hidden {
+  display: none;
+}
+
+#workplace-filter-container {
+  width: 30%;
+  margin-right: auto;
+}
+#specialization-filter-container {
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+}
+#position-filter-container {
+  width: 30%;
+  margin-left: auto;
+}
+
+/* Стили для кнопок */
+.Accept {
+    width: 150px;
+    background-color: #0285a2;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.Accept:hover {
+    background-color: #026f89;
 }
