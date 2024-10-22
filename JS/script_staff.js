@@ -38,18 +38,23 @@ function applyCombinedFilter() {
 
 
 
-// Функция для показа/скрытия фильтров
-// Функция для показа/скрытия фильтров
-function toggleDropdown(filterId) {
-  const filterElement = document.getElementById(filterId);
-
-  // Показать/скрыть текущий фильтр
-  if (filterElement.style.display === 'none' || filterElement.style.display === '') {
-      filterElement.style.display = 'block';
-  } else {
-      filterElement.style.display = 'none';
-  }
+function toggleDropdown(filterId, button) {
+    var filterElement = document.getElementById(filterId);
+    var buttonRect = button.getBoundingClientRect(); // Получаем позицию кнопки
+    
+    // Если фильтр виден, скрыть его, иначе показать
+    if (filterElement.style.display === "block") {
+        filterElement.style.display = "none";
+    } else {
+        filterElement.style.display = "block";
+        
+        // Установить положение фильтра точно под кнопкой
+        filterElement.style.top = buttonRect.bottom + 10 + "px";
+        filterElement.style.left = buttonRect.left + "px";
+        filterElement.style.width = buttonRect.width + "px";
+    }
 }
+
 
 
 // Сброс всех фильтров

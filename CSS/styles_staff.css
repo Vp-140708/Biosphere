@@ -112,6 +112,18 @@
   }
   .Accept {
     min-width: 6.5em !important; 
+    width: 1 0%;
+  }
+  .but{
+    gap: 0px;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .but_0 {
+    width: 100%;
+  }
+  .container {
+    width: 100%;
   }
 }
 .dark-theme .specialist-block {
@@ -135,7 +147,6 @@
 /* Styling for the large filter dropdown */
 .combinedFilter, .Accept{
   width: 20%;
-  max-height: 10% !important;
   min-width: 200px;
   padding: 1em 1em;
   border: none;
@@ -227,7 +238,7 @@ option, optgroup {
 
 /* Стили для кнопок */
 .Accept {
-    width: 150px;
+    width: 20vw;
     background-color: #0285a2;
     color: white;
     padding: 10px;
@@ -240,4 +251,84 @@ option, optgroup {
 
 .Accept:hover {
     background-color: #026f89;
+}
+
+@keyframes slideDown {
+  0% {
+      transform: translateY(-10%);
+      opacity: 0;
+  }
+  100% {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+.combinedFilter {
+  animation: slideDown 0.5s ease-in-out;
+}
+
+.combinedFilter {
+  position: absolute;
+  display: none; /* Скрыть фильтр по умолчанию */
+  width: 40%; /* Можно подогнать размер под нужный */
+  top: 10%; /* Появится под кнопкой */
+  left: 0;
+  z-index: 100;
+  animation: slideDown 0.5s ease-in-out;
+}
+
+
+/* Скрытие стандартного чекбокса */
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #4C95F7; /* Синий контур */
+  border-radius: 6px; /* Скругленные углы */
+  background-color: white;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Состояние при наведении */
+input[type="checkbox"]:hover {
+  border-color: #366ab1; /* Темнее при наведении */
+}
+
+/* Состояние при нажатии (checked) */
+input[type="checkbox"]:checked {
+  background-color: #4C95F7; /* Синий фон при выборе */
+}
+
+/* Белая галочка */
+input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 7px;
+  width: 6px;
+  height: 12px;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+}
+
+/* Анимация появления галочки */
+input[type="checkbox"]:checked::after {
+  animation: checkmark 0.3s ease forwards;
+}
+
+/* Ключевые кадры для анимации */
+@keyframes checkmark {
+  0% {
+    transform: scale(0) rotate(45deg);
+  }
+  100% {
+    transform: scale(1) rotate(45deg);
+  }
 }

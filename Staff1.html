@@ -38,24 +38,29 @@
         </header>
     
         <div class="container">
-            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;" class="but_0">
                 <input type="text" id="SearchInput" class="search-bar" placeholder="Введите имя или специальность...">
                 <div class="but">
-                    <button class="Accept" onclick="toggleDropdown('workplace-filter-container')">Место работы</button>
-                    <button class="Accept" onclick="toggleDropdown('specialization-filter-container')">Специализация</button>
-                    <button class="Accept" onclick="toggleDropdown('position-filter-container')">Должность</button>
+                    <button class="Accept" onclick="toggleDropdown('workplace-filter-container', this)">Место работы</button>
+                    <button class="Accept" onclick="toggleDropdown('specialization-filter-container', this)">Специализация</button>
+                    <button class="Accept" onclick="toggleDropdown('position-filter-container', this)">Должность</button>
                     <button class="Accept" id="Reset" onclick="resetFilters()" style="background-color: rgb(207, 16, 16); color: white;">Сбросить</button>
                 </div>
         
-                <!-- Место работы -->
                 <div id="workplace-filter-container" class="combinedFilter">
                     <h4>Место работы</h4>
-                    <label><input type="checkbox" class="workplace-filter" value="ул. Солнечная, у д. 19 Б"> ул. Солнечная, у д. 19 Б</label><br>
-                    <label><input type="checkbox" class="workplace-filter" value="ул. Московская, д. 4"> ул. Московская, д. 4</label><br>
+                    <label>
+                      <input type="checkbox" class="workplace-filter" value="ул. Солнечная, у д. 19 Б">
+                      ул. Солнечная, у д. 19 Б
+                    </label><br>
+                    <label>
+                      <input type="checkbox" class="workplace-filter" value="ул. Московская, д. 4">
+                      ул. Московская, д. 4
+                    </label><br>                  
                     <label><input type="checkbox" class="workplace-filter" value="пр-т. Строителей, д. 9, к. 1"> пр-т. Строителей, д. 9, к. 1</label><br>
                     <label><input type="checkbox" class="workplace-filter" value="ул. Чернышевского, д. 7"> ул. Чернышевского, д. 7</label><br>
                     <label><input type="checkbox" class="workplace-filter" value="ул. Молодой Гвардии, д. 2 Д"> ул. Молодой Гвардии, д. 2 Д</label><br>
-                    <label><input type="checkbox" class="workplace-filter" value="Нововятский район"> Нововятский район</label><br>
+                    <label><input type="checkbox" class="workplace-filter" value="Нововятский район"> Нововятский район</label><br> 
                 </div>
         
                 <!-- Специализация -->
