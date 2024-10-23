@@ -7,10 +7,10 @@ body {
 }
 
 .container {
-    width: 62%;
+    width: 42%;
     margin: 30px auto; /* Отступ сверху для будущего хедера */
     padding: 20px;
-    background-color: #fff;
+    background-color: #9cfaa1;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -20,7 +20,7 @@ body {
 }    
 }
 h2 {
-    color: #4CAF50;
+    color: 5555;
     text-align: center;
 }
 
@@ -46,7 +46,7 @@ textarea {
 }
 
 button {
-    background-color: #4CAF50;
+    background-color: #0398b9;
     color: white;
     border: none;
     cursor: pointer;
@@ -54,7 +54,7 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: rgb(88, 166, 240);
 }
 
 .question-item {
@@ -92,4 +92,26 @@ button:hover {
 
 .hidden {
     display: none;
+}
+
+.container {
+    margin-top: 10em;
+}
+.dark-theme .container {
+    background-color: #5555;
+}
+.dark-theme #username {
+    background-color: rgb(175, 195, 238);
+}
+.dark-theme #phone {
+    background-color: rgb(175, 195, 238);
+}
+.dark-theme #question {
+    background-color: rgb(175, 195, 238);
+}
+.dark-theme h2 {
+    color: white;
+}
+.dark-theme h2 {
+    color: white;
 }
