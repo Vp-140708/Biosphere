@@ -115,3 +115,7 @@ button:hover {
 .dark-theme h2 {
     color: white;
 }
+
+#theme-switcher {
+    margin-top: 0px;
+}
