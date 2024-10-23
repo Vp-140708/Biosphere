@@ -316,8 +316,9 @@ body {
     display: block;
     margin: 0 auto;
     width: 250px;
-    font-size: larger;
-    
+    font-size: 1.4rem;
+    color: #000000;
+    text-decoration: none;
 }
 
 .map-link:hover {
