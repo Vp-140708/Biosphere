@@ -575,5 +575,8 @@ input {
 .reviews-container {
     display: flex;
 	width: 70vw;
-
+}
+#send-review {
+    display: block;
+    margin: 0 auto;
 }

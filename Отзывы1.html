@@ -42,9 +42,10 @@
 	<div class="form-container sign-up-container" id="register">
 		<form action="#" class="form-sign-up">
 			<h1>Регистрация</h1>
-			<input type="text" placeholder="Name" />
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
+            <input type="text" id="register-name" placeholder="Name" />
+            <input type="email" id="register-email" placeholder="Email" />
+            <input type="password" id="register-password" placeholder="Password" />
+            <input type="checkbox" id="register-admin"> Я администратор
             <div id="login3"><button class="login1" id="login3" href="/Отзывы1.html" style="margin-bottom: 1em;">Уже есть аккаунт?</button></div>
             <script>
                 document.getElementById('login3').addEventListener('click', () => {
@@ -54,14 +55,14 @@
                     document.getElementById('register').style.opacity = 'none';
                 });
             </script>
-			<button>Регистрация</button>
+			<button id="register-btn">Регистрация</button>
 		</form>
 	</div>
 	<div class="form-container sign-in-container" id="log">
 		<form action="#" class="form-sign-in" id="login">
 			<h1>Вход</h1>
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
+            <input type="email" id="login-email" placeholder="Email" />
+            <input type="password" id="login-password" placeholder="Password" />
 			<div id="login3"><button class="login1" href="#" >Забыли пароль?</button> <a></a> <button class="login1" id="login2">Нет аккаунта?</button></a></div>
             <script>
                 document.getElementById('login2').addEventListener('click', () => {
@@ -70,7 +71,7 @@
                     document.getElementById('register').style.opacity = '3';
                 });
             </script>
-			<button style="margin-top: 1em;">Войти</button>
+			<button style="margin-top: 1em;" id="login-btn">Войти</button>
 		</form>
 	</div>
 	<div class="overlay-container" id="overlay-container">
@@ -113,7 +114,7 @@
     <div class="full-stars">
         <div class="rating-group">
             <input type="radio" name="rating" value="5" id="star5"><label for="star5">★</label>
-            <input type="radio" name="rating" value="4" id="star4"><label for="star4">★</label>
+            <input type="radio" name="rating" avalue="4" id="star4"><label for="star4">★</label>
             <input type="radio" name="rating" value="3" id="star3"><label for="star3">★</label>
             <input type="radio" name="rating" value="2" id="star2"><label for="star2">★</label>
             <input type="radio" name="rating" value="1" id="star1"><label for="star1">★</label>
@@ -125,10 +126,14 @@
 <!-- Панель для отображения отзывов -->
 <section class="reviews-section" style="margin-top: 10em;">
     <h2>Отзывы пользователей</h2>
+    <button id="delete-all-reviews">Удалить все отзывы</button>
     <div id="reviewsContainer" class="reviews-container"></div> <!-- Контейнер для отзывов -->
 </section>
 
+
+
     <script src="JS/script_reviews.js"></script>
     <script src="JS/script1.js"></script>
+    
 </body>
 </html>

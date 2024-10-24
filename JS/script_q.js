@@ -63,7 +63,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const questionItem = document.createElement('div');
         questionItem.classList.add('question-item');
 
-        questionItem.innerHTML = `<strong>${questionData.username}</strong>: ${questionData.question}`;
+        questionItem.innerHTML = `<strong>${questionData.username}</strong>: ${questionData.question}
+            <button class="delete-button">Удалить</button>`;
 
         if (questionData.answer) {
             const answerElement = document.createElement('div');
@@ -71,6 +72,12 @@ document.addEventListener('DOMContentLoaded', function() {
             answerElement.textContent = `Ответ от Биосферы: ${questionData.answer}`;
             questionItem.appendChild(answerElement);
         }
+
+        // Добавляем обработчик для кнопки удаления
+        questionItem.querySelector('.delete-button').addEventListener('click', function() {
+            deleteQuestion(questionData);
+            questionItem.remove();
+        });
 
         questionsContainer.appendChild(questionItem);
     }
@@ -80,6 +87,13 @@ document.addEventListener('DOMContentLoaded', function() {
         usernameInput.value = '';
         document.getElementById('phone').value = '';
         document.getElementById('question').value = '';
+    }
+
+    // Удаление вопроса из localStorage
+    function deleteQuestion(questionData) {
+        let questions = JSON.parse(localStorage.getItem('questions')) || [];
+        questions = questions.filter(q => q.question !== questionData.question || q.username !== questionData.username);
+        localStorage.setItem('questions', JSON.stringify(questions));
     }
 
     // Добавление кнопок "Ответить" для *AdminBio*
