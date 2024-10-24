@@ -65,6 +65,9 @@ button:hover {
     background-color: #e8f5e9;
     position: relative;
 }
+.dark-theme .question-item {
+    background-color: rgb(175, 195, 238);
+}
 
 .admin-answer {
     margin-top: 10px;

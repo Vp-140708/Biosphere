@@ -566,3 +566,14 @@ input {
     fill: #ccc;
 }
 
+
+#review-text{
+	width: 100%;
+}
+
+/* Контейнер отзывов */
+.reviews-container {
+    display: flex;
+	width: 70vw;
+
+}
