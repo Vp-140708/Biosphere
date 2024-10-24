@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const questionForm = document.getElementById('questionForm');
     const questionsContainer = document.getElementById('questionsContainer');
 
+    // Загрузка имени пользователя при загрузке страницы
+    loadCurrentUser();
+
     // Загрузка всех вопросов при загрузке страницы
     loadQuestions();
 
@@ -39,6 +42,15 @@ document.addEventListener('DOMContentLoaded', function() {
         displayQuestion(questionData);
         clearForm();
     });
+
+    // Функция для загрузки текущего пользователя
+    function loadCurrentUser() {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser) {
+            usernameInput.value = currentUser.name; // Подстановка имени
+            usernameInput.disabled = true; // Делаем поле имени недоступным для редактирования
+        }
+    }
 
     // Сохранение вопроса в localStorage
     function saveQuestion(questionData) {
@@ -84,7 +96,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Очистка формы
     function clearForm() {
-        usernameInput.value = '';
         document.getElementById('phone').value = '';
         document.getElementById('question').value = '';
     }
