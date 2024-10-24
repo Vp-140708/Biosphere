@@ -503,7 +503,10 @@ input {
 	margin: 0 auto;
 	width: 100vw;
 	min-height: 50vh;
-	margin-top: 35em;
+	margin-top: 10em;
+  }
+  .reviews-section {
+	width: 100vw;
   }
 }
 /* Для планшетов */
