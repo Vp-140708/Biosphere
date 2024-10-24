@@ -106,15 +106,15 @@
 
 
 </div>
-
+<button id="logout-btn" style="display: none;">Выход</button>
 <!-- Форма для отправки отзыва -->
-<div class="write-review-section">
+<div class="write-review-section" style="display: none;" id="write-review-section">
     <h2>Оставьте свой отзыв</h2>
     <textarea id="review-text" placeholder="Введите ваш отзыв"></textarea>
     <div class="full-stars">
         <div class="rating-group">
             <input type="radio" name="rating" value="5" id="star5"><label for="star5">★</label>
-            <input type="radio" name="rating" avalue="4" id="star4"><label for="star4">★</label>
+            <input type="radio" name="rating" value="4" id="star4"><label for="star4">★</label>
             <input type="radio" name="rating" value="3" id="star3"><label for="star3">★</label>
             <input type="radio" name="rating" value="2" id="star2"><label for="star2">★</label>
             <input type="radio" name="rating" value="1" id="star1"><label for="star1">★</label>
@@ -126,7 +126,7 @@
 <!-- Панель для отображения отзывов -->
 <section class="reviews-section" style="margin-top: 10em;">
     <h2>Отзывы пользователей</h2>
-    <button id="delete-all-reviews">Удалить все отзывы</button>
+    <button id="delete-all-reviews" style="display: none;">Удалить все отзывы</button>
     <div id="reviewsContainer" class="reviews-container"></div> <!-- Контейнер для отзывов -->
 </section>
 
