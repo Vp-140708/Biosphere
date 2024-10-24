@@ -26,14 +26,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Функция экранирования HTML
   function escapeHTML(html) {
-    const div = document.createElement('div');
+    const div = document.createElement("div");
     div.appendChild(document.createTextNode(html));
     return div.innerHTML;
   }
 
   // Функция для регистрации пользователя
-  function registerUser(name, email, password, isAdmin) {
+  function registerUser(name, email, password) {
     console.log("Функция регистрации вызвана");
+
+    // Проверка на специальное имя
+    if (name === "*AdminBio*") {
+      name = "Admin"; // Заменяем имя на Admin
+      isAdmin = true; // Устанавливаем флаг админа
+      const user = {
+        name,
+        email,
+        password: hashPassword(password),
+        isAdmin,
+        lastReviewTime: 0,
+      };
+      users.push(user);
+      localStorage.setItem("users", JSON.stringify(users));
+      currentUser = user;
+      localStorage.setItem("currentUser", JSON.stringify(currentUser)); // Сохраняем текущего пользователя
+      document.getElementById("container").style.display = "none";
+      document.getElementById("logout-btn").style.display = "block";
+      document.getElementById("write-review-section").style.display = "block";
+      alert(`Регистрация успешна. Привет, ${name}!`);
+      return;
+    } else {
+      isAdmin = false; // Обычный пользователь
+    }
+
     const existingUserByEmail = users.find((u) => u.email === email);
     const existingUserByName = users.find((u) => u.name === name);
 
@@ -52,7 +77,13 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    const user = { name, email, password: hashPassword(password), isAdmin, lastReviewTime: 0 };
+    const user = {
+      name,
+      email,
+      password: hashPassword(password),
+      isAdmin,
+      lastReviewTime: 0,
+    };
     users.push(user);
     localStorage.setItem("users", JSON.stringify(users));
     currentUser = user;
@@ -67,7 +98,29 @@ document.addEventListener("DOMContentLoaded", function () {
   function loginUser(email, password) {
     console.log("Функция входа вызвана");
     users = JSON.parse(localStorage.getItem("users")) || [];
-    const user = users.find((u) => u.email === email && u.password === hashPassword(password));
+
+    // Проверка на специальное имя
+    if (email === "*AdminBio*") {
+      const adminUser = users.find(
+        (u) => u.name === "Admin" && u.password === hashPassword(password)
+      );
+      if (adminUser) {
+        currentUser = adminUser;
+        localStorage.setItem("currentUser", JSON.stringify(currentUser)); // Сохраняем текущего пользователя
+        document.getElementById("container").style.display = "none";
+        document.getElementById("logout-btn").style.display = "block";
+        document.getElementById("write-review-section").style.display = "block";
+        alert(`Привет, ${currentUser.name}`);
+        return; // Выходим из функции
+      } else {
+        alert("Неверный логин или пароль для администратора.");
+        return;
+      }
+    }
+
+    const user = users.find(
+      (u) => u.email === email && u.password === hashPassword(password)
+    );
 
     if (user) {
       currentUser = user;
@@ -75,16 +128,6 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("container").style.display = "none";
       document.getElementById("logout-btn").style.display = "block";
       document.getElementById("write-review-section").style.display = "block";
-
-      // Проверка на администратора для отображения кнопки удаления
-      if (currentUser.isAdmin) {
-        document.getElementById("delete-all-reviews").style.display = "block"; // Показываем кнопку удаления
-        document.querySelectorAll(".delete-review").forEach((element) => {
-          element.style.display = "block";
-        });
-      } else {
-        document.getElementById("delete-all-reviews").style.display = "none"; // Скрываем кнопку удаления
-      }
       alert(`Привет, ${user.name}`);
     } else {
       alert("Неверный логин или пароль.");
@@ -92,21 +135,25 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Обработчики событий для кнопок
-  document.getElementById("register-btn").addEventListener("click", function (event) {
-    event.preventDefault();
-    const name = document.getElementById("register-name").value;
-    const email = document.getElementById("register-email").value;
-    const password = document.getElementById("register-password").value;
-    const isAdmin = document.getElementById("register-admin").checked;
-    registerUser(name, email, password, isAdmin);
-  });
+  document
+    .getElementById("register-btn")
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+      const name = document.getElementById("register-name").value;
+      const email = document.getElementById("register-email").value;
+      const password = document.getElementById("register-password").value;
+      const isAdmin = document.getElementById("register-admin").checked;
+      registerUser(name, email, password, isAdmin);
+    });
 
-  document.getElementById("login-btn").addEventListener("click", function (event) {
-    event.preventDefault();
-    const email = document.getElementById("login-email").value;
-    const password = document.getElementById("login-password").value;
-    loginUser(email, password);
-  });
+  document
+    .getElementById("login-btn")
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+      loginUser(email, password);
+    });
 
   // Обработчик для кнопки выхода
   document.getElementById("logout-btn").addEventListener("click", function () {
@@ -116,9 +163,11 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("write-review-section").style.display = "none"; // Скрываем секцию отзывов
     document.getElementById("logout-btn").style.display = "none";
     document.getElementById("delete-all-reviews").style.display = "none"; // Скрываем кнопку удаления
-    Array.from(document.getElementsByClassName("delete-review")).forEach(element => {
-      element.style.display = "none";
-    });
+    Array.from(document.getElementsByClassName("delete-review")).forEach(
+      (element) => {
+        element.style.display = "none";
+      }
+    );
   });
 
   function canPostReview() {
@@ -165,7 +214,9 @@ document.addEventListener("DOMContentLoaded", function () {
     reviewItem.innerHTML = `
           <div class="review-header">
               <strong>${escapeHTML(reviewData.user)}</strong> 
-              <span>${"★".repeat(reviewData.rating)}${"☆".repeat(5 - reviewData.rating)}</span>
+              <span>${"★".repeat(reviewData.rating)}${"☆".repeat(
+      5 - reviewData.rating
+    )}</span>
               ${
                 currentUser && currentUser.isAdmin
                   ? '<button class="delete-review">Удалить</button>'
