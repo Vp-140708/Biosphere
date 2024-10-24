@@ -66,7 +66,7 @@ blocksWrapper.addEventListener("touchend", function (event) {
     const swipeDistance = touchEndX - touchStartX;
 
 
-    if (Math.abs(swipeDistance) > 75) { 
+    if (Math.abs(swipeDistance) > 150) { 
         if (swipeDistance > 0) {
             goToSlide(currentIndex - 1); 
             goToSlide(currentIndex + 1); 
