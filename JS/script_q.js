@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const questionForm = document.getElementById('questionForm');
     const questionsContainer = document.getElementById('questionsContainer');
 
-    // Загрузка имени пользователя при загрузке страницы
+    // Загрузка текущего пользователя
     loadCurrentUser();
 
     // Загрузка всех вопросов при загрузке страницы
@@ -18,12 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!username) {
             alert('Пожалуйста, введите имя.');
-            return;
-        }
-
-        if (username === '*AdminBio*') {
-            alert('Вход как администратор выполнен.');
-            loadQuestions();
             return;
         }
 
@@ -52,22 +46,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Сохранение вопроса в localStorage
-    function saveQuestion(questionData) {
-        let questions = JSON.parse(localStorage.getItem('questions')) || [];
-        questions.push(questionData);
-        localStorage.setItem('questions', JSON.stringify(questions));
-    }
-
     // Загрузка вопросов из localStorage
     function loadQuestions() {
         const questions = JSON.parse(localStorage.getItem('questions')) || [];
         questionsContainer.innerHTML = '';
         questions.forEach(displayQuestion);
-
-        if (usernameInput.value === '*AdminBio*') {
-            addReplyButtons();
-        }
     }
 
     // Отображение вопроса на странице
@@ -76,16 +59,17 @@ document.addEventListener('DOMContentLoaded', function() {
         questionItem.classList.add('question-item');
 
         questionItem.innerHTML = `<strong>${questionData.username}</strong>: ${questionData.question}
-            <button class="delete-button">Удалить</button>`;
+            <button class="delete-button" style="display: none;">Удалить</button>`;
 
-        if (questionData.answer) {
-            const answerElement = document.createElement('div');
-            answerElement.classList.add('admin-answer');
-            answerElement.textContent = `Ответ от Биосферы: ${questionData.answer}`;
-            questionItem.appendChild(answerElement);
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser) {
+            if (currentUser.rating === 1) {
+                questionItem.querySelector('.delete-button').style.display = 'inline';
+            } else if (currentUser.name === questionData.username) {
+                questionItem.querySelector('.delete-button').style.display = 'inline';
+            }
         }
 
-        // Добавляем обработчик для кнопки удаления
         questionItem.querySelector('.delete-button').addEventListener('click', function() {
             deleteQuestion(questionData);
             questionItem.remove();
@@ -100,46 +84,17 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('question').value = '';
     }
 
+    // Сохранение вопроса в localStorage
+    function saveQuestion(questionData) {
+        let questions = JSON.parse(localStorage.getItem('questions')) || [];
+        questions.push(questionData);
+        localStorage.setItem('questions', JSON.stringify(questions));
+    }
+
     // Удаление вопроса из localStorage
     function deleteQuestion(questionData) {
         let questions = JSON.parse(localStorage.getItem('questions')) || [];
         questions = questions.filter(q => q.question !== questionData.question || q.username !== questionData.username);
         localStorage.setItem('questions', JSON.stringify(questions));
     }
-
-    // Добавление кнопок "Ответить" для *AdminBio*
-    function addReplyButtons() {
-        const questions = questionsContainer.querySelectorAll('.question-item');
-        questions.forEach((questionItem, index) => {
-            const replyButton = document.createElement('button');
-            replyButton.classList.add('reply-button');
-            replyButton.textContent = 'Ответить';
-            replyButton.addEventListener('click', function() {
-                const answer = prompt('Введите ваш ответ на вопрос:');
-                if (answer) {
-                    saveAnswer(index, answer);
-                    location.reload(); // Обновляем страницу, чтобы показать новый ответ
-                }
-            });
-            questionItem.appendChild(replyButton);
-        });
-    }
-
-    // Сохранение ответа в localStorage
-    function saveAnswer(index, answer) {
-        let questions = JSON.parse(localStorage.getItem('questions')) || [];
-        if (questions[index]) {
-            questions[index].answer = answer;
-            localStorage.setItem('questions', JSON.stringify(questions));
-        }
-    }
-
-    // Автоматическая загрузка кнопок "Ответить" для *AdminBio* после нажатия на "Отправить"
-    usernameInput.addEventListener('input', function() {
-        if (usernameInput.value === '*AdminBio*') {
-            questionForm.querySelector('button').addEventListener('click', function() {
-                loadQuestions();
-            });
-        }
-    });
 });
