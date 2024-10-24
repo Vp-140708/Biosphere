@@ -19,6 +19,18 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("delete-all-reviews").style.display = "none"; // Скрываем кнопку удаления
   }
 
+  // Функция хеширования пароля
+  function hashPassword(password) {
+    return btoa(password); // Используйте более надежное хеширование в реальном приложении
+  }
+
+  // Функция экранирования HTML
+  function escapeHTML(html) {
+    const div = document.createElement('div');
+    div.appendChild(document.createTextNode(html));
+    return div.innerHTML;
+  }
+
   // Функция для регистрации пользователя
   function registerUser(name, email, password, isAdmin) {
     console.log("Функция регистрации вызвана");
@@ -35,7 +47,12 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    const user = { name, email, password, isAdmin, lastReviewTime: 0 };
+    if (password.length < 6) {
+      alert("Пароль должен содержать не менее 6 символов.");
+      return;
+    }
+
+    const user = { name, email, password: hashPassword(password), isAdmin, lastReviewTime: 0 };
     users.push(user);
     localStorage.setItem("users", JSON.stringify(users));
     currentUser = user;
@@ -50,9 +67,8 @@ document.addEventListener("DOMContentLoaded", function () {
   function loginUser(email, password) {
     console.log("Функция входа вызвана");
     users = JSON.parse(localStorage.getItem("users")) || [];
-    const user = users.find(
-      (u) => u.email === email && u.password === password
-    );
+    const user = users.find((u) => u.email === email && u.password === hashPassword(password));
+
     if (user) {
       currentUser = user;
       localStorage.setItem("currentUser", JSON.stringify(currentUser)); // Сохраняем текущего пользователя
@@ -63,41 +79,34 @@ document.addEventListener("DOMContentLoaded", function () {
       // Проверка на администратора для отображения кнопки удаления
       if (currentUser.isAdmin) {
         document.getElementById("delete-all-reviews").style.display = "block"; // Показываем кнопку удаления
-        document.querySelectorAll(".delete-review").forEach(
-          (element) => {
-            element.style.display = "block";
-          }
-        );
+        document.querySelectorAll(".delete-review").forEach((element) => {
+          element.style.display = "block";
+        });
       } else {
         document.getElementById("delete-all-reviews").style.display = "none"; // Скрываем кнопку удаления
       }
       alert(`Привет, ${user.name}`);
-      location.reload();
     } else {
       alert("Неверный логин или пароль.");
     }
   }
 
   // Обработчики событий для кнопок
-  document
-    .getElementById("register-btn")
-    .addEventListener("click", function (event) {
-      event.preventDefault();
-      const name = document.getElementById("register-name").value;
-      const email = document.getElementById("register-email").value;
-      const password = document.getElementById("register-password").value;
-      const isAdmin = document.getElementById("register-admin").checked;
-      registerUser(name, email, password, isAdmin);
-    });
+  document.getElementById("register-btn").addEventListener("click", function (event) {
+    event.preventDefault();
+    const name = document.getElementById("register-name").value;
+    const email = document.getElementById("register-email").value;
+    const password = document.getElementById("register-password").value;
+    const isAdmin = document.getElementById("register-admin").checked;
+    registerUser(name, email, password, isAdmin);
+  });
 
-  document
-    .getElementById("login-btn")
-    .addEventListener("click", function (event) {
-      event.preventDefault();
-      const email = document.getElementById("login-email").value;
-      const password = document.getElementById("login-password").value;
-      loginUser(email, password);
-    });
+  document.getElementById("login-btn").addEventListener("click", function (event) {
+    event.preventDefault();
+    const email = document.getElementById("login-email").value;
+    const password = document.getElementById("login-password").value;
+    loginUser(email, password);
+  });
 
   // Обработчик для кнопки выхода
   document.getElementById("logout-btn").addEventListener("click", function () {
@@ -106,9 +115,9 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("container").style.display = "block"; // Показываем форму входа/регистрации
     document.getElementById("write-review-section").style.display = "none"; // Скрываем секцию отзывов
     document.getElementById("logout-btn").style.display = "none";
-    document.getElementById("delete-all-reviews").style.display = "none"; // Скрываем кнопку удаления\
+    document.getElementById("delete-all-reviews").style.display = "none"; // Скрываем кнопку удаления
     Array.from(document.getElementsByClassName("delete-review")).forEach(element => {
-        element.style.display = "none";
+      element.style.display = "none";
     });
   });
 
@@ -136,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const rating = ratingInput.value;
     const reviewData = {
-      text: reviewText,
+      text: escapeHTML(reviewText),
       rating: rating,
       user: currentUser.name,
       userEmail: currentUser.email, // Добавляем email для идентификации
@@ -155,10 +164,8 @@ document.addEventListener("DOMContentLoaded", function () {
     reviewItem.classList.add("review-card");
     reviewItem.innerHTML = `
           <div class="review-header">
-              <strong>${reviewData.user}</strong> 
-              <span>${"★".repeat(reviewData.rating)}${"☆".repeat(
-      5 - reviewData.rating
-    )}</span>
+              <strong>${escapeHTML(reviewData.user)}</strong> 
+              <span>${"★".repeat(reviewData.rating)}${"☆".repeat(5 - reviewData.rating)}</span>
               ${
                 currentUser && currentUser.isAdmin
                   ? '<button class="delete-review">Удалить</button>'
@@ -167,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   : ""
               }
           </div>
-          <p>${reviewData.text}</p>`;
+          <p>${escapeHTML(reviewData.text)}</p>`;
     document.getElementById("reviewsContainer").appendChild(reviewItem);
 
     console.log("Отзыв отображен на странице:", reviewData);
@@ -197,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
       (review) =>
         review.text !== reviewData.text ||
         review.rating !== reviewData.rating ||
-        review.userEmail !== reviewData.userEmail 
+        review.userEmail !== reviewData.userEmail
     );
     localStorage.setItem("reviews", JSON.stringify(reviews));
     console.log("Отзыв удален из localStorage:", reviewData);
@@ -228,4 +235,3 @@ document.addEventListener("DOMContentLoaded", function () {
 
   loadReviews(); // Загружаем отзывы при загрузке страницы
 });
-
