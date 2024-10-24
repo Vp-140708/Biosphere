@@ -1,0 +1,321 @@
+При выходе из 
+js:
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("DOM загружен");
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
+  
+    if (currentUser) {
+      document.getElementById("container").style.display = "none"; // Скрываем форму входа/регистрации
+      document.getElementById("write-review-section").style.display = "block"; // Показываем секцию отзывов
+      document.getElementById("logout-btn").style.display = "block"; // Показываем кнопку выхода
+    } else {
+      document.getElementById("logout-btn").style.display = "none"; // Скрываем кнопку выхода
+    }
+  
+    // Функция для регистрации пользователя
+    function registerUser(name, email, password, isAdmin) {
+      console.log("Функция регистрации вызвана");
+      const existingUserByEmail = users.find((u) => u.email === email);
+      const existingUserByName = users.find((u) => u.name === name);
+  
+      if (existingUserByEmail) {
+        alert("Регистрация невозможна: почта уже существует.");
+        return;
+      }
+  
+      if (existingUserByName) {
+        alert("Регистрация невозможна: имя уже существует.");
+        return;
+      }
+  
+      const user = { name, email, password, isAdmin, lastReviewTime: 0 };
+      users.push(user);
+      localStorage.setItem("users", JSON.stringify(users));
+      currentUser = user;
+      localStorage.setItem("currentUser", JSON.stringify(currentUser)); // Сохраняем текущего пользователя
+      document.getElementById("container").style.display = "none";
+      document.getElementById("logout-btn").style.display = "block";
+      document.getElementById("write-review-section").style.display = "block";
+      alert(`Регистрация успешна. Привет, ${name}!`);
+    }
+  
+    // Функция для входа пользователя
+    function loginUser(email, password) {
+      console.log("Функция входа вызвана");
+      users = JSON.parse(localStorage.getItem("users")) || [];
+      const user = users.find(
+        (u) => u.email === email && u.password === password
+      );
+      if (user) {
+        currentUser = user;
+        localStorage.setItem("currentUser", JSON.stringify(currentUser)); // Сохраняем текущего пользователя
+        document.getElementById("container").style.display = "none";
+        document.getElementById("logout-btn").style.display = "block";
+        document.getElementById("write-review-section").style.display = "block";
+        alert(`Привет, ${user.name}`);
+      } else {
+        alert("Неверный логин или пароль.");
+      }
+    }
+  
+    // Обработчики событий для кнопок
+    document
+      .getElementById("register-btn")
+      .addEventListener("click", function (event) {
+        event.preventDefault();
+        const name = document.getElementById("register-name").value;
+        const email = document.getElementById("register-email").value;
+        const password = document.getElementById("register-password").value;
+        const isAdmin = document.getElementById("register-admin").checked;
+        registerUser(name, email, password, isAdmin);
+      });
+  
+    document
+      .getElementById("login-btn")
+      .addEventListener("click", function (event) {
+        event.preventDefault();
+        const email = document.getElementById("login-email").value;
+        const password = document.getElementById("login-password").value;
+        loginUser(email, password);
+      });
+  
+    // Обработчик для кнопки выхода
+    document.getElementById("logout-btn").addEventListener("click", function () {
+      currentUser = null;
+      localStorage.removeItem("currentUser"); // Очищаем текущего пользователя
+      document.getElementById("container").style.display = "block"; // Показываем форму входа/регистрации
+      document.getElementById("write-review-section").style.display = "none"; // Скрываем секцию отзывов
+      document.getElementById("logout-btn").style.display = "none";
+    });
+  
+    function canPostReview() {
+      const currentTime = Date.now();
+      return currentTime - currentUser.lastReviewTime >= 5 * 60 * 1000; // 5 минут
+    }
+  
+    // Обработчик для кнопки отправки отзыва
+    document.getElementById("send-review").addEventListener("click", function () {
+      console.log("Попытка отправить отзыв");
+      if (!currentUser.isAdmin && !canPostReview()) {
+        alert("Вы можете оставить новый отзыв только через 5 минут.");
+        console.log("Ошибка: Попытка отправить отзыв до завершения таймера");
+        return;
+      }
+      const reviewText = document.getElementById("review-text").value;
+      const ratingInput = document.querySelector('input[name="rating"]:checked');
+  
+      if (!reviewText || !ratingInput) {
+        alert("Пожалуйста, введите текст отзыва и выберите рейтинг.");
+        console.log("Ошибка: Текст отзыва или рейтинг отсутствуют");
+        return;
+      }
+  
+      const rating = ratingInput.value;
+      const reviewData = {
+        text: reviewText,
+        rating: rating,
+        user: currentUser.name,
+        userEmail: currentUser.email, // Добавляем email для идентификации
+      };
+      if (!currentUser.isAdmin) {
+        currentUser.lastReviewTime = Date.now(); // Обновление времени последнего отзыва
+      }
+      displayReview(reviewData);
+      saveReview(reviewData);
+      console.log("Отзыв отправлен:", reviewData);
+    });
+  
+    // Функция отображения отзыва
+    function displayReview(reviewData) {
+      const reviewItem = document.createElement("div");
+      reviewItem.classList.add("review-card");
+      reviewItem.innerHTML = `
+              <div class="review-header">
+                  <strong>${reviewData.user}</strong> 
+                  <span>${"★".repeat(reviewData.rating)}${"☆".repeat(
+        5 - reviewData.rating
+      )}</span>
+                  ${currentUser.isAdmin ? '<button class="delete-review">Удалить</button>' : (currentUser.email === reviewData.userEmail ? '<button class="delete-review">Удалить</button>' : "")}
+              </div>
+              <p>${reviewData.text}</p>`;
+      document.getElementById("reviewsContainer").appendChild(reviewItem);
+      
+      console.log("Отзыв отображен на странице:", reviewData);
+  
+      // Добавляем возможность удаления отзыва
+      reviewItem.querySelector(".delete-review")?.addEventListener("click", function () {
+        deleteReview(reviewData);
+        reviewItem.remove();
+        console.log("Отзыв удален:", reviewData);
+      });
+    }
+  
+    // Функция сохранения отзыва в localStorage
+    function saveReview(reviewData) {
+      let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+      reviews.push(reviewData);
+      localStorage.setItem("reviews", JSON.stringify(reviews));
+      console.log("Отзыв сохранен в localStorage:", reviews);
+    }
+  
+    // Функция удаления конкретного отзыва
+    function deleteReview(reviewData) {
+      let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+      reviews = reviews.filter(
+        (review) =>
+          review.text !== reviewData.text || review.rating !== reviewData.rating || review.userEmail !== reviewData.userEmail
+      );
+      localStorage.setItem("reviews", JSON.stringify(reviews));
+      console.log("Отзыв удален из localStorage:", reviewData);
+    }
+  
+    // Функция загрузки отзывов при загрузке страницы
+    function loadReviews() {
+      const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+      reviews.forEach(displayReview);
+      console.log("Загруженные отзывы из localStorage:", reviews);
+    }
+  
+    loadReviews(); // Загрузка отзывов при загрузке страницы
+  });
+  html:
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Биосфера | Отзывы</title>
+    <link rel="stylesheet" href="CSS/styles1.css">
+    <link rel="stylesheet" href="CSS/style_reviews.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="left-section1">
+                <a href="\index.html" class="logo-link">
+                    <img src="assets/images/bio-logo1.png" alt="Site Logo" class="logo">
+                    <span class="site-name">Биосфера</span>
+                </a>
+                <button id="theme-switcher">🌞</button>
+            </div>
+            <nav class="nav-links">
+                <a href="\Questions.html">Вопрос-Ответ</a>
+                <a href="\Price list.html">Прейскурант</a>
+                <a href="\Staff1.html">Специалисты</a>
+                <a href="\Филиалы1.html">Филиалы</a>
+                <a href="\Отзывы1.html">Отзывы</a>
+                <a href="https://vk.com/biosre"><img src="assets/images/media_social_vk_vkontakte_icon_124252 (1).png" alt="Вк"></a>
+            </nav>
+            <div class="hamburger-menu">
+                <div class="hamburger"></div>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="\Questions.html">Вопрос-Ответ</a>
+            <a href="\Price list.html">Прейскурант</a>
+            <a href="\Staff1.html">Специалисты</a>
+            <a href="\Филиалы1.html">Филиалы</a>
+            <a href="\Отзывы1.html">Отзывы</a>
+            <a href="https://vk.com/biosre"><img src="assets/images/media_social_vk_vkontakte_icon_124252 (lit).png" alt="ВК"></a>
+        </div>
+    </header>
+<div class="container" id="container">
+	<div class="form-container sign-up-container" id="register">
+		<form action="#" class="form-sign-up">
+			<h1>Регистрация</h1>
+            <input type="text" id="register-name" placeholder="Name" />
+            <input type="email" id="register-email" placeholder="Email" />
+            <input type="password" id="register-password" placeholder="Password" />
+            <input type="checkbox" id="register-admin"> Я администратор
+            <div id="login3"><button class="login1" id="login3" href="/Отзывы1.html" style="margin-bottom: 1em;">Уже есть аккаунт?</button></div>
+            <script>
+                document.getElementById('login3').addEventListener('click', () => {
+                    document.getElementById('log').style.display = 'block';
+                    document.getElementById('log').style.opacity = '3';
+                    document.getElementById('register').style.opacity = '0';
+                    document.getElementById('register').style.opacity = 'none';
+                });
+            </script>
+			<button id="register-btn">Регистрация</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container" id="log">
+		<form action="#" class="form-sign-in" id="login">
+			<h1>Вход</h1>
+            <input type="email" id="login-email" placeholder="Email" />
+            <input type="password" id="login-password" placeholder="Password" />
+			<div id="login3"><button class="login1" href="#" >Забыли пароль?</button> <a></a> <button class="login1" id="login2">Нет аккаунта?</button></a></div>
+            <script>
+                document.getElementById('login2').addEventListener('click', () => {
+                    document.getElementById('log').style.display = 'none';
+                    document.getElementById('log').style.opacity = '0';
+                    document.getElementById('register').style.opacity = '3';
+                });
+            </script>
+			<button style="margin-top: 1em;" id="login-btn">Войти</button>
+		</form>
+	</div>
+	<div class="overlay-container" id="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left" >
+				<h1>Добро пожаловать!</h1>
+				<p>Чтобы поддерживать с нами связь, пожалуйста, войдите в систему, указав свои личные данные</p>
+				<button class="ghost" id="signIn">Вход</button>
+			</div>
+			<div class="overlay-panel overlay-right" id="overlay">
+				<h1>Здравствуйте!</h1>
+				<p>Чтобы оставить свой отзыв, пожалуйста, создайте аккаунт на сайте</p>
+				<button class="ghost" id="signUp">Регистрация</button>
+			</div>
+		</div>
+	</div>
+    <script>
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+    
+        signUpButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+            document.querySelector('.sign-in-container').style.display = 'none';
+        });
+    
+        signInButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+            document.querySelector('.sign-in-container').style.display = 'block';
+        });
+    </script>
+
+
+</div>
+<button id="logout-btn" style="display: none;">Выход</button>
+<!-- Форма для отправки отзыва -->
+<div class="write-review-section" style="display: none;" id="write-review-section">
+    <h2>Оставьте свой отзыв</h2>
+    <textarea id="review-text" placeholder="Введите ваш отзыв"></textarea>
+    <div class="full-stars">
+        <div class="rating-group">
+            <input type="radio" name="rating" value="5" id="star5"><label for="star5">★</label>
+            <input type="radio" name="rating" value="4" id="star4"><label for="star4">★</label>
+            <input type="radio" name="rating" value="3" id="star3"><label for="star3">★</label>
+            <input type="radio" name="rating" value="2" id="star2"><label for="star2">★</label>
+            <input type="radio" name="rating" value="1" id="star1"><label for="star1">★</label>
+        </div>
+    </div>
+    <button id="send-review">Отправить отзыв</button>
+</div>
+
+<!-- Панель для отображения отзывов -->
+<section class="reviews-section" style="margin-top: 10em;">
+    <h2>Отзывы пользователей</h2>
+    <button id="delete-all-reviews" style="display: none;">Удалить все отзывы</button>
+    <div id="reviewsContainer" class="reviews-container"></div> <!-- Контейнер для отзывов -->
+</section>
+
+
+
+    <script src="JS/script_reviews.js"></script>
+    <script src="JS/script1.js"></script>
+    
+</body>
+</html>
