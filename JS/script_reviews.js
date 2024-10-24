@@ -228,3 +228,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
   loadReviews(); // Загружаем отзывы при загрузке страницы
 });
+
