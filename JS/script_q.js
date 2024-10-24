@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser) {
-            if (currentUser.rating === 1) {
+            if (currentUser.isAdmin) {
                 questionItem.querySelector('.delete-button').style.display = 'inline';
             } else if (currentUser.name === questionData.username) {
                 questionItem.querySelector('.delete-button').style.display = 'inline';
