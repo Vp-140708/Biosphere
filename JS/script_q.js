@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
 
         const username = usernameInput.value;
+        const email = usernameInput.value;
         const question = document.getElementById('question').value;
 
         if (!username) {
@@ -29,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const questionData = {
             username: username,
             question: question,
+            userEmail: 1,
             answer: null
         };
 
@@ -42,7 +44,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser) {
             usernameInput.value = currentUser.name; // Подстановка имени
+            document.getElementById('email').value = currentUser.email; // Подстановка email
             usernameInput.disabled = true; // Делаем поле имени недоступным для редактирования
+            document.getElementById('email').disabled = true; // Делаем поле email недоступным для редактирования
         }
     }
 
