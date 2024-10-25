@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS\styles1.css">
+    <link rel="stylesheet" href="CSS/style_reviews.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="left-section1">
+                <a href="\index.html" class="logo-link">
+                    <img src="assets/images/bio-logo1.png" alt="Site Logo" class="logo">
+                    <span class="site-name">Биосфера</span></a>
+                <button type="button" class="theme-switcher" id="theme-switcher">🌞</button>
+            </div>
+            <nav class="nav-links">
+                <a href="\Register.html">Регистрация</a>
+                <a href="\Questions.html">Вопрос-Ответ</a>
+                <a href="\Price list.html">Прейскурант</a>
+                <a href="\Staff1.html">Специалисты</a>
+                <a href="\Филиалы1.html">Филиалы</a>
+                <a href="\Отзывы1.html">Отзывы</a>
+                <a href="https://vk.com/biosre" target='_blank'><img src="assets/images/media_social_vk_vkontakte_icon_124252 (1).png" alt="Вк"></a>
+            </nav>
+            <div class="hamburger-menu">
+                <div class="hamburger"></div>
+            </div>
+            <div class="dropdown">
+                <a href="\Register.html">Регистрация</a>
+                <a href="\Questions.html">Вопрос-Ответ</a>
+                <a href="\Price list.html">Прейскурант</a>
+                <a href="\Staff1.html">Специалисты</a>
+                <a href="\Филиалы1.html">Филиалы</a>
+                <a href="\Отзывы1.html">Отзывы</a>
+                <a href="https://vk.com/biosre" target='_blank'><img src="assets/images/media_social_vk_vkontakte_icon_124252 (lit).png" alt="ВК"></a>
+            </div>
+        </div>
+    </header>
+    <button id="logout-btn" style="display: none; position: absolute; right: 10px; bottom: 20px;">Выйти из аккаунта</button>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container" id="register">
+            <form action="#" class="form-sign-up">
+                <h1>Регистрация</h1>
+                <input type="text" id="register-name" placeholder="Name" />
+                <input type="email" id="register-email" placeholder="Email" />
+                <input type="password" id="register-password" placeholder="Password" />
+                <div id="login3"><button class="login1" id="login3" style="margin-bottom: 1em;">Уже есть аккаунт?</button></div>
+                <script>
+                    document.getElementById('login3').addEventListener('click', () => {
+                        document.getElementById('log').style.display = 'block';
+                        document.getElementById('log').style.opacity = '3';
+                        document.getElementById('register').style.opacity = '0';
+                        document.getElementById('register').style.opacity = 'none';
+                    });
+                </script>
+                <button id="register-btn">Регистрация</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container" id="log">
+            <form action="#" class="form-sign-in" id="login">
+                <h1>Вход</h1>
+                <input type="email" id="login-email" placeholder="Email" />
+                <input type="password" id="login-password" placeholder="Password" />
+                <div id="login3"><button class="login1" href="#" >Забыли пароль?</button> <a></a> <button class="login1" id="login2">Нет аккаунта?</button></a></div>
+                <script>
+                    document.getElementById('login2').addEventListener('click', () => {
+                        document.getElementById('log').style.display = 'none';
+                        document.getElementById('log').style.opacity = '0';
+                        document.getElementById('register').style.opacity = '3';
+                    });
+                </script>
+                <button style="margin-top: 1em;" id="login-btn">Войти</button>
+            </form>
+        </div>
+        <div class="overlay-container" id="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left" >
+                    <h1>Добро пожаловать!</h1>
+                    <p>Чтобы поддерживать с нами связь, пожалуйста, войдите в систему, указав свои личные данные</p>
+                    <button class="ghost" id="signIn">Вход</button>
+                </div>
+                <div class="overlay-panel overlay-right" id="overlay">
+                    <h1>Здравствуйте!</h1>
+                    <p>Чтобы оставить свой отзыв, пожалуйста, создайте аккаунт на сайте</p>
+                    <button class="ghost" id="signUp">Регистрация</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            const signUpButton = document.getElementById('signUp');
+            const signInButton = document.getElementById('signIn');
+            const container = document.getElementById('container');
+        
+            signUpButton.addEventListener('click', () => {
+                container.classList.add("right-panel-active");
+                document.querySelector('.sign-in-container').style.display = 'none';
+            });
+        
+            signInButton.addEventListener('click', () => {
+                container.classList.remove("right-panel-active");
+                document.querySelector('.sign-in-container').style.display = 'block';
+            });
+        </script>
+    
+    
+    </div>
+    <script src="JS/script1.js"></script>
+    <script src="JS/script_register.js"></script>
+</body>
+</html>

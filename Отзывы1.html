@@ -18,6 +18,7 @@
                 <button id="theme-switcher">🌞</button>
             </div>
             <nav class="nav-links">
+                <a href="\Register.html">Регистрация</a>
                 <a href="\Questions.html">Вопрос-Ответ</a>
                 <a href="\Price list.html">Прейскурант</a>
                 <a href="\Staff1.html">Специалисты</a>
@@ -30,6 +31,7 @@
             </div>
         </div>
         <div class="dropdown">
+            <a href="\Register.html">Регистрация</a>
             <a href="\Questions.html">Вопрос-Ответ</a>
             <a href="\Price list.html">Прейскурант</a>
             <a href="\Staff1.html">Специалисты</a>
@@ -39,74 +41,73 @@
         </div>
     </header>
 <div class="main-container">
-<div class="container" id="container">
-	<div class="form-container sign-up-container" id="register">
-		<form action="#" class="form-sign-up">
-			<h1>Регистрация</h1>
-            <input type="text" id="register-name" placeholder="Name" />
-            <input type="email" id="register-email" placeholder="Email" />
-            <input type="password" id="register-password" placeholder="Password" />
-            <div id="login3"><button class="login1" id="login3" href="/Отзывы1.html" style="margin-bottom: 1em;">Уже есть аккаунт?</button></div>
+        <div class="container" id="container">
+            <div class="form-container sign-up-container" id="register">
+                <form action="#" class="form-sign-up">
+                    <h1>Регистрация</h1>
+                    <input type="text" id="register-name" placeholder="Name" />
+                    <input type="email" id="register-email" placeholder="Email" />
+                    <input type="password" id="register-password" placeholder="Password" />
+                    <div id="login3"><button class="login1" id="login3" href="/Отзывы1.html" style="margin-bottom: 1em;">Уже есть аккаунт?</button></div>
+                    <script>
+                        document.getElementById('login3').addEventListener('click', () => {
+                            document.getElementById('log').style.display = 'block';
+                            document.getElementById('log').style.opacity = '3';
+                            document.getElementById('register').style.opacity = '0';
+                            document.getElementById('register').style.opacity = 'none';
+                        });
+                    </script>
+                    <button id="register-btn">Регистрация</button>
+                </form> 
+            </div>
+            <div class="form-container sign-in-container" id="log">
+                <form action="#" class="form-sign-in" id="login">
+                    <h1>Вход</h1>
+                    <input type="email" id="login-email" placeholder="Email" />
+                    <input type="password" id="login-password" placeholder="Password" />
+                    <div id="login3"><button class="login1" href="#" >Забыли пароль?</button> <a></a> <button class="login1" id="login2">Нет аккаунта?</button></a></div>
+                    <script>
+                        document.getElementById('login2').addEventListener('click', () => {
+                            document.getElementById('log').style.display = 'none';
+                            document.getElementById('log').style.opacity = '0';
+                            document.getElementById('register').style.opacity = '3';
+                        });
+                    </script>
+                    <button style="margin-top: 1em;" id="login-btn">Войти</button>
+                </form>
+            </div>
+            <div class="overlay-container" id="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left" >
+                        <h1>Добро пожаловать!</h1>
+                        <p>Чтобы поддерживать с нами связь, пожалуйста, войдите в систему, указав свои личные данные</p>
+                        <button class="ghost" id="signIn">Вход</button>
+                    </div>
+                    <div class="overlay-panel overlay-right" id="overlay">
+                        <h1>Здравствуйте!</h1>
+                        <p>Чтобы оставить свой отзыв, пожалуйста, создайте аккаунт на сайте</p>
+                        <button class="ghost" id="signUp">Регистрация</button>
+                    </div>
+                </div>
+            </div>
             <script>
-                document.getElementById('login3').addEventListener('click', () => {
-                    document.getElementById('log').style.display = 'block';
-                    document.getElementById('log').style.opacity = '3';
-                    document.getElementById('register').style.opacity = '0';
-                    document.getElementById('register').style.opacity = 'none';
+                const signUpButton = document.getElementById('signUp');
+                const signInButton = document.getElementById('signIn');
+                const container = document.getElementById('container');
+            
+                signUpButton.addEventListener('click', () => {
+                    container.classList.add("right-panel-active");
+                    document.querySelector('.sign-in-container').style.display = 'none';
+                });
+            
+                signInButton.addEventListener('click', () => {
+                    container.classList.remove("right-panel-active");
+                    document.querySelector('.sign-in-container').style.display = 'block';
                 });
             </script>
-			<button id="register-btn">Регистрация</button>
-		</form>
-	</div>
-	<div class="form-container sign-in-container" id="log">
-		<form action="#" class="form-sign-in" id="login">
-			<h1>Вход</h1>
-            <input type="email" id="login-email" placeholder="Email" />
-            <input type="password" id="login-password" placeholder="Password" />
-			<div id="login3"><button class="login1" href="#" >Забыли пароль?</button> <a></a> <button class="login1" id="login2">Нет аккаунта?</button></a></div>
-            <script>
-                document.getElementById('login2').addEventListener('click', () => {
-                    document.getElementById('log').style.display = 'none';
-                    document.getElementById('log').style.opacity = '0';
-                    document.getElementById('register').style.opacity = '3';
-                });
-            </script>
-			<button style="margin-top: 1em;" id="login-btn">Войти</button>
-		</form>
-	</div>
-	<div class="overlay-container" id="overlay-container">
-		<div class="overlay">
-			<div class="overlay-panel overlay-left" >
-				<h1>Добро пожаловать!</h1>
-				<p>Чтобы поддерживать с нами связь, пожалуйста, войдите в систему, указав свои личные данные</p>
-				<button class="ghost" id="signIn">Вход</button>
-			</div>
-			<div class="overlay-panel overlay-right" id="overlay">
-				<h1>Здравствуйте!</h1>
-				<p>Чтобы оставить свой отзыв, пожалуйста, создайте аккаунт на сайте</p>
-				<button class="ghost" id="signUp">Регистрация</button>
-			</div>
-		</div>
-	</div>
-    <script>
-        const signUpButton = document.getElementById('signUp');
-        const signInButton = document.getElementById('signIn');
-        const container = document.getElementById('container');
-    
-        signUpButton.addEventListener('click', () => {
-            container.classList.add("right-panel-active");
-            document.querySelector('.sign-in-container').style.display = 'none';
-        });
-    
-        signInButton.addEventListener('click', () => {
-            container.classList.remove("right-panel-active");
-            document.querySelector('.sign-in-container').style.display = 'block';
-        });
-    </script>
 
 
-</div>
-<button id="logout-btn" style="display: none; margin-top: 10em;">Выход</button>
+        </div>
 <!-- Форма для отправки отзыва -->
 <div class="write-review-section" style="display: none;" id="write-review-section">
     <h2>Оставьте свой отзыв</h2>

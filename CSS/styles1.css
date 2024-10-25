@@ -313,3 +313,15 @@ body {
     transform: scale(0.9);
   }
 
+  #logout-btn {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #logout-btn:hover {
+    background-color: #3e8e41;
+  }

@@ -1,174 +1,125 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // FAQ blocks
     const faqBlocks = document.querySelectorAll(".faq-block");
-
     faqBlocks.forEach(block => {
         block.addEventListener("click", function () {
             this.classList.toggle("active");
             const answer = this.querySelector(".faq-answer");
-            if (this.classList.contains("active")) {
-                answer.style.maxHeight = answer.scrollHeight + "px";
-            } else {
-                answer.style.maxHeight = null;
-            }
+            answer.style.maxHeight = this.classList.contains("active") ? answer.scrollHeight + "px" : null;
         });
     });
-});
 
-const themeSwitcher = document.getElementById('theme-switcher');
-document.addEventListener('DOMContentLoaded', () => {
+    // Theme switcher
+    const themeSwitcher = document.getElementById('theme-switcher');
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
         document.body.classList.add(savedTheme);
         themeSwitcher.textContent = savedTheme === 'dark-theme' ? '🌚' : '🌞';
     }
-});
 
-themeSwitcher.addEventListener('click', () => {
-    document.body.classList.toggle('dark-theme');
-    const currentTheme = document.body.classList.contains('dark-theme') ? 'dark-theme' : 'light-theme';
-    themeSwitcher.textContent = currentTheme === 'dark-theme' ? '🌚' : '🌞';
-    localStorage.setItem('theme', currentTheme);
-});
-
-const blocksWrapper = document.querySelector(".blocks-wrapper");
-const blocks = document.querySelectorAll(".block-item");
-const dots = document.querySelectorAll('.dot');
-let currentIndex = 0;
-let touchStartX = 0;
-let touchEndX = 0;
-
-function goToSlide(index) {
-    if (index < 0) {
-        currentIndex = blocks.length - 1;
-    } else if (index >= blocks.length) {
-        currentIndex = 0;
-    } else {
-        currentIndex = index;
-    }
-
-
-    blocksWrapper.scrollTo({
-        left: blocks[currentIndex].offsetLeft - 10,
-        behavior: "smooth"
+    themeSwitcher.addEventListener('click', () => {
+        document.body.classList.toggle('dark-theme');
+        const currentTheme = document.body.classList.contains('dark-theme') ? 'dark-theme' : 'light-theme';
+        themeSwitcher.textContent = currentTheme === 'dark-theme' ? '🌚' : '🌞';
+        localStorage.setItem('theme', currentTheme);
     });
 
-    updateDots(currentIndex);
-}
-
-
-blocksWrapper.addEventListener("touchstart", function (event) {
-    touchStartX = event.changedTouches[0].screenX;
-});
-
-
-blocksWrapper.addEventListener("touchend", function (event) {
-    touchEndX = event.changedTouches[0].screenX;
-    const swipeDistance = touchEndX - touchStartX;
-
-
-    if (Math.abs(swipeDistance) > 150) { 
-        if (swipeDistance > 0) {
-            goToSlide(currentIndex - 1); 
-            goToSlide(currentIndex + 1); 
-        }
-    }
-});
-
-
-const hamburgerMenu = document.querySelector('.hamburger-menu');
-const dropdown = document.querySelector('.dropdown');
-
-hamburgerMenu.addEventListener('click', () => {
-    dropdown.classList.toggle('active');
-});
-
-const slides = document.querySelector('.slides');
-let currentSlide = 0;
-const totalSlides = document.querySelectorAll('.slide').length;
-const slideInterval = 8000;
-
-document.addEventListener("DOMContentLoaded", function () {
-    const slides = document.querySelectorAll(".slide");
-    const dots = document.querySelectorAll(".dot_sl");
-    const slidesWrapper = document.querySelector(".slides");
+    // Slider functionality
+    const blocksWrapper = document.querySelector(".blocks-wrapper");
+    const blocks = document.querySelectorAll(".block-item");
+    const dots = document.querySelectorAll('.dot');
     let currentIndex = 0;
-    const totalSlides = slides.length;
+    let touchStartX = 0;
 
-    function showSlide(index) {
-        if (index >= totalSlides) {
-            currentIndex = 0;
-        } else if (index < 0) {
-            currentIndex = totalSlides - 1;
-        } else {
-            currentIndex = index;
-        }
-
-        slidesWrapper.style.transform = `translateX(${-currentIndex * 100}%)`;
-
+    function goToSlide(index) {
+        currentIndex = (index + blocks.length) % blocks.length; // Wrap around
+        blocksWrapper.scrollTo({
+            left: blocks[currentIndex].offsetLeft - 10,
+            behavior: "smooth"
+        });
         updateDots(currentIndex);
     }
 
+    blocksWrapper.addEventListener("touchstart", function (event) {
+        touchStartX = event.changedTouches[0].screenX;
+    });
+
+    blocksWrapper.addEventListener("touchend", function (event) {
+        const touchEndX = event.changedTouches[0].screenX;
+        const swipeDistance = touchEndX - touchStartX;
+        if (Math.abs(swipeDistance) > 150) {
+            goToSlide(currentIndex + (swipeDistance > 0 ? -1 : 1));
+        }
+    });
+
+    // Hamburger menu
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const dropdown = document.querySelector('.dropdown');
+
+    hamburgerMenu.addEventListener('click', () => {
+        dropdown.classList.toggle('active');
+    });
+
+    // Automatic slider
+    const slides = document.querySelectorAll(".slide");
+    const slideInterval = 8000;
+    let slideIndex = 0;
+
+    function showSlide(index) {
+        slideIndex = (index + slides.length) % slides.length; // Wrap around
+        const slidesWrapper = document.querySelector(".slides");
+        slidesWrapper.style.transform = `translateX(${-slideIndex * 100}%)`;
+        updateDots(slideIndex);
+    }
+
     function updateDots(index) {
+        const dots = document.querySelectorAll(".dot_sl");
         dots.forEach((dot, i) => {
-            if (i === index) {
-                dot.classList.add("active");
-            } else {
-                dot.classList.remove("active");
-            }
+            dot.classList.toggle("active", i === index);
         });
     }
 
     function startSlider() {
-        setInterval(function () {
-            showSlide(currentIndex + 1);
-        }, 8000); 
+        setInterval(() => showSlide(slideIndex + 1), slideInterval);
     }
-    dots.forEach((dot, i) => {
-        dot.addEventListener("click", function () {
-            showSlide(i);
-        });
+
+    document.querySelectorAll('.dot_sl').forEach((dot, i) => {
+        dot.addEventListener("click", () => showSlide(i));
     });
 
-    showSlide(0);
+    showSlide(slideIndex);
     startSlider();
-});
-document.addEventListener('DOMContentLoaded', function () {
+
+    // Callback form
     const callbackButton = document.getElementById('callbackButton');
     const callbackForm = document.getElementById('callbackForm');
     const cancelButton = document.getElementById('cancelButton');
 
     let formVisible = false;
 
+    callbackButton.addEventListener('click', () => {
+        formVisible ? closeForm() : openForm();
+    });
+
+    cancelButton.addEventListener('click', closeForm);
+
+    document.addEventListener('click', (e) => {
+        if (!callbackForm.contains(e.target) && !callbackButton.contains(e.target) && formVisible) {
+            closeForm();
+        }
+    });
+
     function openForm() {
+        callbackForm.style.display = 'flex';
         callbackForm.classList.add('show');
-        callbackForm.classList.remove('hide');
         formVisible = true;
     }
+
     function closeForm() {
         callbackForm.classList.add('hide');
-        callbackForm.classList.remove('show');
         setTimeout(() => {
             callbackForm.style.display = 'none';
             formVisible = false;
         }, 300);
     }
-
-    callbackButton.addEventListener('click', function () {
-        if (!formVisible) {
-            callbackForm.style.display = 'flex';
-            openForm();
-        } else {
-            closeForm();
-        }
-    });
-
-    cancelButton.addEventListener('click', function () {
-        closeForm();
-    });
-
-    document.addEventListener('click', function (e) {
-        if (!callbackForm.contains(e.target) && !callbackButton.contains(e.target) && formVisible) {
-            closeForm();
-        }
-    });
 });

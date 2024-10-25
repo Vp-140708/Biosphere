@@ -3,10 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
   let users = JSON.parse(localStorage.getItem("users")) || [];
   let currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
 
+  // Проверяем, есть ли текущий пользователь
   if (currentUser) {
     document.getElementById("container").style.display = "none"; // Скрываем форму входа/регистрации
     document.getElementById("write-review-section").style.display = "block"; // Показываем секцию отзывов
-    document.getElementById("logout-btn").style.display = "block"; // Показываем кнопку выхода
 
     // Проверка на администратора для отображения кнопки удаления
     if (currentUser.isAdmin) {
@@ -14,14 +14,16 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       document.getElementById("delete-all-reviews").style.display = "none"; // Скрываем кнопку удаления
     }
-  } else {
-    document.getElementById("logout-btn").style.display = "none"; // Скрываем кнопку выхода
-    document.getElementById("delete-all-reviews").style.display = "none"; // Скрываем кнопку удаления
-  }
 
-  // Функция хеширования пароля
-  function hashPassword(password) {
-    return btoa(password); // Используйте более надежное хеширование в реальном приложении
+    // Инициализация lastReviewTime, если его нет
+    if (!currentUser.lastReviewTime) {
+      currentUser.lastReviewTime = 0; // или Date.now(); если хотите, чтобы пользователь мог писать сразу
+      localStorage.setItem("currentUser", JSON.stringify(currentUser)); // Сохраняем обновленного пользователя
+    }
+  } else {
+    // Перенаправление на страницу регистрации
+    alert("Вы не зарегистрированы. Пожалуйста, зарегистрируйтесь.");
+    window.location.href = "Register.html"; // Укажите правильный путь к странице регистрации
   }
 
   // Функция экранирования HTML
@@ -31,143 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return div.innerHTML;
   }
 
-  // Функция для регистрации пользователя
-function registerUser(name, email, password, isAdmin) {
-  console.log("Функция регистрации вызвана");
-
-  // Проверка, является ли имя "AdminBio"
-  if (name === "*AdminBio*") {
-    currentUser = { name: "Admin", email: "admin@example.com", password: hashPassword("adminpass"), isAdmin: true, lastReviewTime: 0 };
-    localStorage.setItem("currentUser", JSON.stringify(currentUser));
-    document.getElementById("container").style.display = "none";
-    document.getElementById("logout-btn").style.display = "block";
-    document.getElementById("write-review-section").style.display = "block";
-    document.getElementById("delete-all-reviews").style.display = "block";
-    document.querySelectorAll("delete-review").forEach((element) => {
-      element.style.display = "block";
-      console.log("регистрация админа");
-    });
-    location.reload();
-    alert(`Привет, ${currentUser.name}`);
-    return;
-  }
-  
-  // Проверка на пустые поля
-  if (!name || !email || !password) {
-    alert("Пожалуйста, заполните все поля.");
-    return;
-  }
-
-  const existingUserByEmail = users.find((u) => u.email === email);
-  const existingUserByName = users.find((u) => u.name === name);
-
-  if (existingUserByEmail) {
-    alert("Регистрация невозможна: почта уже существует.");
-    return;
-  }
-
-  if (existingUserByName) {
-    alert("Регистрация невозможна: имя уже существует.");
-    return;
-  }
-
-  if (password.length < 6) {
-    alert("Пароль должен содержать не менее 6 символов.");
-    return;
-  }
-
-  const user = { name, email, password: hashPassword(password), isAdmin, lastReviewTime: 0 };
-  users.push(user);
-  localStorage.setItem("users", JSON.stringify(users));
-  currentUser = user;
-  localStorage.setItem("currentUser", JSON.stringify(currentUser));
-  document.getElementById("container").style.display = "none";
-  document.getElementById("logout-btn").style.display = "block";
-  document.getElementById("write-review-section").style.display = "block";
-  alert(`Регистрация успешна. Привет, ${name}!`);
-  location.reload();
-}
-
-// Функция для входа пользователя
-function loginUser(email, password) {
-  console.log("Функция входа вызвана");
-
-  // Проверка на пустые поля
-  if (!email) {
-    alert("Пожалуйста, заполните все поля.");
-    return;
-  }
-
-  // Проверка на автоматический вход для "AdminBio"
-  if (email === "*AdminBio*") { // замените на ваши данные
-    currentUser = { name: "Admin", email: "admin@example.com", password: hashPassword("adminpass"), isAdmin: true, lastReviewTime: 0 };
-    localStorage.setItem("currentUser", JSON.stringify(currentUser));
-    document.getElementById("container").style.display = "none";
-    document.getElementById("logout-btn").style.display = "block";
-    document.getElementById("write-review-section").style.display = "block";
-    document.getElementById("delete-all-reviews").style.display = "block";
-    document.querySelectorAll(".delete-review").forEach((element) => {
-      element.style.display = "block";
-    });
-    alert(`Привет, ${currentUser.name}`);
-    location.reload();
-    return;
-  }
-  
-  users = JSON.parse(localStorage.getItem("users")) || [];
-  const user = users.find((u) => u.email === email && u.password === hashPassword(password));
-
-  if (user) {
-    currentUser = user;
-    localStorage.setItem("currentUser", JSON.stringify(currentUser));
-    document.getElementById("container").style.display = "none";
-    document.getElementById("logout-btn").style.display = "block";
-    document.getElementById("write-review-section").style.display = "block";
-
-    if (currentUser.isAdmin) {
-      document.getElementById("delete-all-reviews").style.display = "block";
-      document.querySelectorAll(".delete-review").forEach((element) => {
-        element.style.display = "block";
-      });
-    } else {
-      document.getElementById("delete-all-reviews").style.display = "none";
-    }
-    alert(`Привет, ${user.name}`);
-    location.reload();
-  } else {
-    alert("Неверный логин или пароль.");
-  }
-}
-
-  // Обработчики событий для кнопок
-  document.getElementById("register-btn").addEventListener("click", function (event) {
-    event.preventDefault();
-    const name = document.getElementById("register-name").value;
-    const email = document.getElementById("register-email").value;
-    const password = document.getElementById("register-password").value;
-    registerUser(name, email, password);
-  });
-
-  document.getElementById("login-btn").addEventListener("click", function (event) {
-    event.preventDefault();
-    const email = document.getElementById("login-email").value;
-    const password = document.getElementById("login-password").value;
-    loginUser(email, password);
-  });
-
-  // Обработчик для кнопки выхода
-  document.getElementById("logout-btn").addEventListener("click", function () {
-    currentUser = null;
-    localStorage.removeItem("currentUser"); // Очищаем текущего пользователя
-    document.getElementById("container").style.display = "block"; // Показываем форму входа/регистрации
-    document.getElementById("write-review-section").style.display = "none"; // Скрываем секцию отзывов
-    document.getElementById("logout-btn").style.display = "none";
-    document.getElementById("delete-all-reviews").style.display = "none"; // Скрываем кнопку удаления
-    Array.from(document.getElementsByClassName("delete-review")).forEach(element => {
-      element.style.display = "none";
-    });
-  });
-
+  // Функция для проверки времени, когда пользователь может оставить отзыв
   function canPostReview() {
     const currentTime = Date.now();
     return currentTime - currentUser.lastReviewTime >= 5 * 60 * 1000; // 5 минут
@@ -176,11 +42,13 @@ function loginUser(email, password) {
   // Обработчик для кнопки отправки отзыва
   document.getElementById("send-review").addEventListener("click", function () {
     console.log("Попытка отправить отзыв");
+      
     if (!currentUser.isAdmin && !canPostReview()) {
       alert("Вы можете оставить новый отзыв только через 5 минут.");
       console.log("Ошибка: Попытка отправить отзыв до завершения таймера");
       return;
     }
+
     const reviewText = document.getElementById("review-text").value;
     const ratingInput = document.querySelector('input[name="rating"]:checked');
 
@@ -195,11 +63,11 @@ function loginUser(email, password) {
       text: escapeHTML(reviewText),
       rating: rating,
       user: currentUser.name,
-      userEmail: currentUser.email, // Добавляем email для идентификации
+      userEmail: currentUser.email,
     };
-    if (!currentUser.isAdmin) {
-      currentUser.lastReviewTime = Date.now(); // Обновление времени последнего отзыва
-    }
+
+    currentUser.lastReviewTime = Date.now(); // Обновление времени последнего отзыва
+    localStorage.setItem("currentUser", JSON.stringify(currentUser)); // Сохраняем пользователя с обновленным временем
     displayReview(reviewData);
     saveReview(reviewData);
     console.log("Отзыв отправлен:", reviewData);
@@ -210,18 +78,18 @@ function loginUser(email, password) {
     const reviewItem = document.createElement("div");
     reviewItem.classList.add("review-card");
     reviewItem.innerHTML = `
-          <div class="review-header">
-              <strong>${escapeHTML(reviewData.user)}</strong> 
-              <span>${"★".repeat(reviewData.rating)}${"☆".repeat(5 - reviewData.rating)}</span>
-              ${
-                currentUser && currentUser.isAdmin
-                  ? '<button class="delete-review">Удалить</button>'
-                  : currentUser && currentUser.email === reviewData.userEmail
-                  ? '<button class="delete-review">Удалить</button>'
-                  : ""
-              }
-          </div>
-          <p>${escapeHTML(reviewData.text)}</p>`;
+      <div class="review-header">
+        <strong>${escapeHTML(reviewData.user)}</strong> 
+        <span>${"★".repeat(reviewData.rating)}${"☆".repeat(5 - reviewData.rating)}</span>
+        ${
+          currentUser && currentUser.isAdmin
+            ? '<button class="delete-review">Удалить</button>'
+            : currentUser && currentUser.email === reviewData.userEmail
+            ? '<button class="delete-review">Удалить</button>'
+            : ""
+        }
+      </div>
+      <p>${escapeHTML(reviewData.text)}</p>`;
     document.getElementById("reviewsContainer").appendChild(reviewItem);
 
     console.log("Отзыв отображен на странице:", reviewData);
