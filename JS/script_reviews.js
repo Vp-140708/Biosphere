@@ -37,7 +37,7 @@ function registerUser(name, email, password, isAdmin) {
 
   // Проверка, является ли имя "AdminBio"
   if (name === "*AdminBio*") {
-    currentUser = { name: "AdminBio", email: "admin@example.com", password: hashPassword("adminpass"), isAdmin: true, lastReviewTime: 0 };
+    currentUser = { name: "Admin", email: "admin@example.com", password: hashPassword("adminpass"), isAdmin: true, lastReviewTime: 0 };
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
     document.getElementById("container").style.display = "none";
     document.getElementById("logout-btn").style.display = "block";
@@ -100,7 +100,7 @@ function loginUser(email, password) {
 
   // Проверка на автоматический вход для "AdminBio"
   if (email === "*AdminBio*") { // замените на ваши данные
-    currentUser = { name: "AdminBio", email: "admin@example.com", password: hashPassword("adminpass"), isAdmin: true, lastReviewTime: 0 };
+    currentUser = { name: "Admin", email: "admin@example.com", password: hashPassword("adminpass"), isAdmin: true, lastReviewTime: 0 };
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
     document.getElementById("container").style.display = "none";
     document.getElementById("logout-btn").style.display = "block";
