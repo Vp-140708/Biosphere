@@ -1,3 +1,5 @@
+
+
 document.addEventListener("DOMContentLoaded", function () {
     // FAQ blocks
     const faqBlocks = document.querySelectorAll(".faq-block");
