@@ -429,7 +429,6 @@ input {
   background-color: #0398b9;
   color: #fff;
 }
-/* Для больших экранов */
 
 /* Форма отзыва */
 .write-review-section {
@@ -437,29 +436,36 @@ input {
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: 5vh;
+  margin-top: 8vh;
   margin-bottom: -3vh;
+  height: 45vh;
+  width: 50vh;
+}
+textarea::placeholder{
+  font-size: 1rem;
 }
 
 .write-review-section h2 {
-  margin-top: 0;
+  margin-top: 1vh;
+  margin-bottom: 3vh;
 }
 
 .write-review-section textarea {
   width: 120%;
-  height: 120px;
+  height: 20vh;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 2px solid #0285a2;
+  border-radius: 15px;
   font-size: larger;
+  margin-top: 2vh;
 }
 
 .write-review-section select {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
+  border: 1.5px solid #0285a2;
   border-radius: 10px;
 }
 
@@ -593,7 +599,18 @@ input {
 #send-review {
   display: block;
   margin: 0 auto;
+  background-color: #c1f0a8;
+  border-color: #039c64;
 }
+.dark-theme #send-review {
+  background-color: #0285a2;
+  border-color: #056c83;
+}
+#send-review:hover{
+  background-color: #9beb70;
+  transform: scale(1.025);
+}
+
 
 .main-container {
   width: 100vw;
