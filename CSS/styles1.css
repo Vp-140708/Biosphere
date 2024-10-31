@@ -325,3 +325,8 @@ body {
   #logout-btn:hover {
     background-color: #3e8e41;
   }
+
+  #logout-btn {
+    border-radius: 40px;
+    padding: 10px;
+  }

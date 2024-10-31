@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   console.log("DOM загружен");
-  let users = JSON.parse(localStorage.getItem("users")) || [];
+
   let currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
 
   // Проверяем, есть ли текущий пользователь
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Инициализация lastReviewTime, если его нет
     if (!currentUser.lastReviewTime) {
-      currentUser.lastReviewTime = 0; // или Date.now(); если хотите, чтобы пользователь мог писать сразу
+      currentUser.lastReviewTime = 0;
       localStorage.setItem("currentUser", JSON.stringify(currentUser)); // Сохраняем обновленного пользователя
     }
   } else {
@@ -40,9 +40,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Обработчик для кнопки отправки отзыва
-  document.getElementById("send-review").addEventListener("click", function () {
+  document.getElementById("send-review").addEventListener("click", async function () {
     console.log("Попытка отправить отзыв");
-      
+
     if (!currentUser.isAdmin && !canPostReview()) {
       alert("Вы можете оставить новый отзыв только через 5 минут.");
       console.log("Ошибка: Попытка отправить отзыв до завершения таймера");
@@ -58,19 +58,32 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    const rating = ratingInput.value;
     const reviewData = {
       text: escapeHTML(reviewText),
-      rating: rating,
-      user: currentUser.name,
-      userEmail: currentUser.email,
+      rating: ratingInput.value,
+      userId: currentUser._id, // Идентификатор пользователя для связи с отзывом
     };
 
-    currentUser.lastReviewTime = Date.now(); // Обновление времени последнего отзыва
-    localStorage.setItem("currentUser", JSON.stringify(currentUser)); // Сохраняем пользователя с обновленным временем
-    displayReview(reviewData);
-    saveReview(reviewData);
-    console.log("Отзыв отправлен:", reviewData);
+    try {
+      const response = await fetch('/api/reviews/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(reviewData),
+      });
+
+      if (response.ok) {
+        const savedReview = await response.json();
+        currentUser.lastReviewTime = Date.now(); // Обновление времени последнего отзыва
+        localStorage.setItem("currentUser", JSON.stringify(currentUser)); // Сохраняем пользователя с обновленным временем
+        displayReview(savedReview);
+        console.log("Отзыв отправлен и сохранен в базе данных:", savedReview);
+      } else {
+        throw new Error('Ошибка при добавлении отзыва');
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Ошибка при отправке отзыва.");
+    }
   });
 
   // Функция отображения отзыва
@@ -79,12 +92,10 @@ document.addEventListener("DOMContentLoaded", function () {
     reviewItem.classList.add("review-card");
     reviewItem.innerHTML = `
       <div class="review-header">
-        <strong>${escapeHTML(reviewData.user)}</strong> 
+        <strong>${escapeHTML(reviewData.user.name)}</strong> 
         <span>${"★".repeat(reviewData.rating)}${"☆".repeat(5 - reviewData.rating)}</span>
         ${
-          currentUser && currentUser.isAdmin
-            ? '<button class="delete-review">Удалить</button>'
-            : currentUser && currentUser.email === reviewData.userEmail
+          currentUser && (currentUser.isAdmin || currentUser._id === reviewData.user._id)
             ? '<button class="delete-review">Удалить</button>'
             : ""
         }
@@ -95,57 +106,65 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Отзыв отображен на странице:", reviewData);
 
     // Добавляем возможность удаления отзыва
-    reviewItem
-      .querySelector(".delete-review")
-      ?.addEventListener("click", function () {
-        deleteReview(reviewData);
-        reviewItem.remove();
-        console.log("Отзыв удален:", reviewData);
-      });
-  }
+    reviewItem.querySelector(".delete-review")?.addEventListener("click", async function () {
+      try {
+        const response = await fetch(`/api/reviews/${reviewData._id}`, {
+          method: 'DELETE',
+        });
 
-  // Функция сохранения отзыва в localStorage
-  function saveReview(reviewData) {
-    let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
-    reviews.push(reviewData);
-    localStorage.setItem("reviews", JSON.stringify(reviews));
-    console.log("Отзыв сохранен в localStorage:", reviews);
-  }
-
-  // Функция удаления конкретного отзыва
-  function deleteReview(reviewData) {
-    let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
-    reviews = reviews.filter(
-      (review) =>
-        review.text !== reviewData.text ||
-        review.rating !== reviewData.rating ||
-        review.userEmail !== reviewData.userEmail
-    );
-    localStorage.setItem("reviews", JSON.stringify(reviews));
-    console.log("Отзыв удален из localStorage:", reviewData);
+        if (response.ok) {
+          reviewItem.remove();
+          console.log("Отзыв удален:", reviewData);
+        } else {
+          throw new Error('Ошибка при удалении отзыва');
+        }
+      } catch (error) {
+        console.error(error);
+        alert("Ошибка при удалении отзыва.");
+      }
+    });
   }
 
   // Обработчик для кнопки "Удалить все отзывы"
-  document
-    .getElementById("delete-all-reviews")
-    .addEventListener("click", function () {
-      if (currentUser && currentUser.isAdmin) {
-        if (confirm("Вы уверены, что хотите удалить все отзывы?")) {
-          localStorage.removeItem("reviews"); // Удаляем все отзывы из localStorage
-          document.getElementById("reviewsContainer").innerHTML = ""; // Очищаем контейнер для отзывов
-          alert("Все отзывы были удалены.");
-          console.log("Все отзывы удалены.");
+  document.getElementById("delete-all-reviews").addEventListener("click", async function () {
+    if (currentUser && currentUser.isAdmin) {
+      if (confirm("Вы уверены, что хотите удалить все отзывы?")) {
+        try {
+          const response = await fetch('/api/reviews/delete-all', { method: 'DELETE' });
+
+          if (response.ok) {
+            document.getElementById("reviewsContainer").innerHTML = ""; // Очищаем контейнер для отзывов
+            alert("Все отзывы были удалены.");
+            console.log("Все отзывы удалены.");
+          } else {
+            throw new Error('Ошибка при удалении всех отзывов');
+          }
+        } catch (error) {
+          console.error(error);
+          alert("Ошибка при удалении всех отзывов.");
         }
-      } else {
-        alert("У вас нет прав для удаления всех отзывов.");
       }
-    });
+    } else {
+      alert("У вас нет прав для удаления всех отзывов.");
+    }
+  });
 
   // Функция загрузки отзывов при загрузке страницы
-  function loadReviews() {
-    const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
-    reviews.forEach(displayReview);
-    console.log("Все отзывы загружены:", reviews);
+  async function loadReviews() {
+    try {
+      const response = await fetch('/api/reviews');
+
+      if (response.ok) {
+        const reviews = await response.json();
+        reviews.forEach(displayReview);
+        console.log("Все отзывы загружены из базы данных:", reviews);
+      } else {
+        throw new Error('Ошибка при загрузке отзывов');
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Ошибка при загрузке отзывов.!");
+    }
   }
 
   loadReviews(); // Загружаем отзывы при загрузке страницы
