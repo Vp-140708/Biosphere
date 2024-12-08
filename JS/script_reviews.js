@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log("DOM загружен");
 
   let currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
+  let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
 
   // Проверка текущего пользователя
   if (currentUser) {
@@ -34,8 +35,34 @@ document.addEventListener("DOMContentLoaded", function () {
     return currentTime - currentUser.lastReviewTime >= 5 * 60 * 1000; // 5 минут
   }
 
+  // Функция отображения отзыва
+  function displayReview(reviewData) {
+    const reviewItem = document.createElement("div");
+    reviewItem.classList.add("review-card");
+    reviewItem.innerHTML = `
+      <div class="review-header">
+        <strong>${escapeHTML(reviewData.userName)}</strong> 
+        <span>${"★".repeat(reviewData.rating)}${"☆".repeat(5 - reviewData.rating)}</span>
+        ${(currentUser.isAdmin || currentUser.userId === reviewData.userId) ? '<button class="delete-review">Удалить</button>' : ""}
+      </div>
+      <p>${escapeHTML(reviewData.text)}</p>`;
+    document.getElementById("reviewsContainer").appendChild(reviewItem);
+
+    reviewItem.querySelector(".delete-review")?.addEventListener("click", function () {
+      reviews = reviews.filter((r) => r.reviewId !== reviewData.reviewId);
+      localStorage.setItem("reviews", JSON.stringify(reviews));
+      reviewItem.remove();
+    });
+  }
+
+  // Функция загрузки отзывов
+  function loadReviews() {
+    document.getElementById("reviewsContainer").innerHTML = "";
+    reviews.forEach(displayReview);
+  }
+
   // Обработчик для отправки отзыва
-  document.getElementById("send-review").addEventListener("click", async function () {
+  document.getElementById("send-review").addEventListener("click", function () {
     console.log("Попытка отправить отзыв");
 
     if (!currentUser.isAdmin && !canPostReview()) {
@@ -52,111 +79,35 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const reviewData = {
+      reviewId: Date.now(),
       text: escapeHTML(reviewText),
-      rating: ratingInput.value,
-      userId: currentUser._id,
+      rating: Number(ratingInput.value),
+      userId: currentUser.userId,
+      userName: currentUser.name,
     };
 
-    try {
-      const response = await fetch("http://localhost:5000/api/reviews/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(reviewData),
-      });
+    reviews.push(reviewData);
+    localStorage.setItem("reviews", JSON.stringify(reviews));
+    currentUser.lastReviewTime = Date.now();
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    displayReview(reviewData);
 
-      if (response.ok) {
-        const savedReview = await response.json();
-        currentUser.lastReviewTime = Date.now(); 
-        localStorage.setItem("currentUser", JSON.stringify(currentUser));
-        displayReview(savedReview);
-        console.log("Отзыв отправлен и сохранен:", savedReview);
-      } else {
-        throw new Error("Ошибка при добавлении отзыва");
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Ошибка при отправке отзыва.");
-    }
+    document.getElementById("review-text").value = ""; // Очистка текстового поля
+    document.querySelector('input[name="rating"]:checked').checked = false; // Сброс выбора рейтинга
+    alert("Отзыв успешно добавлен!");
   });
 
-  // Функция отображения отзыва
-  function displayReview(reviewData) {
-    const reviewItem = document.createElement("div");
-    reviewItem.classList.add("review-card");
-    reviewItem.innerHTML = `
-      <div class="review-header">
-        <strong>${escapeHTML(reviewData.user.name)}</strong> 
-        <span>${"★".repeat(reviewData.rating)}${"☆".repeat(5 - reviewData.rating)}</span>
-        ${(currentUser.isAdmin || currentUser._id === reviewData.user._id) ? '<button class="delete-review">Удалить</button>' : ""}
-      </div>
-      <p>${escapeHTML(reviewData.text)}</p>`;
-    document.getElementById("reviewsContainer").appendChild(reviewItem);
-
-    reviewItem.querySelector(".delete-review")?.addEventListener("click", async function () {
-      try {
-        const response = await fetch(`/api/reviews/${reviewData._id}`, {
-          method: "DELETE",
-        });
-
-        if (response.ok) {
-          reviewItem.remove();
-          console.log("Отзыв удален:", reviewData);
-        } else {
-          throw new Error("Ошибка при удалении отзыва");
-        }
-      } catch (error) {
-        console.error(error);
-        alert("Ошибка при удалении отзыва.");
-      }
-    });
-  }
-
   // Обработчик для удаления всех отзывов
-  document.getElementById("delete-all-reviews").addEventListener("click", async function () {
+  document.getElementById("delete-all-reviews").addEventListener("click", function () {
     if (currentUser.isAdmin && confirm("Вы уверены, что хотите удалить все отзывы?")) {
-      try {
-        const response = await fetch("/api/reviews/delete-all", {
-          method: "DELETE",
-        });
-
-        if (response.ok) {
-          document.getElementById("reviewsContainer").innerHTML = "";
-          alert("Все отзывы были удалены.");
-        } else {
-          throw new Error("Ошибка при удалении всех отзывов");
-        }
-      } catch (error) {
-        console.error(error);
-        alert("Ошибка при удалении всех отзывов.");
-      }
+      reviews = [];
+      localStorage.setItem("reviews", JSON.stringify(reviews));
+      document.getElementById("reviewsContainer").innerHTML = "";
+      alert("Все отзывы были удалены.");
     } else {
       alert("У вас нет прав для удаления всех отзывов.");
     }
   });
-
-  // Функция загрузки отзывов при загрузке страницы
-  async function loadReviews() {
-    try {
-      const response = await fetch('fetch_reviews.php');
-      const reviews = await response.json();
-      const reviewsContainer = document.getElementById('reviewsContainer');
-      reviewsContainer.innerHTML = '';
-
-      reviews.forEach(review => {
-        const reviewElement = document.createElement('div');
-        reviewElement.classList.add('review');
-        reviewElement.innerHTML = `
-          <p><strong>${review.name}</strong> (Оценка: ${review.rating}/5)</p>
-          <p>${review.review_text}</p>
-          <p><em>${review.created_at}</em></p>`;
-        reviewsContainer.appendChild(reviewElement);
-      });
-    } catch (error) {
-      console.error('Ошибка при загрузке отзывов:', error);
-    }
-  }
 
   // Загрузка отзывов при загрузке страницы
   loadReviews();
