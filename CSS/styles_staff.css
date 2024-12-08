@@ -152,8 +152,8 @@
   border: none;
   border-radius: 20px;
   font-size: 1.2em;
-  background-color: #9cfaa1; /* Light green background to match the style */
-  color: #0285a2; /* Same color as the specialist names */
+  background-color: #0285a2; /* Light green background to match the style */
+  color: #ffffff; /* Same color as the specialist names */
   transition: background-color 0.3s, border-color 0.3s;
   outline: none;
 
@@ -163,10 +163,6 @@
   width: 40%;
 }
 
-.combinedFilter:hover {
-  background-color: #0285a2;
-  color: #fff;
-}
 
 
 /* Search bar styling to ensure consistency */
@@ -197,7 +193,7 @@ option, optgroup {
 /* Dark theme support */
 .dark-theme .combinedFilter {
   background-color: #0398b9;
-  color: white;
+  color: rgb(219, 218, 218);
 }
 
 .dark-theme button {
@@ -252,6 +248,11 @@ option, optgroup {
 .Accept:hover {
     background-color: #026f89;
 }
+.dark-theme .Accept {
+  background-color: #0982aa;
+  color: #ccc;
+}
+
 
 @keyframes slideDown {
   0% {
@@ -331,4 +332,24 @@ input[type="checkbox"]:checked::after {
   100% {
     transform: scale(1) rotate(45deg);
   }
+}
+/* Стили для выравнивания чекбоксов и текста */
+.combinedFilter label {
+  display: flex;
+  align-items: flex-start; /* Выравнивание текста по верхнему краю чекбокса */
+  gap: 10px; /* Расстояние между чекбоксом и текстом */
+  margin-bottom: 5px;
+  text-align: left; /* Выравнивание текста по левому краю */
+}
+
+.combinedFilter input[type="checkbox"] {
+  flex-shrink: 0; /* Фиксируем размер чекбокса */
+}
+
+.combinedFilter label span {
+  display: block; /* Текст занимает оставшееся пространство */
+  word-break: break-word; /* Перенос длинных слов */
+}
+.dark-theme .combinedFilter input[type="checkbox"]{
+  background-color: #cecdcd;
 }

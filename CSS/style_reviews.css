@@ -430,7 +430,6 @@ input {
   color: #fff;
 }
 
-/* Форма отзыва */
 .write-review-section {
   background-color: #f7f7f7;
   padding: 20px;
@@ -527,7 +526,6 @@ textarea::placeholder{
     width: 100vw;
   }
 }
-/* Для планшетов */
 @media (min-width: 768px) and (max-width: 1199px) {
   .container {
     margin: 0 auto;
@@ -591,7 +589,6 @@ textarea::placeholder{
   width: 100%;
 }
 
-/* Контейнер отзывов */
 .reviews-container {
   display: flex;
   width: 70vw;
@@ -608,6 +605,10 @@ textarea::placeholder{
 }
 #send-review:hover{
   background-color: #9beb70;
+  transform: scale(1.025);
+}
+.dark-theme #send-review:hover{
+  background-color: #026880;
   transform: scale(1.025);
 }
 
