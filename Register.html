@@ -42,7 +42,7 @@
     <button id="logout-btn" style="position: fixed; right: 10px; bottom: 20px; width: 15em; z-index: 100;">Выйти из аккаунта</button>
     <div class="container" id="container">
         <div class="form-container sign-up-container" id="register">
-            <form action="#" class="form-sign-up">
+            <form action="register.php" method="POST" class="form-sign-up">
                 <h1>Регистрация</h1>
                 <input type="text" id="register-name" placeholder="Name" />
                 <input type="email" id="register-email" placeholder="Email" />
@@ -60,7 +60,7 @@
             </form>
         </div>
         <div class="form-container sign-in-container" id="log">
-            <form action="#" class="form-sign-in" id="login">
+            <form action="login.php" method="POST" class="form-sign-in" id="login">
                 <h1>Вход</h1>
                 <input type="email" id="login-email" placeholder="Email" />
                 <input type="password" id="login-password" placeholder="Password" />
