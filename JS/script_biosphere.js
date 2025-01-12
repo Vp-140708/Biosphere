@@ -11,21 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Theme switcher
-    const themeSwitcher = document.getElementById('theme-switcher');
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        document.body.classList.add(savedTheme);
-        themeSwitcher.textContent = savedTheme === 'dark-theme' ? '🌚' : '🌞';
-    }
-
-    themeSwitcher.addEventListener('click', () => {
-        document.body.classList.toggle('dark-theme');
-        const currentTheme = document.body.classList.contains('dark-theme') ? 'dark-theme' : 'light-theme';
-        themeSwitcher.textContent = currentTheme === 'dark-theme' ? '🌚' : '🌞';
-        localStorage.setItem('theme', currentTheme);
-    });
-
     // Slider functionality
     const blocksWrapper = document.querySelector(".blocks-wrapper");
     const blocks = document.querySelectorAll(".block-item");

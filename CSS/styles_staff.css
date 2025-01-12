@@ -241,7 +241,7 @@ option, optgroup {
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    margin: 10px;
+    margin: 0px;
     transition: background-color 0.3s ease;
 }
 
