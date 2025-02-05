@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const dropdown = document.querySelector(".dropdown");
 
   hamburgerMenu.addEventListener("click", () => {
-    dropdown.classList.toggle("active");
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
   });
 
   // Automatic slider
