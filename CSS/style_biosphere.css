@@ -1077,3 +1077,19 @@ to {
 .question-button:active {
   transform: scale(0.95);
 }
+
+.hamburger-menu {
+  display: none; /* по умолчанию скрыто, показывается в media query ниже */
+  cursor: pointer;
+  padding: 10px; /* увеличиваем область клика */
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  
+  .hamburger-menu {
+    display: block;
+  }
+}
