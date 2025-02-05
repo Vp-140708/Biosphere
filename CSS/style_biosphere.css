@@ -1070,7 +1070,7 @@ to {
   text-decoration: none;
   place-items: center;
   display: grid;
-  margin: -10px 43vw 5vh;
+  margin: -10px 43vw 5vh; 
 }
 
 .question-button:hover {
