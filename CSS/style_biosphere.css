@@ -38,6 +38,17 @@ border-top: 15px solid #0398b9;
 border-radius: 180px 180px 0 0;
 transform: rotate(-40deg);
 }
+.paw-prints {
+  position: absolute;
+  top: -25vh;
+  left: 20px;
+  width: calc(550px + (100vw - 320px) / 25); /* Базовый размер + уменьшение каждые 30px */
+  height: calc(250px + (100vw - 320px) / 25);
+  background-image: url('../assets/images/pawprints.png'); /* Путь к изображению лапок */
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.7;
+}
 @media(min-width: 1200px) and (max-width:1800px){
   .left-section::before{
     right: 6vw;
@@ -315,7 +326,7 @@ color: #0398b9;
 }
 
 .faq-block.active .faq-answer {
-  max-height: 200px; 
+  max-height: 250px; 
   padding-top: 10px;
 }
 
