@@ -353,3 +353,24 @@ input[type="checkbox"]:checked::after {
 .dark-theme .combinedFilter input[type="checkbox"]{
   background-color: #cecdcd;
 }
+.education-btn {
+  background: none;
+  border: none;
+  color: #026f89;
+  font-size: 1.15em;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.education-info {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.education-info.active {
+  max-height: 500px; /* Подстраивается под контент */
+  opacity: 1;
+}

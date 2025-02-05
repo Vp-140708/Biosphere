@@ -64,3 +64,24 @@ function resetFilters() {
   const specialists = document.querySelectorAll('.specialist-block');
   specialists.forEach(specialist => specialist.style.display = 'block');
 }
+document.addEventListener("DOMContentLoaded", function () {
+    const educationButtons = document.querySelectorAll(".education-btn");
+
+    educationButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+            let educationBlock = this.nextElementSibling;
+
+            if (educationBlock.classList.contains("active")) {
+                educationBlock.style.maxHeight = "0";
+                educationBlock.style.opacity = "0";
+                educationBlock.classList.remove("active");
+                this.innerHTML = "Квалификация ⬇";
+            } else {
+                educationBlock.style.maxHeight = educationBlock.scrollHeight + "px";
+                educationBlock.style.opacity = "1";
+                educationBlock.classList.add("active");
+                this.innerHTML = "Квалификация ⬆";
+            }
+        });
+    });
+});
