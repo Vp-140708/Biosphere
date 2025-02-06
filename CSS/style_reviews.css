@@ -721,3 +721,9 @@ textarea::placeholder{
   }
 }
 
+.review-card .review-header span {
+  color: gold;
+  text-shadow: 1px 1px #c60;
+  font-size: 20px;
+}
+
