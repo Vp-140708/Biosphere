@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Slider functionality
+  // Блок-слайдер (если используется)
   const blocksWrapper = document.querySelector(".blocks-wrapper");
   const blocks = document.querySelectorAll(".block-item");
   const dots = document.querySelectorAll(".dot");
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let touchStartX = 0;
 
   function goToSlide(index) {
-    currentIndex = (index + blocks.length) % blocks.length; // Wrap around
+    currentIndex = (index + blocks.length) % blocks.length; // цикл
     blocksWrapper.scrollTo({
       left: blocks[currentIndex].offsetLeft - 10,
       behavior: "smooth",
@@ -47,13 +47,15 @@ document.addEventListener("DOMContentLoaded", function () {
     dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
   });
 
-  // Automatic slider
+  // Основной (изображенческий) слайдер с автоматической анимацией
   const slides = document.querySelectorAll(".slide");
   const slideInterval = 8000;
   let slideIndex = 0;
+  // Запускаем автоматический слайдер и сохраняем id интервала
+  let autoSlideInterval = setInterval(() => showSlide(slideIndex + 1), slideInterval);
 
   function showSlide(index) {
-    slideIndex = (index + slides.length) % slides.length; // Wrap around
+    slideIndex = (index + slides.length) % slides.length; // цикл
     const slidesWrapper = document.querySelector(".slides");
     slidesWrapper.style.transform = `translateX(${-slideIndex * 100}%)`;
     updateDots(slideIndex);
@@ -66,19 +68,49 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  function startSlider() {
-    setInterval(() => showSlide(slideIndex + 1), slideInterval);
+  // Функция для остановки автопроигрывания после ручного действия
+  function stopAutoSlider() {
+    if (autoSlideInterval) {
+      clearInterval(autoSlideInterval);
+      autoSlideInterval = null;
+    }
   }
 
+  // Обработка кликов по точкам слайдера – ручное переключение останавливает автопроигрывание
   document.querySelectorAll(".dot_sl").forEach((dot, i) => {
-    dot.addEventListener("click", () => showSlide(i));
+    dot.addEventListener("click", () => {
+      showSlide(i);
+      stopAutoSlider();
+    });
   });
 
   showSlide(slideIndex);
-  startSlider();
 
-  // Callback form
-  // Callback form
+  // Добавляем обработку сенсорных событий для пролистывания слайдов
+  const slidesWrapper = document.querySelector(".slides");
+  let slideTouchStartX = 0;
+  const swipeThreshold = 50; // порог в пикселях
+
+  slidesWrapper.addEventListener("touchstart", (event) => {
+    slideTouchStartX = event.changedTouches[0].screenX;
+    stopAutoSlider();
+  });
+
+  slidesWrapper.addEventListener("touchend", (event) => {
+    const slideTouchEndX = event.changedTouches[0].screenX;
+    const swipeDistance = slideTouchEndX - slideTouchStartX;
+    if (Math.abs(swipeDistance) > swipeThreshold) {
+      if (swipeDistance < 0) {
+        // свайп влево – следующий слайд
+        showSlide(slideIndex + 1);
+      } else {
+        // свайп вправо – предыдущий слайд
+        showSlide(slideIndex - 1);
+      }
+    }
+  });
+
+  // Callback форма
   const callbackButton = document.getElementById("callbackButton");
   const callbackForm = document.getElementById("callbackForm");
   const cancelButton = document.getElementById("cancelButton");
@@ -103,18 +135,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function openForm() {
     callbackForm.style.display = "flex";
-    callbackForm.classList.remove("hide"); // Убираем класс 'hide'
+    callbackForm.classList.remove("hide");
     callbackForm.classList.add("show");
     formVisible = true;
   }
 
   function closeForm() {
-    callbackForm.classList.remove("show"); // Убираем класс 'show', если он есть
+    callbackForm.classList.remove("show");
     callbackForm.classList.add("hide");
     setTimeout(() => {
       callbackForm.style.display = "none";
       formVisible = false;
     }, 300);
   }
-  
 });

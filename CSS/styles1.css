@@ -145,15 +145,13 @@ header {
     border-color: #555;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1066px) {
     .nav-links {
         display: none;
     }
-
     .hamburger-menu {
         display: block;
     }
-
     .dropdown.active {
         display: flex;
     }
@@ -162,6 +160,31 @@ header {
         border-bottom: 1px solid #ccc;
     }
 }
+
+@media (min-width: 1066px) and (max-width: 1024px) {
+    .nav-links {
+        display: flex !important;
+        gap: 10px;
+    }
+    .hamburger-menu,
+    .dropdown {
+        display: none !important;
+    }
+    header {
+        padding: 10px 20px;
+    }
+    .logo {
+        height: 35px;
+    }
+    .site-name {
+        font-size: 18px;
+    }
+    .nav-links a {
+        font-size: 16px;
+        padding: 5px 10px;
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
