@@ -435,7 +435,7 @@ input {
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: 8vh;
+  margin-top: 10vh;
   margin-bottom: -3vh;
   height: 45vh;
   width: 50vh;
@@ -663,5 +663,61 @@ textarea::placeholder{
   justify-content: center;
   align-items: center;
   flex-direction: row-reverse;
+}
+
+/* Перемещаем контейнер фильтра и поиска ниже хедера */
+.filter-container {
+  width: 100%;
+  max-width: 768px;
+  margin: 80px auto 0px; /* увеличенный верхний отступ для видимости */
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.filter-container label {
+  font-size: 0.9em;
+  margin-right: 5px;
+  align-self: center;
+}
+
+.filter-container select,
+.filter-container input[type="text"] {
+  padding: 5px 10px;
+  font-size: 0.9em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Стилизуем кнопки для удаления и редактирования отзывов */
+.review-header button.delete-review,
+.review-header button.edit-review {
+  font-size: 0.75em;
+  padding: 4px 8px;
+  margin-left: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f7f7f7;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.review-header button.delete-review:hover,
+.review-header button.edit-review:hover {
+  background-color: #e0e0e0;
+}
+
+/* Дополнительная настройка для маленьких экранов */
+@media (max-width: 768px) {
+  .review-header button.delete-review,
+  .review-header button.edit-review {
+    font-size: 0.65em;
+    padding: 2px 6px;
+  }
 }
 
