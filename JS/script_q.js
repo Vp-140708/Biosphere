@@ -57,28 +57,81 @@ document.addEventListener('DOMContentLoaded', function() {
         questions.forEach(displayQuestion);
     }
 
-    // Отображение вопроса на странице
+    // Функция для отображения вопроса на странице с возможностью ответа для администратора
     function displayQuestion(questionData) {
         const questionItem = document.createElement('div');
         questionItem.classList.add('question-item');
-
-        questionItem.innerHTML = `<strong>${questionData.username}</strong>: ${questionData.question}
-            <button class="delete-button" style="display: none;">Удалить</button>`;
-
+        
+        // Формирование базовой информации о вопросе
+        let contentHTML = `<strong>${questionData.username}</strong>: ${questionData.question}`;
+        
+        // Если на вопрос уже дан ответ, отображаем его
+        if (questionData.answer) {
+            contentHTML += `<div class="admin-answer">Ответ от Биосферы: ${questionData.answer}</div>`;
+        }
+        
+        questionItem.innerHTML = contentHTML;
+        
+        // Создаём кнопку "Удалить"
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('delete-button');
+        deleteButton.textContent = 'Удалить';
+        deleteButton.style.display = 'none';
+        questionItem.appendChild(deleteButton);
+        
+        // Загружаем текущего пользователя
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser) {
-            if (currentUser.isAdmin) {
-                questionItem.querySelector('.delete-button').style.display = 'inline';
-            } else if (currentUser.name === questionData.username) {
-                questionItem.querySelector('.delete-button').style.display = 'inline';
+            // Если администратор или пользователь задал этот вопрос, показываем кнопку удаления
+            if (currentUser.isAdmin || currentUser.name === questionData.username) {
+                deleteButton.style.display = 'inline';
             }
         }
-
-        questionItem.querySelector('.delete-button').addEventListener('click', function() {
+        
+        deleteButton.addEventListener('click', function () {
             deleteQuestion(questionData);
             questionItem.remove();
         });
-
+        
+        // Если текущий пользователь — администратор, добавляем кнопку для ответа
+        if (currentUser && currentUser.isAdmin) {
+            const answerButton = document.createElement('button');
+            answerButton.classList.add('answer-button');
+            // Если уже есть ответ — показываем возможность редактирования, иначе — дать ответ
+            answerButton.textContent = questionData.answer ? 'Редактировать ответ' : 'Ответить';
+            questionItem.appendChild(answerButton);
+            
+            answerButton.addEventListener('click', function () {
+                // Запрашиваем ответ через prompt. Если на вопрос уже был дан ответ, подставляем его по умолчанию.
+                let newAnswer = prompt("Введите ответ на вопрос:", questionData.answer ? questionData.answer : "");
+                if (newAnswer !== null) {
+                    questionData.answer = newAnswer;
+                    // Обновляем данные в LocalStorage
+                    let allQuestions = JSON.parse(localStorage.getItem('questions')) || [];
+                    for (let i = 0; i < allQuestions.length; i++) {
+                        if (allQuestions[i].question === questionData.question && allQuestions[i].username === questionData.username) {
+                            allQuestions[i].answer = newAnswer;
+                            break;
+                        }
+                    }
+                    localStorage.setItem('questions', JSON.stringify(allQuestions));
+                    
+                    // Обновляем отображение ответа на странице
+                    const existingAnswerDiv = questionItem.querySelector('.admin-answer');
+                    if (existingAnswerDiv) {
+                        existingAnswerDiv.textContent = "Ответ от Биосферы: " + newAnswer;
+                    } else {
+                        const answerDiv = document.createElement('div');
+                        answerDiv.classList.add('admin-answer');
+                        answerDiv.textContent = "Ответ от Биосферы: " + newAnswer;
+                        questionItem.insertBefore(answerDiv, answerButton);
+                    }
+                    // Меняем текст кнопки
+                    answerButton.textContent = newAnswer ? 'Редактировать ответ' : 'Ответить';
+                }
+            });
+        }
+        
         questionsContainer.appendChild(questionItem);
     }
 

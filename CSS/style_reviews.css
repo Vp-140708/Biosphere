@@ -116,7 +116,7 @@ button[type="submit"]:hover {
 
 .dark-theme .review-card {
   background-color: #555;
-  color: #ddd;
+  color: var(--text-dark);
 }
 
 .review-header {
@@ -511,6 +511,26 @@ textarea::placeholder{
   #login2:active ~ .sign-in-container {
     display: none;
   }
+  .review-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .review-header button.delete-review,
+  .review-header button.edit-review {
+    font-size: 1rem;
+    padding: 10px;
+    width: 100%;
+    margin: 5px 0;
+  }
+  .review-card {
+    width: 90%;       /* Уменьшаем ширину карточки, чтобы она не занимала всю ширину */
+    margin: 1em auto; /* Центрируем карточку по горизонтали */
+  }
+  .reviews-container {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 @media (max-width: 767px) {
   .write-review-section {
@@ -714,10 +734,19 @@ textarea::placeholder{
 
 /* Дополнительная настройка для маленьких экранов */
 @media (max-width: 768px) {
+  .review-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  
   .review-header button.delete-review,
   .review-header button.edit-review {
-    font-size: 0.65em;
-    padding: 2px 6px;
+    font-size: 1rem;
+    padding: 10px 15px;
+    width: 100%;
+    margin: 5px 0;
+    box-sizing: border-box;
   }
 }
 
@@ -725,5 +754,52 @@ textarea::placeholder{
   color: gold;
   text-shadow: 1px 1px #c60;
   font-size: 20px;
+}
+
+/* Адаптация для мобильной версии (телефон) */
+@media (max-width: 600px) {
+  /* Увеличение текста аккаунта */
+  .review-header strong {
+    font-size: 1.2rem; /* делает надпись аккаунта больше */
+  }
+
+  /* Чуть меньший размер кнопок "Удалить" и "Редактировать" */
+  .review-header button.delete-review,
+  .review-header button.edit-review {
+    font-size: 0.9rem;       /* немного уменьшаем размер шрифта */
+    padding: 8px 12px;       /* уменьшаем отступы для компактности */
+    width: 100%;             /* кнопки занимают всю ширину контейнера */
+    margin: 5px 0;           /* отступ между кнопками */
+    box-sizing: border-box;  /* учитываем padding при расчёте ширины */
+  }
+
+  /* Выделение текста отзыва в рамочку */
+  .review-text {
+    border: 1px solid #ddd;  /* тонкая рамка */
+    padding: 8px;            /* внутренние отступы */
+    border-radius: 5px;      /* скругление углов */
+  }
+
+  /* Увеличение размера звезд в отзывах */
+  .review-card .review-header span {
+    font-size: 40px;         /* увеличиваем размер звезд (текстовая реализация) */
+  }
+
+  /* Если используются svg-иконки для звезд, увеличиваем их размеры */
+  .full-stars label svg {
+    height: 50px;
+    width: 50px;
+  }
+  
+  /* Центрируем отзывы в контейнере на мобильных устройствах */
+  .reviews-container {
+    justify-content: center;
+  }
+  @media (max-width: 100px) {
+  .reviews-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 }
 

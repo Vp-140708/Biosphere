@@ -4,7 +4,12 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
   let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
 
-  // Проверка текущего пользователя
+  // Если у текущего пользователя нет userId, назначаем email как идентификатор (или можно использовать Date.now())
+  if (currentUser && !currentUser.userId) {
+    currentUser.userId = currentUser.email;
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+  }
+
   if (currentUser) {
     document.getElementById("container").style.display = "none";
     document.getElementById("write-review-section").style.display = "block";
@@ -20,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     alert("Вы не зарегистрированы. Пожалуйста, зарегистрируйтесь.");
     window.location.href = "Register.html";
+    return;
   }
 
   function escapeHTML(html) {
@@ -33,35 +39,59 @@ document.addEventListener("DOMContentLoaded", function () {
     return currentTime - currentUser.lastReviewTime >= 5 * 60 * 1000;
   }
 
+  // Функция проверки: имеет ли текущий пользователь права на удаление/редактирование данного отзыва
+  function canEditDelete(reviewData) {
+    if (currentUser.isAdmin) return true;
+    // Если у отзыва указан userId, сравниваем их; иначе – сравниваем имена
+    if (reviewData.userId) {
+      return currentUser.userId === reviewData.userId;
+    } else {
+      return currentUser.name === reviewData.userName;
+    }
+  }
+
   function displayReview(reviewData) {
     const reviewItem = document.createElement("div");
     reviewItem.classList.add("review-card");
+
+    let buttonsHTML = "";
+    if (canEditDelete(reviewData)) {
+      buttonsHTML = `<button class="delete-review">Удалить</button>
+                     <button class="edit-review">Редактировать</button>`;
+    }
+
     reviewItem.innerHTML = `
       <div class="review-header">
-        <strong>${escapeHTML(reviewData.userName)}</strong> 
+        <strong>${escapeHTML(reviewData.userName)}</strong>
         <span>${"★".repeat(reviewData.rating)}${"☆".repeat(5 - reviewData.rating)}</span>
-        ${(currentUser.isAdmin || currentUser.userId === reviewData.userId) ? `
-          <button class="delete-review">Удалить</button>
-          <button class="edit-review">Редактировать</button>` : ""}
+        ${buttonsHTML}
       </div>
       <p class="review-text">${escapeHTML(reviewData.text)}</p>`;
     document.getElementById("reviewsContainer").appendChild(reviewItem);
 
-    reviewItem.querySelector(".delete-review")?.addEventListener("click", function () {
-      reviews = reviews.filter((r) => r.reviewId !== reviewData.reviewId);
-      localStorage.setItem("reviews", JSON.stringify(reviews));
-      reviewItem.remove();
-    });
-
-    reviewItem.querySelector(".edit-review")?.addEventListener("click", function () {
-      const newText = prompt("Введите новый текст отзыва:", reviewData.text);
-      if (newText) {
-        reviewData.text = escapeHTML(newText);
-        localStorage.setItem("reviews", JSON.stringify(reviews));
-        reviewItem.querySelector(".review-text").textContent = reviewData.text;
-        alert("Отзыв успешно обновлен!");
+    if (canEditDelete(reviewData)) {
+      const deleteBtn = reviewItem.querySelector(".delete-review");
+      if (deleteBtn) {
+        deleteBtn.addEventListener("click", function () {
+          reviews = reviews.filter((r) => r.reviewId !== reviewData.reviewId);
+          localStorage.setItem("reviews", JSON.stringify(reviews));
+          reviewItem.remove();
+        });
       }
-    });
+
+      const editBtn = reviewItem.querySelector(".edit-review");
+      if (editBtn) {
+        editBtn.addEventListener("click", function () {
+          const newText = prompt("Введите новый текст отзыва:", reviewData.text);
+          if (newText) {
+            reviewData.text = escapeHTML(newText);
+            localStorage.setItem("reviews", JSON.stringify(reviews));
+            reviewItem.querySelector(".review-text").textContent = reviewData.text;
+            alert("Отзыв успешно обновлен!");
+          }
+        });
+      }
+    }
   }
 
   function loadReviews() {
@@ -77,17 +107,18 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    const reviewText = document.getElementById("review-text").value;
+    const reviewTextElem = document.getElementById("review-text");
     const ratingInput = document.querySelector('input[name="rating"]:checked');
 
-    if (!reviewText || !ratingInput) {
+    if (!reviewTextElem.value || !ratingInput) {
       alert("Пожалуйста, введите текст отзыва и выберите рейтинг.");
       return;
     }
 
+    // Создаем отзыв – обязательно сохраняем userId
     const reviewData = {
       reviewId: Date.now(),
-      text: escapeHTML(reviewText),
+      text: escapeHTML(reviewTextElem.value),
       rating: Number(ratingInput.value),
       userId: currentUser.userId,
       userName: currentUser.name,
@@ -99,8 +130,11 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
     displayReview(reviewData);
 
-    document.getElementById("review-text").value = "";
-    document.querySelector('input[name="rating"]:checked').checked = false;
+    reviewTextElem.value = "";
+    const checkedRating = document.querySelector('input[name="rating"]:checked');
+    if (checkedRating) {
+      checkedRating.checked = false;
+    }
     alert("Отзыв успешно добавлен!");
   });
 

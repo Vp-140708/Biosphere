@@ -125,3 +125,19 @@ button:hover {
 #theme-switcher {
     margin-top: 0px;
 }
+
+.answer-button {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.answer-button:hover {
+    background-color: #45a049;
+}
