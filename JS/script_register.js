@@ -40,13 +40,13 @@ document.addEventListener("DOMContentLoaded", function () {
         if (name === "*AdminBio*") {
             currentUser = { name: "Admin", email: "admin@example.com", password: hashPassword("adminpass"), isAdmin: true, lastReviewTime: 0 };
             localStorage.setItem("currentUser", JSON.stringify(currentUser));
-            alert(`Привет, ${currentUser.name}`); // Исправлено с user.name на currentUser.name
+            showNotification(`Привет, ${currentUser.name}`); // Исправлено с user.name на currentUser.name
             window.location.href = referrer || '/'; // Default to homepage if referrer is empty
             return;
         }
     
         if (!name || !email || !password) {
-            alert("Пожалуйста, заполните все поля.");
+            showNotification("Пожалуйста, заполните все поля.");
             return;
         }
     
@@ -54,17 +54,17 @@ document.addEventListener("DOMContentLoaded", function () {
         const existingUserByName = users.find((u) => u.name === name);
     
         if (existingUserByEmail) {
-            alert("Регистрация невозможна: почта уже существует.");
+            showNotification("Регистрация невозможна: почта уже существует.");
             return;
         }
     
         if (existingUserByName) {
-            alert("Регистрация невозможна: имя уже существует.");
+            showNotification("Регистрация невозможна: имя уже существует.");
             return;
         }
     
         if (password.length < 6) {
-            alert("Пароль должен содержать не менее 6 символов.");
+            showNotification("Пароль должен содержать не менее 6 символов.");
             return;
         }
     
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("users", JSON.stringify(users));
         currentUser = newUser;
         localStorage.setItem("currentUser", JSON.stringify(currentUser));
-        alert(`Регистрация успешна. Привет, ${name}!`);
+        showNotification(`Регистрация успешна. Привет, ${name}!`);
         // Redirect to the referrer URL
         window.location.href = referrer || '/'; // Default to homepage if referrer is empty
     }
@@ -90,13 +90,13 @@ document.addEventListener("DOMContentLoaded", function () {
         if (loginEmail.value === "*AdminBio*") {    
             currentUser = { name: "Admin", email: "admin@example.com", password: hashPassword("adminpass"), isAdmin: true, lastReviewTime: 0 };
             localStorage.setItem("currentUser", JSON.stringify(currentUser));
-            alert(`Привет, ${currentUser.name}`); // Исправлено с user.name на currentUser.name
+            showNotification(`Привет, ${currentUser.name}`); // Исправлено с user.name на currentUser.name
             window.location.href = referrer || '/'; // Default to homepage if referrer is empty
             return;
         }
     
         if (!email || !password) {
-            alert("Пожалуйста, заполните все поля.");
+            showNotification("Пожалуйста, заполните все поля.");
             return;
         }
     
@@ -106,12 +106,12 @@ document.addEventListener("DOMContentLoaded", function () {
         if (user) {
             currentUser = user;
             localStorage.setItem("currentUser", JSON.stringify(currentUser));
-            alert(`Привет, ${user.name}`);
+            showNotification(`Привет, ${user.name}`);
             
             // Redirect to the referrer URL
             window.location.href = referrer || '/'; // Default to homepage if referrer is empty
         } else {
-            alert("Неверный логин или пароль.");
+            showNotification("Неверный логин или пароль.");
         }
     }
     

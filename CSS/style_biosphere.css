@@ -1021,7 +1021,7 @@ to {
   text-decoration: none;
   place-items: center;
   display: grid;
-  margin: -1vw 43vw 5vh; 
+  margin: -1vw 43vw 5vh;
 }
 
 .question-button:hover {
@@ -1032,6 +1032,18 @@ to {
 
 .question-button:active {
   transform: scale(0.95);
+}
+
+/* Responsive adaptation for smaller screens */
+@media (max-width: 768px) {
+  .question-button {
+    margin: 20px auto;
+    width: 70%;
+    font-size: 16px;
+    padding: 12px 20px;
+    display: block;
+    text-align: center;
+  }
 }
 
 .hamburger-menu {
@@ -1047,5 +1059,25 @@ to {
   
   .hamburger-menu {
     display: block;
+  }
+}
+
+/* Base style for title-image */
+.title-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* For small screens (phones) */
+@media screen and (max-width: 768px) {
+  .title-image {
+    /* Reduce the width—it can be set either as a fixed pixel value or a percentage */
+    width: 90%;
+    /* Alternatively, you can use a fixed width:
+    width: 200px;
+    */
+
   }
 }

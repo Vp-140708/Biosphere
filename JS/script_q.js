@@ -18,12 +18,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const question = document.getElementById('question').value;
 
         if (!username) {
-            alert('Пожалуйста, введите имя.');
+            showNotification('Пожалуйста, введите имя.');
             return;
         }
 
         if (!question) {
-            alert('Пожалуйста, задайте вопрос.');
+            showNotification('Пожалуйста, задайте вопрос.');
             return;
         }
 

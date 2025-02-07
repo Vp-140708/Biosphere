@@ -1,0 +1,37 @@
+/* Контейнер для уведомлений – позиционирован в правом нижнем углу */
+#notification-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+/* Уведомление (светлая тема) */
+.notification {
+  background-color: #f7f7f7;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Эффект плавного исчезновения */
+.notification.fade-out {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+/* Правки для тёмной темы */
+.dark-theme .notification {
+  background-color: #444;
+  color: #d3d3d3;
+  border: 1px solid #666;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+} 

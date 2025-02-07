@@ -34,7 +34,11 @@ document.addEventListener("DOMContentLoaded", function () {
   blocksWrapper.addEventListener("touchend", function (event) {
     const touchEndX = event.changedTouches[0].screenX;
     const swipeDistance = touchEndX - touchStartX;
-    if (Math.abs(swipeDistance) > 150) {
+    
+    // Устанавливаем порог: на мобильных устройствах увеличиваем его до 250 пикселей, а для остальных оставляем 150.
+    let threshold = window.innerWidth < 768 ? 250 : 150;
+    
+    if (Math.abs(swipeDistance) > threshold) {
       goToSlide(currentIndex + (swipeDistance > 0 ? -1 : 1));
     }
   });

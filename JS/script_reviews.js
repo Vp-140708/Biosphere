@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("currentUser", JSON.stringify(currentUser));
     }
   } else {
-    alert("Вы не зарегистрированы. Пожалуйста, зарегистрируйтесь.");
+    showNotification("Вы не зарегистрированы. Пожалуйста, зарегистрируйтесь.");
     window.location.href = "Register.html";
     return;
   }
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
             reviewData.text = escapeHTML(newText);
             localStorage.setItem("reviews", JSON.stringify(reviews));
             reviewItem.querySelector(".review-text").textContent = reviewData.text;
-            alert("Отзыв успешно обновлен!");
+            showNotification("Отзыв успешно обновлен!");
           }
         });
       }
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Попытка отправить отзыв");
 
     if (!currentUser.isAdmin && !canPostReview()) {
-      alert("Вы можете оставить новый отзыв только через 5 минут.");
+      showNotification("Вы можете оставить новый отзыв только через 5 минут.");
       return;
     }
 
@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const ratingInput = document.querySelector('input[name="rating"]:checked');
 
     if (!reviewTextElem.value || !ratingInput) {
-      alert("Пожалуйста, введите текст отзыва и выберите рейтинг.");
+      showNotification("Пожалуйста, введите текст отзыва и выберите рейтинг.");
       return;
     }
 
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (checkedRating) {
       checkedRating.checked = false;
     }
-    alert("Отзыв успешно добавлен!");
+    showNotification("Отзыв успешно добавлен!");
   });
 
   document.getElementById("delete-all-reviews").addEventListener("click", function () {
@@ -143,9 +143,9 @@ document.addEventListener("DOMContentLoaded", function () {
       reviews = [];
       localStorage.setItem("reviews", JSON.stringify(reviews));
       document.getElementById("reviewsContainer").innerHTML = "";
-      alert("Все отзывы были удалены.");
+      showNotification("Все отзывы были удалены.");
     } else {
-      alert("У вас нет прав для удаления всех отзывов.");
+      showNotification("У вас нет прав для удаления всех отзывов.");
     }
   });
 
