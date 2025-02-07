@@ -526,6 +526,7 @@ textarea::placeholder{
   .review-card {
     width: 90%;       /* Уменьшаем ширину карточки, чтобы она не занимала всю ширину */
     margin: 1em auto; /* Центрируем карточку по горизонтали */
+    margin-left: 14vw; 
   }
   .reviews-container {
     flex-direction: column;
@@ -782,7 +783,7 @@ textarea::placeholder{
 
   /* Увеличение размера звезд в отзывах */
   .review-card .review-header span {
-    font-size: 40px;         /* увеличиваем размер звезд (текстовая реализация) */
+    font-size: 40px;        /* увеличиваем размер звезд (текстовая реализация) */
   }
 
   /* Если используются svg-иконки для звезд, увеличиваем их размеры */
