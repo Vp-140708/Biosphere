@@ -437,7 +437,7 @@ input {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-top: 10vh;
   margin-bottom: -3vh;
-  height: 45vh;
+  height: 50vh;
   width: 50vh;
 }
 textarea::placeholder{
@@ -536,6 +536,7 @@ textarea::placeholder{
 @media (max-width: 767px) {
   .write-review-section {
     width: 100%;
+
   }
   .container {
     margin: 0 auto;
