@@ -20,7 +20,6 @@ body {
 }    
 }
 h2 {
-    color: 5555;
     text-align: center;
 }
 
@@ -118,12 +117,9 @@ button:hover {
 .dark-theme h2 {
     color: white;
 }
-.dark-theme h2 {
-    color: white;
-}
 
 #theme-switcher {
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 .answer-button {

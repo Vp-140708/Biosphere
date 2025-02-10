@@ -52,7 +52,10 @@ button[type="submit"]:hover {
 }
 
 .reviews-container {
-  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
 
 .dark-theme {
@@ -93,30 +96,17 @@ button[type="submit"]:hover {
   background-color: #555;
   color: #d3d3d3;
 }
-.reviews-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
 
 .review-card {
-  background-color: #ececec;
-  color: #333;
-  border-radius: 10px;
+  background-color: #fff;
+  border-radius: 5px;
   padding: 15px;
-  box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1);
-  margin: 10px;
-  width: calc(33.333% - 20px);
-  transition: transform 0.2s, background-color 0.2s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
 }
 
-.review-card:hover {
-  transform: scale(1.05);
-}
-
-.dark-theme .review-card {
-  background-color: #555;
-  color: var(--text-dark);
+.review-card .review-header span {
+  font-size: 40px;
 }
 
 .review-header {

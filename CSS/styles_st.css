@@ -79,10 +79,32 @@ h1, h2 {
     }
 }
 .specialist-block {
-    animation: specialistCardAnimation 0.5s ease-in-out;
-    animation-fill-mode: backwards;
-  }
-  .specialist-block:hover {
+    background-color: var(--card-background-color);
+    padding: 15px;
+    margin: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.specialist-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0.5em 0;
+}
+
+.specialist-description {
+    font-size: 1em;
+    color: black;
+}
+
+@media (max-width: 768px) {
+    .specialist-block {
+        flex: 1 1 100%;
+        margin: 10px 0;
+    }
+}
+
+.specialist-block:hover {
     transform: scale(1.05);
 }
 .specialists-container {
