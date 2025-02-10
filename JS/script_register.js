@@ -13,35 +13,35 @@ document.addEventListener("DOMContentLoaded", function () {
     let users = JSON.parse(localStorage.getItem("users")) || [];
     let currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
 
-    // Capture the referrer URL
+    
     const referrer = document.referrer;
 
     if (container) {
         if (currentUser) {
-            container.style.display = "none"; // Скрываем форму входа/регистрации
-            if (logoutBtn) logoutBtn.style.display = "block"; // Показываем кнопку выхода
+            container.style.display = "none"; 
+            if (logoutBtn) logoutBtn.style.display = "block"; 
         } else {
-            if (logoutBtn) logoutBtn.style.display = "none"; // Скрываем кнопку выхода
+            if (logoutBtn) logoutBtn.style.display = "none"; 
         }
     } else {
         console.error("Container element not found!");
     }
 
-    // Функция хеширования пароля
+    
     function hashPassword(password) {
         return btoa(password);
     }
 
-    // Функция регистрации пользователя
+    
     function registerUser(name, email, password) {
         console.log("Функция регистрации вызвана");
     
-        // Проверка на специальное имя администратора
+        
         if (name === "*AdminBio*") {
             currentUser = { name: "Admin", email: "admin@example.com", password: hashPassword("adminpass"), isAdmin: true, lastReviewTime: 0 };
             localStorage.setItem("currentUser", JSON.stringify(currentUser));
-            showNotification(`Привет, ${currentUser.name}`); // Исправлено с user.name на currentUser.name
-            window.location.href = referrer || '/'; // Default to homepage if referrer is empty
+            showNotification(`Привет, ${currentUser.name}`); 
+            window.location.href = referrer || '/'; 
             return;
         }
     
@@ -68,8 +68,8 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
     
-        // Проверка на специальную строку
-        const isAdmin = name === "*AdminBio*"; // Этот флаг не нужен, если имя запрещено
+        
+        const isAdmin = name === "*AdminBio*"; 
     
         const newUser = { name, email, password: hashPassword(password), isAdmin };
         users.push(newUser);
@@ -77,21 +77,21 @@ document.addEventListener("DOMContentLoaded", function () {
         currentUser = newUser;
         localStorage.setItem("currentUser", JSON.stringify(currentUser));
         showNotification(`Регистрация успешна. Привет, ${name}!`);
-        // Redirect to the referrer URL
-        window.location.href = referrer || '/'; // Default to homepage if referrer is empty
+        
+        window.location.href = referrer || '/'; 
     }
     
 
-    // Функция для входа пользователя
+    
     function loginUser(email, password) {
         console.log("Функция входа вызвана");
     
-        // Проверка на имя администратора перед остальными проверками
+        
         if (loginEmail.value === "*AdminBio*") {    
             currentUser = { name: "Admin", email: "admin@example.com", password: hashPassword("adminpass"), isAdmin: true, lastReviewTime: 0 };
             localStorage.setItem("currentUser", JSON.stringify(currentUser));
-            showNotification(`Привет, ${currentUser.name}`); // Исправлено с user.name на currentUser.name
-            window.location.href = referrer || '/'; // Default to homepage if referrer is empty
+            showNotification(`Привет, ${currentUser.name}`); 
+            window.location.href = referrer || '/'; 
             return;
         }
     
@@ -108,8 +108,8 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem("currentUser", JSON.stringify(currentUser));
             showNotification(`Привет, ${user.name}`);
             
-            // Redirect to the referrer URL
-            window.location.href = referrer || '/'; // Default to homepage if referrer is empty
+            
+            window.location.href = referrer || '/'; 
         } else {
             showNotification("Неверный логин или пароль.");
         }
@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
     
 
-    // Обработчики событий для кнопок
+    
     if (registerBtn) {
         registerBtn.addEventListener("click", function (event) {
             event.preventDefault();
@@ -136,13 +136,13 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error("Login button not found!");
     }
 
-    // Обработчик для кнопки выхода
+    
     if (logoutBtn) {
         logoutBtn.addEventListener("click", function () {
             currentUser = null;
             localStorage.removeItem("currentUser");
-            if (container) container.style.display = "block"; // Show login/register form
-            if (logoutBtn) logoutBtn.style.display = "none"; // Hide logout button
+            if (container) container.style.display = "block"; 
+            if (logoutBtn) logoutBtn.style.display = "none"; 
         });
     } else {
         console.error("Logout button not found!");

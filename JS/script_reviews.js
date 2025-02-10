@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
   let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
 
-  // Если у текущего пользователя нет userId, назначаем email как идентификатор (или можно использовать Date.now())
+  
   if (currentUser && !currentUser.userId) {
     currentUser.userId = currentUser.email;
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
@@ -39,10 +39,10 @@ document.addEventListener("DOMContentLoaded", function () {
     return currentTime - currentUser.lastReviewTime >= 5 * 60 * 1000;
   }
 
-  // Функция проверки: имеет ли текущий пользователь права на удаление/редактирование данного отзыва
+  
   function canEditDelete(reviewData) {
     if (currentUser.isAdmin) return true;
-    // Если у отзыва указан userId, сравниваем их; иначе – сравниваем имена
+    
     if (reviewData.userId) {
       return currentUser.userId === reviewData.userId;
     } else {
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // Создаем отзыв – обязательно сохраняем userId
+    
     const reviewData = {
       reviewId: Date.now(),
       text: escapeHTML(reviewTextElem.value),
@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Фильтрация по рейтингу
+  
   document.getElementById("filter-rating").addEventListener("change", function () {
     const ratingFilter = Number(this.value);
     document.getElementById("reviewsContainer").innerHTML = "";
@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .forEach(displayReview);
   });
 
-  // Поиск по тексту
+  
   document.getElementById("search-reviews").addEventListener("input", function () {
     const searchText = this.value.toLowerCase();
     document.getElementById("reviewsContainer").innerHTML = "";

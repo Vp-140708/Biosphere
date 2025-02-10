@@ -23,13 +23,12 @@ menuButton.addEventListener("click", () => {
   dropdown.classList.toggle("active");
 });
 
-const logoutBtn = document.getElementById("logout-btn");
+const logoutBtn = document.getElementById("logout-btnн");
 if (logoutBtn) {
   logoutBtn.style.display = localStorage.getItem("currentUser") === null ? "none" : "block";
 
   logoutBtn.addEventListener("click", () => {
-    // Logic for logging out can go here (e.g., removing user info from localStorage)
-    localStorage.removeItem("currentUser"); // Example: remove user info
-    logoutBtn.style.display = "none"; // Hide the button
+    localStorage.removeItem("currentUser");
+    logoutBtn.style.display = "none";
   });
 }
