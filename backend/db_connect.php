@@ -1,12 +1,12 @@
 <?php
-$servername = "localhost";
-$username = "root";  // По умолчанию в XAMPP
-$password = "";      // Пустой пароль в XAMPP
-$dbname = "biosphere_db"; // Убедись, что это правильное имя БД
+$host = '127.0.0.1';
+$dbname = 'biosphere_db';
+$username = 'root'; 
+$password = ''; 
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Ошибка подключения: " . $conn->connect_error);
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Ошибка подключения: " . $e->getMessage());
 }
-?>

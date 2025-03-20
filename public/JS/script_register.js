@@ -36,30 +36,36 @@ document.addEventListener("DOMContentLoaded", function () {
     function registerUser(name, email, password) {
         console.log("Функция регистрации вызвана");
     
-        
+        // Специальная обработка для админа (если нужно сохранить эту логику)
         if (name === "*AdminBio*") {
-            currentUser = { name: "Admin", email: "admin@example.com", password: hashPassword("adminpass"), isAdmin: true, lastReviewTime: 0 };
-            localStorage.setItem("currentUser", JSON.stringify(currentUser));
-            showNotification(`Привет, ${currentUser.name}`); 
-            window.location.href = referrer || '/'; 
+            fetch('../backend/register.php', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    name: "Admin",
+                    email: "admin@example.com",
+                    password: "adminpass"
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.success) {
+                    currentUser = { 
+                        name: "Admin", 
+                        email: "admin@example.com", 
+                        isAdmin: true 
+                    };
+                    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+                    showNotification(`Привет, ${currentUser.name}`);
+                    window.location.href = referrer || '/';
+                }
+            });
             return;
         }
     
+        // Базовые проверки на клиенте
         if (!name || !email || !password) {
             showNotification("Пожалуйста, заполните все поля.");
-            return;
-        }
-    
-        const existingUserByEmail = users.find((u) => u.email === email);
-        const existingUserByName = users.find((u) => u.name === name);
-    
-        if (existingUserByEmail) {
-            showNotification("Регистрация невозможна: почта уже существует.");
-            return;
-        }
-    
-        if (existingUserByName) {
-            showNotification("Регистрация невозможна: имя уже существует.");
             return;
         }
     
@@ -68,17 +74,27 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
     
-        
-        const isAdmin = name === "*AdminBio*"; 
-    
-        const newUser = { name, email, password: hashPassword(password), isAdmin };
-        users.push(newUser);
-        localStorage.setItem("users", JSON.stringify(users));
-        currentUser = newUser;
-        localStorage.setItem("currentUser", JSON.stringify(currentUser));
-        showNotification(`Регистрация успешна. Привет, ${name}!`);
-        
-        window.location.href = referrer || '/'; 
+        // Отправка данных на сервер
+        fetch('../backend/register.php', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({name, email, password})
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.success) {
+                currentUser = {name, email, isAdmin: false};
+                localStorage.setItem("currentUser", JSON.stringify(currentUser));
+                showNotification(`Регистрация успешна. Привет, ${name}!`);
+                window.location.href = referrer || '/';
+            } else {
+                showNotification(data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Ошибка:', error);
+            showNotification('Ошибка соединения с сервером');
+        });
     }
     
 
