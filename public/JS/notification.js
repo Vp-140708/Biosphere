@@ -22,7 +22,4 @@ function showNotification(message, duration = 3000) {
   }, duration);
 }
 
-
-
-
 window.alert = showNotification; 
